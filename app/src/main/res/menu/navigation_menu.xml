@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/faecher"
+        android:title="Meine Fächer" />
+
+    <item android:id="@+id/studium"
+        android:title="Mein Studium" />
+
+    <item android:id="@+id/einstellungen"
+        android:title="Einstellungen" />
+
+</menu>
