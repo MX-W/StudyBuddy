@@ -6,10 +6,10 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "course_of_studies",
-        primaryKeys = { "course_id" },
-        foreignKeys = {
+        primaryKeys = { "course_id" }
+        /*foreignKeys = {
             @ForeignKey(entity = City.class, parentColumns = "id", childColumns = "city_id")
-        })
+        }*/)
 public class CourseOfStudies {
 
     @ColumnInfo(name = "course_id")
@@ -28,12 +28,21 @@ public class CourseOfStudies {
     private String faculty;
 
     @ColumnInfo(name = "city_id")
-    private String cityId;
+    private int cityId;
 
-    @ColumnInfo(name = "univeristy_name")
-    private String universityName;
+    @ColumnInfo(name = "univeristy_id")
+    private int universityId;
 
-    public int getCouseId() {
+    public CourseOfStudies(String name, int semesterCount, int credits, String faculty, int cityId, int universityId) {
+        this.name = name;
+        this.semesterCount = semesterCount;
+        this.credits = credits;
+        this.faculty = faculty;
+        this.cityId = cityId;
+        this.universityId = universityId;
+    }
+
+    public int getCourseId() {
         return courseId;
     }
 
@@ -73,19 +82,19 @@ public class CourseOfStudies {
         this.faculty = faculty;
     }
 
-    public String getCityId() {
+    public int getCityId() {
         return cityId;
     }
 
-    public void setCityId(String cityId) {
+    public void setCityId(int cityId) {
         this.cityId = cityId;
     }
 
-    public String getUniversityName() {
-        return universityName;
+    public int getUniversityId() {
+        return universityId;
     }
 
-    public void setUniversityName(String universityName) {
-        this.universityName = universityName;
+    public void setUniversityId(int universityId) {
+        this.universityId = universityId;
     }
 }

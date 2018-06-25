@@ -6,15 +6,16 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "lecture",
+        primaryKeys = { "lecture_id" },
         foreignKeys = {
-            @ForeignKey(entity = CourseOfStudies.class, parentColumns = "id", childColumns = "course_id"),
-            @ForeignKey(entity = Module.class, parentColumns = "id", childColumns = "module_id"),
-            @ForeignKey(entity = Lecturer.class, parentColumns = "id", childColumns = "lecturer_id"),
-            @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "category_id")
+            @ForeignKey(entity = CourseOfStudies.class, parentColumns = "course_id", childColumns = "course_id"),
+            @ForeignKey(entity = Module.class, parentColumns = "module_id", childColumns = "module_id"),
+            @ForeignKey(entity = Lecturer.class, parentColumns = "lecturer_id", childColumns = "lecturer_id"),
+            @ForeignKey(entity = Category.class, parentColumns = "category_id", childColumns = "category_id")
         })
 public class Lecture {
 
-    @PrimaryKey
+    @ColumnInfo(name = "lecture_id")
     private int id;
 
     @ColumnInfo(name = "course_id")
@@ -212,5 +213,13 @@ public class Lecture {
 
     public void setFurtherInformation(String furtherInformation) {
         this.furtherInformation = furtherInformation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

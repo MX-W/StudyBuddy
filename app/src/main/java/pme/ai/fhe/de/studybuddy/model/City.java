@@ -4,22 +4,18 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
+@Entity(
+        tableName = "city",
+        primaryKeys = "city_id"
+)
 public class City {
 
-    @PrimaryKey
+    @ColumnInfo(name = "city_id")
     private int id;
 
     @ColumnInfo
     private String name;
 
-    public int getCityId() {
-        return id;
-    }
-
-    public void setCityId(int cityId) {
-        this.id = cityId;
-    }
 
     public String getName() {
         return name;
@@ -27,5 +23,13 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

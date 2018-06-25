@@ -4,10 +4,13 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
+@Entity (
+        tableName = "module",
+        primaryKeys = "module_id"
+)
 public class Module {
 
-    @PrimaryKey
+    @ColumnInfo(name = "module_id")
     private int id;
 
     @ColumnInfo
@@ -73,6 +76,14 @@ public class Module {
 
     public void setModuleCode(String moduleCode) {
         this.moduleCode = moduleCode;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
 }
