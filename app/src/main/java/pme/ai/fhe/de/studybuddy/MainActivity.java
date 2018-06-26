@@ -40,7 +40,7 @@ private ImageView iv;
         controller.insertCourse(computerScience2);
 
 
-        //Handler brings splash screen to the next activity
+        //handler brings splash screen to the next activity
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
