@@ -14,7 +14,7 @@ import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
 import pme.ai.fhe.de.studybuddy.model.Daos.DataBase;
 import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 private static int SPLASH_TIME_OUT = 4000; //Time of the Splash Screen
 private static String DATABASE_NAME = "StudyBuddy_DB"; //Includes Database
 private ImageView iv;
@@ -44,7 +44,7 @@ private ImageView iv;
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-                Intent homeIntent = new Intent (MainActivity.this, HomeActivity.class);
+                Intent homeIntent = new Intent (SplashActivity.this, Overview.class);
                 startActivity(homeIntent);
                 finish();
             }

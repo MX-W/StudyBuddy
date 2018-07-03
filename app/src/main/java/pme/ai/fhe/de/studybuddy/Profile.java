@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Profile extends HomeActivity{
+public class Profile extends MenuActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

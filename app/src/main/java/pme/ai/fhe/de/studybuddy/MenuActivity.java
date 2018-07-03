@@ -17,7 +17,7 @@ import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
 import pme.ai.fhe.de.studybuddy.model.Daos.DataBase;
 import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
 public DrawerLayout mDrawerLayout;
