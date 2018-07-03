@@ -16,8 +16,6 @@ public class Profile extends MenuActivity {
         setContentView(R.layout.activity_profile);
         openMenu();
 
-
-
         final Button button = findViewById(R.id.newstudy);
         button.setOnClickListener((new View.OnClickListener() {
             @Override
@@ -26,14 +24,11 @@ public class Profile extends MenuActivity {
             }
         }));
 
-
-
     }
 
 
     void onClick()
     {
-
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder = new AlertDialog.Builder(Profile.this, android.R.style.Theme_Material_Dialog_Alert);
