@@ -22,8 +22,9 @@ import pme.ai.fhe.de.studybuddy.model.DependentLecture;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Lecturer;
 import pme.ai.fhe.de.studybuddy.model.Module;
+import pme.ai.fhe.de.studybuddy.model.University;
 
-@Database(entities = {Category.class, City.class, CourseOfStudies.class, DependentLecture.class, Lecture.class, Lecturer.class, Module.class}, version = 1)
+@Database(entities = {Category.class, City.class, CourseOfStudies.class, DependentLecture.class, Lecture.class, Lecturer.class, Module.class, University.class}, version = 5)
 public abstract class DataBase extends RoomDatabase{
 
     public abstract CourseOfStudiesDao getCourseOfStudiesDao();

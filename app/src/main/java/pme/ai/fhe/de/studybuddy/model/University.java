@@ -8,11 +8,11 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(
         tableName = "university",
-        primaryKeys = "university_id",
-        foreignKeys = @ForeignKey(entity = City.class, parentColumns = "id", childColumns = "city_id")
+        foreignKeys = @ForeignKey(entity = City.class, parentColumns = "city_id", childColumns = "city_id")
 )
 public class University {
 
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "university_id")
     private int universityId;
 

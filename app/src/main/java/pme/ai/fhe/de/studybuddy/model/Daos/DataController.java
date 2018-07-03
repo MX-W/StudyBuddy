@@ -2,6 +2,8 @@ package pme.ai.fhe.de.studybuddy.model.Daos;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +11,8 @@ import java.util.List;
 
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
+import pme.ai.fhe.de.studybuddy.model.University;
+import pme.ai.fhe.de.studybuddy.utilities.GenericAsyncTask;
 
 public class DataController {
 
@@ -19,7 +23,7 @@ public class DataController {
     private static DataController INSTANCE;
 
 
-    public DataController(Application application) {
+    private DataController(Application application) {
         DataBase db = DataBase.getDatabase(application);
         courseOfStudiesDao = db.getCourseOfStudiesDao();
         cityDao = db.getCityDao();
@@ -39,11 +43,26 @@ public class DataController {
     }
 
     private void generateData() {
-        new insertCities(cityDao).execute(generateCities());
+        GenericAsyncTask asyncHandler = new GenericAsyncTask(cityDao, universityDao, courseOfStudiesDao);
+        if(!"Erfurt".equals(cityDao.getCityNameById(1))) {
+            asyncHandler.insertCities(generateCities());
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                Log.i("Thread sleep", e.toString());
+            }
+            asyncHandler.insertUniversities(generateUniversities());
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                Log.i("Thread sleep", e.toString());
+            }
+            asyncHandler.insertCourses(generateCourseOfStudies());
+        }
 
     }
 
-    private static City[] generateCities() {
+    private City[] generateCities() {
         City[] allCities = new City[3];
         City city = new City("Erfurt");
         allCities[0] = city;
@@ -54,27 +73,40 @@ public class DataController {
         return allCities;
     }
 
+    private University[] generateUniversities() {
+        University[] allUniversities = new University[4];
+        University university = new University("FH Erfurt", cityDao.getCityIdByName("Erfurt"));
+        allUniversities[0] = university;
+        university = new University("Universität Erfurt", cityDao.getCityIdByName("Erfurt"));
+        allUniversities[1] = university;
+        university = new University("FH Jena", cityDao.getCityIdByName("Jena"));
+        allUniversities[2] = university;
+        university = new University("Bauhausuniversität Weimar", cityDao.getCityIdByName("Weimar"));
+        allUniversities[3] = university;
+        return allUniversities;
+    }
+
+    private CourseOfStudies[] generateCourseOfStudies() {
+        CourseOfStudies[] allCourses = new CourseOfStudies[5];
+        CourseOfStudies course = new CourseOfStudies("Angewandte Informatik", 7, 210, "Gebäudetechnik und Informatik", universityDao.getUniversityIdByName("FH Erfurt"));
+        allCourses[0] = course;
+        course = new CourseOfStudies("Architektur", 6, 180, "Architektur und Stadtplanung", universityDao.getUniversityIdByName("FH Erfurt"));
+        allCourses[1] = course;
+        course = new CourseOfStudies("Soziale Arbeit", 6, 180, "Angewandte Sozialwissenschaften", universityDao.getUniversityIdByName("FH Erfurt"));
+        allCourses[2] = course;
+        course = new CourseOfStudies("Medieninformatik", 6, 180, "Medien", universityDao.getUniversityIdByName("Bauhausuniversität Weimar"));
+        allCourses[3] = course;
+        course = new CourseOfStudies("Laser- und Optotechnologien", 6, 180, "Elektrotechnik und Informationstechnik", universityDao.getUniversityIdByName("FH Jena"));
+        allCourses[4] = course;
+
+        return allCourses;
+    }
+
     public List<CourseOfStudies> getAllCourses() {
         return courseOfStudiesDao.getAll();
     }
 
-    private static class insertCities extends AsyncTask<City, Void, Void> {
-
-        private CityDao mAsyncTaskDao;
-
-        insertCities (CityDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final City[] params) {
-            for(int i = 0; i < params.length; i++) {
-                mAsyncTaskDao.insert(params[i]);
-            }
-
-            return null;
-        }
-    }
+    public int getCityIdByName(String name) { return cityDao.getCityIdByName(name); }
 }
 
 

@@ -13,7 +13,7 @@ import java.util.List;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
 
 @Dao
-abstract class CourseOfStudiesDao implements IGenericDao<CourseOfStudies> {
+public abstract class CourseOfStudiesDao implements IGenericDao<CourseOfStudies> {
 
 
     @Query("SELECT * from course_of_studies")

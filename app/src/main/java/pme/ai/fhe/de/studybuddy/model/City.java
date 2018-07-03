@@ -5,11 +5,11 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(
-        tableName = "city",
-        primaryKeys = "city_id"
+        tableName = "city"
 )
 public class City {
 
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "city_id")
     private int id;
 
