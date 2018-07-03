@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity" />
-        <activity android:name=".noten"></activity>
+        <activity android:name=".Grades" />
+        <activity android:name=".Profile" />
+        <activity android:name=".NeuesStudium"></activity>
     </application>
 
 </manifest>

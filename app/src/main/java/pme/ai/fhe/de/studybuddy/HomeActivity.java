@@ -67,13 +67,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Übersicht", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.noten:
-                startActivity(new Intent(this, noten.class));
+                startActivity(new Intent(this, Grades.class));
                 return true;
             case R.id.moduluebersicht:
                 Toast.makeText(this, "Module", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.profil:
-                Toast.makeText(this, "Profil", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, Profile.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

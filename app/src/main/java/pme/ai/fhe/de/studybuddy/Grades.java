@@ -3,11 +3,11 @@ package pme.ai.fhe.de.studybuddy;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class noten extends AppCompatActivity {
+public class Grades extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_noten);
+        setContentView(R.layout.activity_grades);
     }
 }

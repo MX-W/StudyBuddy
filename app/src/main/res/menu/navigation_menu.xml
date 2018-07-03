@@ -14,7 +14,7 @@
         android:icon="@mipmap/baseline_library_books_black_24"/>
 
     <item android:id="@+id/profil"
-        android:title="Profl"
+        android:title="Profil"
         android:icon="@mipmap/baseline_account_box_black_24"/>
 
 </menu>
