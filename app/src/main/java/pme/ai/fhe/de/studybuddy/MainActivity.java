@@ -26,13 +26,13 @@ private ImageView iv;
         Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);
         iv.startAnimation(myanim);
 
-        DataBase db = DataBase.getDatabase(getApplicationContext());
+        DataController controller = DataController.getInstance(getApplication());
 
-        CourseOfStudies computerScience = new CourseOfStudies("Angewandte Informatik", 7, 210, "GET", 1, 1);
+       /* CourseOfStudies computerScience = new CourseOfStudies("Angewandte Informatik", 7, 210, "GET", 1, 1);
         CourseOfStudies computerScience2 = new CourseOfStudies("Medieninformatik", 7, 210, "GET", 5, 2);
         DataController controller = new DataController(getApplication());
         controller.insertCourse(computerScience);
-        controller.insertCourse(computerScience2);
+        controller.insertCourse(computerScience2);*/
 
 
         new Handler().postDelayed(new Runnable(){

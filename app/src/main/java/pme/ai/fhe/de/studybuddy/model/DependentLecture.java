@@ -6,13 +6,13 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "dependent_lecture",
-        primaryKeys = "id",
         foreignKeys = {
                 @ForeignKey(entity = Lecture.class, parentColumns = "lecture_id", childColumns = "lecture_id"),
                 @ForeignKey(entity = Lecture.class, parentColumns = "lecture_id", childColumns = "dependent_id")
         })
 public class DependentLecture {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "lecture_id")
