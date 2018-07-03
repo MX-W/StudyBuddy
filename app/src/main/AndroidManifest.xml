@@ -19,7 +19,9 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".Grades" />
         <activity android:name=".Profile" />
-        <activity android:name=".NeuesStudium"></activity>
+        <activity android:name=".NewStudy" />
+        <activity android:name=".Overview" />
+        <activity android:name=".Modules"></activity>
     </application>
 
 </manifest>

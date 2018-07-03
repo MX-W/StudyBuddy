@@ -19,23 +19,22 @@ import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
+
+public DrawerLayout mDrawerLayout;
+public ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         mDrawerLayout = findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
+        openMenu();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
 
         DataController controller = new DataController(getApplication());
         DataBase db = DataBase.getDatabase(getApplicationContext());
@@ -48,6 +47,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Log.i("CourseOfStudies-Dao: ", course);
         }
     }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -64,22 +66,40 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.uebersicht:
-                Toast.makeText(this, "Übersicht", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, Overview.class));
                 return true;
             case R.id.noten:
                 startActivity(new Intent(this, Grades.class));
                 return true;
             case R.id.moduluebersicht:
-                Toast.makeText(this, "Module", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, Modules.class));
                 return true;
             case R.id.profil:
                 startActivity(new Intent(this, Profile.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+
         }
 
 
         //return false;
     }
+
+    public boolean openMenu()
+    {
+        mDrawerLayout = findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        Log.i("Drawer:", mDrawerLayout.toString());
+        mToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        return true;
+    }
+
 }

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".Profile">
 
-<TextView
+ <android.support.v4.widget.DrawerLayout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#ffffff"
+        tools:context=".Profile"
+        android:id="@+id/drawerLayout">
+
+
+
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <TextView
     android:id="@+id/profile_heading"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -83,7 +92,17 @@ tools:context=".Profile">
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         />
+    </RelativeLayout>
 
 
+    <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:menu="@menu/navigation_menu"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/navigation_header">
 
-</RelativeLayout>
+        </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>
