@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
 import pme.ai.fhe.de.studybuddy.model.Daos.DataBase;
 import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
@@ -17,15 +18,14 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        DataController controller = new DataController(getApplication());
-        DataBase db = DataBase.getDatabase(getApplicationContext());
-        List<CourseOfStudies> list = controller.getAllCourses();
+        DataController controller = DataController.getInstance(getApplication());
+        List<City> list = controller.getAllCities();
 
-        Log.i("All courses: ", list.toString());
+        Log.i("All cities: ", list.toString());
 
-        for(CourseOfStudies cours : list) {
-            String course = Integer.toString(cours.getCourseId());
-            Log.i("CourseOfStudies-Dao: ", course);
+        for(City cours : list) {
+            String course = cours.getName();
+            Log.i("Cities: ", course);
         }
     }
 }

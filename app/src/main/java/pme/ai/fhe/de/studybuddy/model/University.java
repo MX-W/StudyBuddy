@@ -22,6 +22,11 @@ public class University {
     @ColumnInfo(name = "city_id")
     private int cityId;
 
+    public University(String name, int cityId) {
+        this.name = name;
+        this.cityId = cityId;
+    }
+
     public int getUniversityId() {
         return universityId;
     }
