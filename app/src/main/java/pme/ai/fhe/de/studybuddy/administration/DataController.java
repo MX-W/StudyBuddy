@@ -15,6 +15,7 @@ import pme.ai.fhe.de.studybuddy.administration.daos.CityDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.CourseOfStudiesDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.UniversityDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.UserDataDao;
+import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Module;
 import pme.ai.fhe.de.studybuddy.model.University;
 import pme.ai.fhe.de.studybuddy.model.UserData;
@@ -197,6 +198,99 @@ public class DataController {
 
         return allmodules;
     }
+
+    private Lecture[] generateLectures() {
+        Lecture[] allLectures = new Lecture[41];
+
+        Lecture lecture = new Lecture(1, 1, "Mathematik 1", 6, true, 4, "deutsch");
+        allLectures[0] = lecture;
+        lecture = new Lecture(1, 1, "Mathematik 2", 6, true, 4, "deutsch");
+        allLectures[1] = lecture;
+        lecture = new Lecture(1, 1, "Mathematik 3", 2, true, 4, "deutsch");
+        allLectures[2] = lecture;
+        lecture = new Lecture(1, 2, "Theoretische Informatik 1", 6, true, 4, "deutsch");
+        allLectures[3] = lecture;
+        lecture = new Lecture(1, 2, "Theoretische Informatik 2", 4, true, 4, "deutsch");
+        allLectures[4] = lecture;
+        lecture = new Lecture(1, 3, "Digitaltechnik", 3, true, 4, "deutsch");
+        allLectures[5] = lecture;
+        lecture = new Lecture(1, 3, "Rechnerarchitektur", 3, true, 4, "deutsch");
+        allLectures[6] = lecture;
+        lecture = new Lecture(1, 4, "Programmieren 1", 6, true, 0, "deutsch");
+        allLectures[7] = lecture;
+        lecture = new Lecture(1, 4, "Programmieren 2", 4, true, 0, "deutsch");
+        allLectures[8] = lecture;
+        lecture = new Lecture(1, 4, "Programmieren 3", 3, true, 0, "deutsch");
+        allLectures[9] = lecture;
+        lecture = new Lecture(1, 4, "Programmieren 4", 4, true, 0, "deutsch");
+        allLectures[10] = lecture;
+        lecture = new Lecture(1, 5, "Multimedia", 2, true, 6, "deutsch");
+        allLectures[11] = lecture;
+        lecture = new Lecture(1, 6, "Betriebswirtschaftslehre", 2, true, 6, "deutsch");
+        allLectures[12] = lecture;
+        lecture = new Lecture(1, 7, "Englisch", 2, true, 1, "deutsch");
+        allLectures[13] = lecture;
+        lecture = new Lecture(1, 8, "Betriebssysteme 1", 4, true, 6, "deutsch");
+        allLectures[14] = lecture;
+        lecture = new Lecture(1, 8, "Betriebssysteme 2", 2, true, 6, "deutsch");
+        allLectures[15] = lecture;
+        lecture = new Lecture(1, 9, "Datenbanken 1", 4, true, 0, "deutsch");
+        allLectures[16] = lecture;
+        lecture = new Lecture(1, 9, "Datenbanken 2", 3, true, 0, "deutsch");
+        allLectures[17] = lecture;
+        lecture = new Lecture(1, 10, "Softwaretechnik 1", 4, true, 0, "deutsch");
+        allLectures[18] = lecture;
+        lecture = new Lecture(1, 10, "Softwaretechnik 2", 4, true, 0, "deutsch");
+        allLectures[19] = lecture;
+        lecture = new Lecture(1, 11, "Netze 1", 4, true, 5, "deutsch");
+        allLectures[20] = lecture;
+        lecture = new Lecture(1, 11, "Netze 2", 2, true, 5, "deutsch");
+        allLectures[21] = lecture;
+        lecture = new Lecture(1, 12, "Grafische Datenverarbeitung", 4, true, 0, "deutsch");
+        allLectures[22] = lecture;
+        lecture = new Lecture(1, 13, "It-Kolloquium", 2, true, 6, "deutsch");
+        allLectures[23] = lecture;
+        lecture = new Lecture(1, 14, "It-Sicherheit", 2, true, 6, "deutsch");
+        allLectures[24] = lecture;
+        lecture = new Lecture(1, 15, "It-Recht", 2, true, 6, "deutsch");
+        allLectures[25] = lecture;
+        lecture = new Lecture(1, 16, "Praxisprojekt", 4, true, 0, "deutsch");
+        allLectures[26] = lecture;
+        lecture = new Lecture(1, 17, "Praxismodul", 22, true, 6, "deutsch");
+        allLectures[27] = lecture;
+        lecture = new Lecture(1, 18, "Bachelorarbeit", 10, true, 4, "deutsch");
+        allLectures[28] = lecture;
+        lecture = new Lecture(1, 19, "Medientechnik", 2, true, 3, "deutsch");
+        allLectures[29] = lecture;
+        lecture = new Lecture(1, 20, "Digitale Medien 1", 8, true, 3, "deutsch");
+        allLectures[30] = lecture;
+        lecture = new Lecture(1, 20, "Digitale Medien 2", 6, true, 3, "deutsch");
+        allLectures[31] = lecture;
+        lecture = new Lecture(1, 20, "Digitale Medien 3", 8, true, 3, "deutsch");
+        allLectures[32] = lecture;
+        lecture = new Lecture(1, 21, "Multimediaproduktion", 4, true, 3, "deutsch");
+        allLectures[33] = lecture;
+        lecture = new Lecture(1, 22, "Medienrecht 1", 2, true, 3, "deutsch");
+        allLectures[34] = lecture;
+        lecture = new Lecture(1, 22, "Medienrecht 2", 2, true, 3, "deutsch");
+        allLectures[35] = lecture;
+        lecture = new Lecture(1, 23, "Existenzgründung", 2, false, 6, "deutsch");
+        allLectures[36] = lecture;
+        lecture = new Lecture(1, 24, "Zivilrecht", 4, false, 6, "deutsch");
+        allLectures[36] = lecture;
+        lecture = new Lecture(1, 25, "Marketing", 4, false, 6, "deutsch");
+        allLectures[37] = lecture;
+        lecture = new Lecture(1, 26, "Operative Anwendungssysteme", 4, false, 6, "deutsch");
+        allLectures[38] = lecture;
+        lecture = new Lecture(1, 27, "Programmierung Mobiler Endgeräte", 4, false, 0, "deutsch");
+        allLectures[39] = lecture;
+        lecture = new Lecture(1, 28, "Dynamische Webprogrammierung", 4, false, 0, "deutsch");
+        allLectures[40] = lecture;
+
+        return allLectures;
+    }
+
+
 
     private Category[] generateCategories() {
         Category[] allCategories = new Category[7];
