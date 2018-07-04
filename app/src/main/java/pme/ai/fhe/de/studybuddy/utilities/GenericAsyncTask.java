@@ -8,8 +8,10 @@ import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
 import pme.ai.fhe.de.studybuddy.model.Daos.CategoryDao;
 import pme.ai.fhe.de.studybuddy.model.Daos.CityDao;
 import pme.ai.fhe.de.studybuddy.model.Daos.CourseOfStudiesDao;
+import pme.ai.fhe.de.studybuddy.model.Daos.ModuleDao;
 import pme.ai.fhe.de.studybuddy.model.Daos.LectureDao;
 import pme.ai.fhe.de.studybuddy.model.Daos.UniversityDao;
+import pme.ai.fhe.de.studybuddy.model.Module;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.University;
 
@@ -18,15 +20,11 @@ public class GenericAsyncTask {
     private CityDao cityDao;
     private UniversityDao universityDao;
     private CourseOfStudiesDao courseOfStudiesDao;
-    private LectureDao lectureDao;
-    private CategoryDao categoryDao;
 
-    public GenericAsyncTask(CityDao cityDao, UniversityDao universityDao, CourseOfStudiesDao courseOfStudiesDao, LectureDao lectureDao, CategoryDao categoryDao) {
+    public GenericAsyncTask(CityDao cityDao, UniversityDao universityDao, CourseOfStudiesDao courseOfStudiesDao) {
         this.cityDao = cityDao;
         this.universityDao = universityDao;
         this.courseOfStudiesDao = courseOfStudiesDao;
-        this.lectureDao = lectureDao;
-        this.categoryDao = categoryDao;
     }
 
     private static class insertCities extends AsyncTask<City, Void, Void> {
@@ -95,50 +93,6 @@ public class GenericAsyncTask {
 
     public void insertCourses(CourseOfStudies[] courseOfStudies) {
         new insertCourse(this.courseOfStudiesDao).execute(courseOfStudies);
-    }
-
-    private static class insertCategories extends AsyncTask<Category, Void, Void> {
-
-        private CategoryDao mAsyncTaskDao;
-
-        insertCategories(CategoryDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final Category[] params) {
-            for(int i = 0; i < params.length; i++) {
-                //Log.i("inserting ", params[i].getName());
-                mAsyncTaskDao.insert(params[i]);
-            }
-            return null;
-        }
-    }
-
-    public void insertCategories(Category[] categories) {
-        new insertCategories(this.categoryDao).execute(categories);
-    }
-
-    private static class insertLectures extends AsyncTask<Lecture, Void, Void> {
-
-        private LectureDao mAsyncTaskDao;
-
-        insertLectures(LectureDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final Lecture[] params) {
-            for(int i = 0; i < params.length; i++) {
-                //Log.i("inserting ", params[i].getName());
-                mAsyncTaskDao.insert(params[i]);
-            }
-            return null;
-        }
-    }
-
-    public void insertLectures(Lecture[] lectures) {
-        new insertLectures(this.lectureDao).execute(lectures);
     }
 }
 

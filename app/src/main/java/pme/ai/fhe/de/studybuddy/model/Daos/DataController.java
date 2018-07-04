@@ -13,6 +13,7 @@ import pme.ai.fhe.de.studybuddy.model.Category;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
+import pme.ai.fhe.de.studybuddy.model.Module;
 import pme.ai.fhe.de.studybuddy.model.University;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.GenericAsyncTask;
@@ -23,8 +24,6 @@ public class DataController {
     private CityDao cityDao;
     private UniversityDao universityDao;
     private UserDataDao userDataDao;
-    private LectureDao lectureDao;
-    private CategoryDao categoryDao;
 
     private static DataController INSTANCE;
 
@@ -35,8 +34,6 @@ public class DataController {
         cityDao = db.getCityDao();
         universityDao = db.getUniversityDao();
         userDataDao = db.getUserDataDao();
-        lectureDao = db.getLectureDao();
-        categoryDao = db.getCategoryDao();
         generateData();
     }
 
@@ -60,7 +57,7 @@ public class DataController {
     }
 
     private void generateData() {
-        GenericAsyncTask asyncHandler = new GenericAsyncTask(cityDao, universityDao, courseOfStudiesDao, lectureDao, categoryDao);
+        GenericAsyncTask asyncHandler = new GenericAsyncTask(cityDao, universityDao, courseOfStudiesDao);
         if(!"Erfurt".equals(cityDao.getCityNameById(1))) {
             asyncHandler.insertCities(generateCities());
             try {
@@ -75,18 +72,6 @@ public class DataController {
                 Log.i("Thread sleep", e.toString());
             }
             asyncHandler.insertCourses(generateCourseOfStudies());
-            try {
-                Thread.sleep(200);
-            } catch (Exception e) {
-                Log.i("Thread sleep", e.toString());
-            }
-            asyncHandler.insertCategories(generateCategories());
-            try {
-                Thread.sleep(200);
-            } catch (Exception e) {
-                Log.i("Thread sleep", e.toString());
-            }
-            asyncHandler.insertLectures(generateLectures());
         }
 
     }
@@ -117,7 +102,7 @@ public class DataController {
 
     private CourseOfStudies[] generateCourseOfStudies() {
         CourseOfStudies[] allCourses = new CourseOfStudies[5];
-        CourseOfStudies course = new CourseOfStudies("Angewandte Informatik", 7, 210, "Gebäudetechnik und Informatik", universityDao.getUniversityIdByName("FH Erfurt"));
+        CourseOfStudies course = new CourseOfStudies("Angewandte Informatik", 6, 180, "Gebäudetechnik und Informatik", universityDao.getUniversityIdByName("FH Erfurt"));
         allCourses[0] = course;
         course = new CourseOfStudies("Architektur", 6, 180, "Architektur und Stadtplanung", universityDao.getUniversityIdByName("FH Erfurt"));
         allCourses[1] = course;
@@ -129,18 +114,6 @@ public class DataController {
         allCourses[4] = course;
 
         return allCourses;
-    }
-
-    private Category[] generateCategories() {
-        Category[] allCagetories = new Category[6];
-
-        return allCagetories;
-    }
-
-    private Lecture[] generateLectures() {
-        Lecture[] allLectures = new Lecture[20];
-
-        return allLectures;
     }
 
     public List<CourseOfStudies> getAllCourses() {
