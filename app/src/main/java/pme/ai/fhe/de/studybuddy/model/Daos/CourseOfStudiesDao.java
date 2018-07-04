@@ -24,4 +24,7 @@ public abstract class CourseOfStudiesDao implements IGenericDao<CourseOfStudies>
 
     @Query("SELECT name FROM course_of_studies WHERE university_id = :universityId;")
     abstract List<String> getCoursesByUniversityId(int universityId);
+
+    @Query("SELECT name FROM course_of_studies WHERE course_id = :courseId;")
+    abstract String getCourseById(int courseId);
 }

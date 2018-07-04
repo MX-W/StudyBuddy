@@ -23,6 +23,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
 public DrawerLayout mDrawerLayout;
 public ActionBarDrawerToggle mToggle;
+    public DataController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +39,8 @@ public ActionBarDrawerToggle mToggle;
 
 
 
-        /*DataController controller = new DataController(getApplication());
-        DataBase db = DataBase.getDatabase(getApplicationContext());
-        List<CourseOfStudies> list = controller.getAllCourses();
+        controller = DataController.getInstance(getApplication());
 
-        Log.i("All courses: ", list.toString());
-
-        for(CourseOfStudies cours : list) {
-            String course = Integer.toString(cours.getCourseId());
-            Log.i("CourseOfStudies-Dao: ", course);
-        }*/
     }
 
 

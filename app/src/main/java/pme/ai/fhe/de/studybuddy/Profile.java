@@ -7,6 +7,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import pme.ai.fhe.de.studybuddy.model.UserData;
 
 public class Profile extends MenuActivity {
 
@@ -15,6 +18,7 @@ public class Profile extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         openMenu();
+        setRightData();
 
         final Button button = findViewById(R.id.newstudy);
         button.setOnClickListener((new View.OnClickListener() {
@@ -26,8 +30,34 @@ public class Profile extends MenuActivity {
 
     }
 
+    boolean setRightData()
+    {
+        UserData dataset = controller.getUserData();
+        controller.getCityById(dataset.getCityId());
 
-    void onClick()
+
+        TextView highschool = new TextView(this);
+        highschool=(TextView)findViewById(R.id.highschool_answer);
+        highschool.setText(controller.getUniversityById(dataset.getUniversityId()));
+
+        TextView study = new TextView(this);
+        study=(TextView)findViewById(R.id.study_answer);
+        study.setText(controller.getCourseById(dataset.getCourseId())); //aus DB
+
+        TextView semester = new TextView(this);
+        semester=(TextView)findViewById(R.id.semester_answer);
+        semester.setText(dataset.getSemester() + ". Semester"); //aus DB
+
+        TextView studystart = new TextView(this);
+        studystart=(TextView)findViewById(R.id.studystart_answer);
+        studystart.setText("Oktober 2011"); //aus DB
+
+
+        return true;
+    }
+
+
+    boolean onClick()
     {
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -49,12 +79,14 @@ public class Profile extends MenuActivity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+
+        return true;
     }
 
-    void startNewStudyActivity()
+    boolean startNewStudyActivity()
     {
-        startActivity(new Intent(this, NewStudy.class));
-
+        startActivity(new Intent(this, SetupActivity.class));
+        return true;
     }
 }
 

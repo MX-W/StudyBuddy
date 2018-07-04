@@ -18,4 +18,7 @@ public abstract class UniversityDao implements IGenericDao<University> {
 
     @Query("SELECT name FROM university WHERE city_id = :cityId;")
     abstract List<String> getUniversitiesByCityId(int cityId);
+
+    @Query("SELECT name FROM university WHERE university_id = :universityId;")
+    abstract String getUniversitiyById(int universityId);
 }

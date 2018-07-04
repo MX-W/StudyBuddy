@@ -134,4 +134,16 @@ public class DataController {
     public List<String> getCoursesByUniversityId(int universityId) {
         return courseOfStudiesDao.getCoursesByUniversityId(universityId);
     }
+
+    public String getCityById(int cityId) {
+        return cityDao.getCityNameById(cityId);
+    }
+
+    public String getUniversityById(int universityId) {
+        return universityDao.getUniversitiyById(universityId);
+    }
+
+    public String getCourseById(int courseID) {
+        return courseOfStudiesDao.getCourseById(courseID);
+    }
 }
