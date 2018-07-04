@@ -2,16 +2,24 @@ package pme.ai.fhe.de.studybuddy.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity (
-        tableName = "module"
-)
+        tableName = "module",
+        foreignKeys = {
+        @ForeignKey(entity = CourseOfStudies.class, parentColumns = "course_id", childColumns = "course_id")
+        })
 public class Module {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "module_id")
     private int id;
+
+
+
+    @ColumnInfo(name = "course_id")
+    private int courseOfStudyId;
 
     @ColumnInfo
     private String name;
@@ -25,9 +33,17 @@ public class Module {
     @ColumnInfo
     private float grade;
 
+
     @ColumnInfo(name = "module_code")
     private String moduleCode;
 
+    public Module(int courseOfStudyId,String name, int credits, String moduleCode)
+    {
+        this.name = name;
+        this.credits = credits;
+        this.moduleCode = moduleCode;
+        this.courseOfStudyId = courseOfStudyId;
+    }
 
 
     public int getModuleId() {
@@ -84,6 +100,14 @@ public class Module {
 
     public int getId() {
         return id;
+    }
+
+    public int getCourseOfStudyId() {
+        return courseOfStudyId;
+    }
+
+    public void setCourseOfStudyId(int courseOfStudyId) {
+        this.courseOfStudyId = courseOfStudyId;
     }
 
 }
