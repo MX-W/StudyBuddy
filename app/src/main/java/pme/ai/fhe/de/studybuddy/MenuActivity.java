@@ -21,8 +21,9 @@ import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-public DrawerLayout mDrawerLayout;
-public ActionBarDrawerToggle mToggle;
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    DataController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public ActionBarDrawerToggle mToggle;
 
         setContentView(R.layout.activity_home);
 
+        controller = DataController.getInstance(getApplication());
 
         mDrawerLayout = findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
