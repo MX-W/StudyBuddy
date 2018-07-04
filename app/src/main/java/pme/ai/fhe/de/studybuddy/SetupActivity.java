@@ -40,7 +40,7 @@ public class SetupActivity extends AppCompatActivity {
                 controller.insertUserData(data);
 
 
-                Intent homeIntent = new Intent (SetupActivity.this, HomeActivity.class);
+                Intent homeIntent = new Intent (SetupActivity.this, Overview.class);
                 startActivity(homeIntent);
             }
         });

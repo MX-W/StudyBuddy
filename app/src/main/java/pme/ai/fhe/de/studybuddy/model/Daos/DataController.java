@@ -45,6 +45,10 @@ public class DataController {
         userDataDao.insert(data);
     }
 
+    public UserData getUserData() {
+        return userDataDao.getUserData();
+    }
+
     public List<City> getAllCities() {
         return cityDao.getAll();
     }

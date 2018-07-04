@@ -15,9 +15,11 @@ import pme.ai.fhe.de.studybuddy.model.Daos.DataBase;
 import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
 
 public class SplashActivity extends AppCompatActivity {
-private static int SPLASH_TIME_OUT = 4000; //Time of the Splash Screen
-private static String DATABASE_NAME = "StudyBuddy_DB"; //Includes Database
-private ImageView iv;
+
+    private static int SPLASH_TIME_OUT = 4000; //Time of the Splash Screen
+    private static String DATABASE_NAME = "StudyBuddy_DB"; //Includes Database
+    private ImageView iv;
+    private DataController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ private ImageView iv;
         Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);
         iv.startAnimation(myanim);
 
-        DataController controller = DataController.getInstance(getApplication());
+        controller = DataController.getInstance(getApplication());
 
        /* CourseOfStudies computerScience = new CourseOfStudies("Angewandte Informatik", 7, 210, "GET", 1, 1);
         CourseOfStudies computerScience2 = new CourseOfStudies("Medieninformatik", 7, 210, "GET", 5, 2);
@@ -44,8 +46,13 @@ private ImageView iv;
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-                Intent homeIntent = new Intent (SplashActivity.this, Overview.class);
-                startActivity(homeIntent);
+                if(controller.getUserData() == null) {
+                    Intent homeIntent = new Intent (SplashActivity.this, SetupActivity.class);
+                    startActivity(homeIntent);
+                } else {
+                    Intent homeIntent = new Intent (SplashActivity.this, Overview.class);
+                    startActivity(homeIntent);
+                }
                 finish();
             }
 
