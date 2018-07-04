@@ -107,6 +107,10 @@ public class DataController {
     }
 
     public int getCityIdByName(String name) { return cityDao.getCityIdByName(name); }
+
+    public List<String> getUniversitiesByCityName(String cityName) {
+        return universityDao.getUniversitiesByCityName(cityDao.getCityIdByName(cityName));
+    }
 }
 
 
