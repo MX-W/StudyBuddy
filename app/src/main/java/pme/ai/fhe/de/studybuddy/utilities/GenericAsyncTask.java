@@ -2,13 +2,16 @@ package pme.ai.fhe.de.studybuddy.utilities;
 
 import android.os.AsyncTask;
 
-import pme.ai.fhe.de.studybuddy.Modules;
+import pme.ai.fhe.de.studybuddy.administration.daos.CategoryDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.LectureDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.ModuleDao;
+import pme.ai.fhe.de.studybuddy.model.Category;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
-import pme.ai.fhe.de.studybuddy.model.Daos.CityDao;
-import pme.ai.fhe.de.studybuddy.model.Daos.CourseOfStudiesDao;
-import pme.ai.fhe.de.studybuddy.model.Daos.ModuleDao;
-import pme.ai.fhe.de.studybuddy.model.Daos.UniversityDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.CityDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.CourseOfStudiesDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.UniversityDao;
+import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Module;
 import pme.ai.fhe.de.studybuddy.model.University;
 
@@ -18,12 +21,16 @@ public class GenericAsyncTask {
     private UniversityDao universityDao;
     private CourseOfStudiesDao courseOfStudiesDao;
     private ModuleDao moduleDao;
+    private CategoryDao categoryDao;
+    private LectureDao lectureDao;
 
-    public GenericAsyncTask(CityDao cityDao, UniversityDao universityDao, CourseOfStudiesDao courseOfStudiesDao, ModuleDao moduleDao) {
+    public GenericAsyncTask(CityDao cityDao, UniversityDao universityDao, CourseOfStudiesDao courseOfStudiesDao, ModuleDao moduleDao, CategoryDao categoryDao, LectureDao lectureDao) {
         this.cityDao = cityDao;
         this.universityDao = universityDao;
         this.courseOfStudiesDao = courseOfStudiesDao;
         this.moduleDao = moduleDao;
+        this.categoryDao = categoryDao;
+        this.lectureDao = lectureDao;
     }
 
     private static class insertCities extends AsyncTask<City, Void, Void> {
@@ -98,7 +105,7 @@ public class GenericAsyncTask {
 
         private ModuleDao mAsyncTaskDao;
 
-        insertModules (ModuleDao dao) {
+        insertModules(ModuleDao dao) {
             mAsyncTaskDao = dao;
         }
 
@@ -114,6 +121,50 @@ public class GenericAsyncTask {
 
     public void insertModules(Module[] modules) {
         new insertModules(this.moduleDao).execute(modules);
+    }
+
+    private static class insertCategories extends AsyncTask<Category, Void, Void> {
+
+        private CategoryDao mAsyncTaskDao;
+
+        insertCategories (CategoryDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Category[] params) {
+            for(int i = 0; i < params.length; i++) {
+                //Log.i("inserting ", params[i].getName());
+                mAsyncTaskDao.insert(params[i]);
+            }
+            return null;
+        }
+    }
+
+    public void insertCategories(Category[] categories) {
+        new insertCategories(this.categoryDao).execute(categories);
+    }
+
+    private static class insertLectures extends AsyncTask<Lecture, Void, Void> {
+
+        private LectureDao mAsyncTaskDao;
+
+        insertLectures (LectureDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Lecture[] params) {
+            for(int i = 0; i < params.length; i++) {
+                //Log.i("inserting ", params[i].getName());
+                mAsyncTaskDao.insert(params[i]);
+            }
+            return null;
+        }
+    }
+
+    public void insertLectures(Lecture[] lectures) {
+        new insertLectures(this.lectureDao).execute(lectures);
     }
 }
 

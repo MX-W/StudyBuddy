@@ -1,18 +1,20 @@
-package pme.ai.fhe.de.studybuddy.model.Daos;
+package pme.ai.fhe.de.studybuddy.administration;
 
 import android.app.Application;
-import android.os.AsyncTask;
-import android.os.Handler;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import pme.ai.fhe.de.studybuddy.Modules;
+import pme.ai.fhe.de.studybuddy.administration.daos.CategoryDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.LectureDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.ModuleDao;
+import pme.ai.fhe.de.studybuddy.model.Category;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
-import pme.ai.fhe.de.studybuddy.model.Lecture;
+import pme.ai.fhe.de.studybuddy.administration.daos.CityDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.CourseOfStudiesDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.UniversityDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.UserDataDao;
 import pme.ai.fhe.de.studybuddy.model.Module;
 import pme.ai.fhe.de.studybuddy.model.University;
 import pme.ai.fhe.de.studybuddy.model.UserData;
@@ -25,6 +27,8 @@ public class DataController {
     private UniversityDao universityDao;
     private UserDataDao userDataDao;
     private ModuleDao moduleDao;
+    private CategoryDao categoryDao;
+    private LectureDao lectureDao;
 
     private static DataController INSTANCE;
 
@@ -36,6 +40,8 @@ public class DataController {
         universityDao = db.getUniversityDao();
         userDataDao = db.getUserDataDao();
         moduleDao = db.getModuleDao();
+        lectureDao = db.getLectureDao();
+        categoryDao = db.getCategoryDao();
         generateData();
     }
 
@@ -59,7 +65,7 @@ public class DataController {
     }
 
     private void generateData() {
-        GenericAsyncTask asyncHandler = new GenericAsyncTask(cityDao, universityDao, courseOfStudiesDao, moduleDao);
+        GenericAsyncTask asyncHandler = new GenericAsyncTask(cityDao, universityDao, courseOfStudiesDao, moduleDao, categoryDao, lectureDao);
         if(!"Erfurt".equals(cityDao.getCityNameById(1))) {
             asyncHandler.insertCities(generateCities());
             try {
@@ -80,6 +86,12 @@ public class DataController {
                 Log.i("Thread sleep", e.toString());
             }
             asyncHandler.insertModules(generateModules());
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                Log.i("Thread sleep", e.toString());
+            }
+            asyncHandler.insertCategories(generateCategories());
         }
 
     }
@@ -122,17 +134,6 @@ public class DataController {
         allCourses[4] = course;
 
         return allCourses;
-    }
-
-    private Lecture[] generateLectures() {
-        Lecture[] allLectures = new Lecture[2];
-        Lecture lecture = new Lecture(1, 1, "Mathematik 1", 1, true, 1, "deutsch");
-        allLectures[0] = lecture;
-        lecture = new Lecture(1, 1, "Mathematik 1", 1, true, 1, "deutsch");
-        allLectures[1] = lecture;
-
-
-        return allLectures;
     }
 
     private Module[] generateModules() {
@@ -195,6 +196,28 @@ public class DataController {
         allmodules[27] = module;
 
         return allmodules;
+    }
+
+    private Category[] generateCategories() {
+        Category[] allCategories = new Category[7];
+
+        Category category = new Category("Programmieren");
+        allCategories[0] = category;
+        category = new Category("Sprachen");
+        allCategories[1] = category;
+        category = new Category("Bachelorarbeit");
+        allCategories[2] = category;
+        category = new Category("Vertiefungsrichtung");
+        allCategories[3] = category;
+        category = new Category("Algebra");
+        allCategories[4] = category;
+        category = new Category("Netzwerk");
+        allCategories[5] = category;
+        category = new Category("Allgemein");
+        allCategories[6] = category;
+
+
+        return allCategories;
     }
 
     public List<CourseOfStudies> getAllCourses() {

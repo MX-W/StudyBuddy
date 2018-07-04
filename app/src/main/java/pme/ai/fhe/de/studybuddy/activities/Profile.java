@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy;
+package pme.ai.fhe.de.studybuddy.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
 public class Profile extends MenuActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,10 @@ public class Profile extends MenuActivity {
         setContentView(R.layout.activity_profile);
         openMenu();
         setRightData();
+
+
+
+        controller.getUserData();
 
         final Button button = findViewById(R.id.newstudy);
         button.setOnClickListener((new View.OnClickListener() {
@@ -50,7 +56,7 @@ public class Profile extends MenuActivity {
 
         TextView studystart = new TextView(this);
         studystart=(TextView)findViewById(R.id.studystart_answer);
-        studystart.setText("Oktober 2011"); //aus DB
+        studystart.setText(dataset.getStartingSemester()); //aus DB
 
 
         return true;

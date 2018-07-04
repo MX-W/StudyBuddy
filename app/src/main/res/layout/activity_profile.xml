@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@drawable/bluesbg"
-        tools:context=".Profile"
+        tools:context=".activities.Profile"
         android:id="@+id/drawerLayout">
 
 
@@ -89,7 +89,7 @@
         android:layout_below="@id/studystart_answer"
         android:textSize="15dp"
         android:layout_marginTop="10dp"
-        android:text="Semester:" />
+        android:text="Aktuelles Semester:" />
 
     <TextView
         android:id="@+id/semester_answer"

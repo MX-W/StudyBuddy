@@ -1,6 +1,8 @@
-package pme.ai.fhe.de.studybuddy;
+package pme.ai.fhe.de.studybuddy.activities;
 
 import android.os.Bundle;
+
+import pme.ai.fhe.de.studybuddy.R;
 
 public class Modules extends MenuActivity {
 

@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy.model.Daos;
+package pme.ai.fhe.de.studybuddy.administration.daos;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
@@ -12,11 +12,11 @@ public abstract class CityDao implements IGenericDao<City> {
 
 
     @Query("SELECT * FROM city;")
-    abstract List<City> getAll();
+    public abstract List<City> getAll();
 
     @Query("SELECT city_id FROM city WHERE name = :cityName")
-    abstract int getCityIdByName(String cityName);
+    public abstract int getCityIdByName(String cityName);
 
     @Query("SELECT name FROM city WHERE city_id = :cityId")
-    abstract String getCityNameById( int cityId);
+    public abstract String getCityNameById( int cityId);
 }
