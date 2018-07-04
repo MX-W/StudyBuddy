@@ -8,6 +8,7 @@ import java.util.List;
 import pme.ai.fhe.de.studybuddy.administration.daos.CategoryDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.LectureDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.ModuleDao;
+import pme.ai.fhe.de.studybuddy.model.Category;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
 import pme.ai.fhe.de.studybuddy.administration.daos.CityDao;
@@ -85,6 +86,12 @@ public class DataController {
                 Log.i("Thread sleep", e.toString());
             }
             asyncHandler.insertModules(generateModules());
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                Log.i("Thread sleep", e.toString());
+            }
+            asyncHandler.insertCategories(generateCategories());
         }
 
     }
@@ -189,6 +196,28 @@ public class DataController {
         allmodules[27] = module;
 
         return allmodules;
+    }
+
+    private Category[] generateCategories() {
+        Category[] allCategories = new Category[7];
+
+        Category category = new Category("Programmieren");
+        allCategories[0] = category;
+        category = new Category("Sprachen");
+        allCategories[1] = category;
+        category = new Category("Bachelorarbeit");
+        allCategories[2] = category;
+        category = new Category("Vertiefungsrichtung");
+        allCategories[3] = category;
+        category = new Category("Algebra");
+        allCategories[4] = category;
+        category = new Category("Netzwerk");
+        allCategories[5] = category;
+        category = new Category("Allgemein");
+        allCategories[6] = category;
+
+
+        return allCategories;
     }
 
     public List<CourseOfStudies> getAllCourses() {
