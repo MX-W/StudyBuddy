@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy.model.Daos;
+package pme.ai.fhe.de.studybuddy.administration.daos;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
