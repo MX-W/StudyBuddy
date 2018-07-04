@@ -4,11 +4,13 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "pme.ai.fhe.de.studybuddy"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -29,6 +31,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation 'com.facebook.stetho:stetho-urlconnection:1.5.0'
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3' //charts
 
 
     def room_version = "1.1.1" // or, for latest rc, use "1.1.1-rc1"
