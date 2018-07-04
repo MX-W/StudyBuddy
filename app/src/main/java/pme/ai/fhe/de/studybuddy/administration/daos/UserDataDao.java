@@ -9,5 +9,5 @@ import pme.ai.fhe.de.studybuddy.model.UserData;
 public abstract class UserDataDao implements IGenericDao<UserData>{
 
     @Query("SELECT * FROM user_data LIMIT 1")
-    abstract UserData getUserData();
+    public abstract UserData getUserData();
 }

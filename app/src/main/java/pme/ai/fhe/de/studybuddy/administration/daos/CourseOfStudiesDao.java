@@ -12,14 +12,14 @@ public abstract class CourseOfStudiesDao implements IGenericDao<CourseOfStudies>
 
 
     @Query("SELECT * from course_of_studies")
-    abstract List<CourseOfStudies> getAll();
+    public abstract List<CourseOfStudies> getAll();
 
     @Query("SELECT course_id FROM course_of_studies WHERE name = :courseName")
-    abstract int getCourseIdByName(String courseName);
+    public abstract int getCourseIdByName(String courseName);
 
     @Query("SELECT name FROM course_of_studies WHERE university_id = :universityId;")
-    abstract List<String> getCoursesByUniversityId(int universityId);
+    public abstract List<String> getCoursesByUniversityId(int universityId);
 
     @Query("SELECT name FROM course_of_studies WHERE course_id = :courseId;")
-    abstract String getCourseById(int courseId);
+    public abstract String getCourseById(int courseId);
 }
