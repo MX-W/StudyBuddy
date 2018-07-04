@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy;
+package pme.ai.fhe.de.studybuddy.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -9,14 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
-import java.util.List;
-
-import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
-import pme.ai.fhe.de.studybuddy.model.Daos.DataBase;
-import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
+import pme.ai.fhe.de.studybuddy.R;
+import pme.ai.fhe.de.studybuddy.administration.DataController;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy;
+package pme.ai.fhe.de.studybuddy.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.UserData;
-
-import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
 
 public class Profile extends MenuActivity {
 

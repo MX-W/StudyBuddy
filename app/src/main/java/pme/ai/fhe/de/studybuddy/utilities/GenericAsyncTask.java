@@ -2,17 +2,11 @@ package pme.ai.fhe.de.studybuddy.utilities;
 
 import android.os.AsyncTask;
 
-import pme.ai.fhe.de.studybuddy.model.Category;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
-import pme.ai.fhe.de.studybuddy.model.Daos.CategoryDao;
-import pme.ai.fhe.de.studybuddy.model.Daos.CityDao;
-import pme.ai.fhe.de.studybuddy.model.Daos.CourseOfStudiesDao;
-import pme.ai.fhe.de.studybuddy.model.Daos.ModuleDao;
-import pme.ai.fhe.de.studybuddy.model.Daos.LectureDao;
-import pme.ai.fhe.de.studybuddy.model.Daos.UniversityDao;
-import pme.ai.fhe.de.studybuddy.model.Module;
-import pme.ai.fhe.de.studybuddy.model.Lecture;
+import pme.ai.fhe.de.studybuddy.administration.daos.CityDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.CourseOfStudiesDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.UniversityDao;
 import pme.ai.fhe.de.studybuddy.model.University;
 
 public class GenericAsyncTask {
