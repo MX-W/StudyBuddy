@@ -44,7 +44,6 @@ public class GenericAsyncTask {
         @Override
         protected Void doInBackground(final City[] params) {
             for(int i = 0; i < params.length; i++) {
-                //Log.i("inserting ", params[i].getName());
                 mAsyncTaskDao.insert(params[i]);
             }
 
@@ -67,7 +66,6 @@ public class GenericAsyncTask {
         @Override
         protected Void doInBackground(final University[] params) {
             for(int i = 0; i < params.length; i++) {
-                //Log.i("inserting ", params[i].getName());
                 mAsyncTaskDao.insert(params[i]);
             }
 
@@ -90,7 +88,6 @@ public class GenericAsyncTask {
         @Override
         protected Void doInBackground(final CourseOfStudies[] params) {
             for(int i = 0; i < params.length; i++) {
-                //Log.i("inserting ", params[i].getName());
                 mAsyncTaskDao.insert(params[i]);
             }
             return null;
@@ -112,7 +109,6 @@ public class GenericAsyncTask {
         @Override
         protected Void doInBackground(final Module[] params) {
             for(int i = 0; i < params.length; i++) {
-                //Log.i("inserting ", params[i].getName());
                 mAsyncTaskDao.insert(params[i]);
             }
             return null;
@@ -127,14 +123,13 @@ public class GenericAsyncTask {
 
         private CategoryDao mAsyncTaskDao;
 
-        insertCategories (CategoryDao dao) {
+        insertCategories(CategoryDao dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
         protected Void doInBackground(final Category[] params) {
             for(int i = 0; i < params.length; i++) {
-                //Log.i("inserting ", params[i].getName());
                 mAsyncTaskDao.insert(params[i]);
             }
             return null;
@@ -149,14 +144,13 @@ public class GenericAsyncTask {
 
         private LectureDao mAsyncTaskDao;
 
-        insertLectures (LectureDao dao) {
+        insertLectures(LectureDao dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
         protected Void doInBackground(final Lecture[] params) {
             for(int i = 0; i < params.length; i++) {
-                //Log.i("inserting ", params[i].getName());
                 mAsyncTaskDao.insert(params[i]);
             }
             return null;

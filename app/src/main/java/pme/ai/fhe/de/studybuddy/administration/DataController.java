@@ -93,6 +93,12 @@ public class DataController {
                 Log.i("Thread sleep", e.toString());
             }
             asyncHandler.insertCategories(generateCategories());
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                Log.i("Thread sleep", e.toString());
+            }
+            asyncHandler.insertLectures(generateLectures());
         }
 
     }
@@ -289,8 +295,6 @@ public class DataController {
 
         return allLectures;
     }
-
-
 
     private Category[] generateCategories() {
         Category[] allCategories = new Category[7];
