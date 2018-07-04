@@ -21,8 +21,8 @@
         <activity android:name=".Profile" />
         <activity android:name=".NewStudy" />
         <activity android:name=".Overview" />
-        <activity android:name=".Modules"></activity>
-        <activity android:name=".SetupActivity"></activity>
+        <activity android:name=".Modules"/>
+        <activity android:name=".SetupActivity"/>
     </application>
 
 </manifest>

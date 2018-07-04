@@ -38,7 +38,7 @@ public ActionBarDrawerToggle mToggle;
 
 
 
-        DataController controller = new DataController(getApplication());
+        /*DataController controller = new DataController(getApplication());
         DataBase db = DataBase.getDatabase(getApplicationContext());
         List<CourseOfStudies> list = controller.getAllCourses();
 
@@ -47,7 +47,7 @@ public ActionBarDrawerToggle mToggle;
         for(CourseOfStudies cours : list) {
             String course = Integer.toString(cours.getCourseId());
             Log.i("CourseOfStudies-Dao: ", course);
-        }
+        }*/
     }
 
 
