@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bluesbg"
+    >
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
     <TextView
         android:id="@+id/textSetupHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/setup_text"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorGrey"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
@@ -22,16 +25,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Stadt"
-        android:textColor="@color/colorBlack"
-        android:textSize="16sp"
+        android:textColor="@color/colorGrey"
+        android:textSize="13sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/textSetupHeading" />
 
     <Spinner
         android:id="@+id/spinnerCity"
-        android:layout_width="250dp"
-        android:layout_height="52dp"
+        android:layout_width="290dp"
+        android:textColor="@color/colorGrey"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textViewCity"/>
 
@@ -40,8 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Universität"
-        android:textColor="@color/colorBlack"
-        android:textSize="16sp"
+        android:textColor="@color/colorGrey"
+        android:textSize="13sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/spinnerCity"
@@ -49,8 +53,9 @@
 
     <Spinner
         android:id="@+id/spinnerUniversity"
-        android:layout_width="250dp"
-        android:layout_height="52dp"
+        android:layout_width="290dp"
+        android:layout_height="40dp"
+        android:textColor="@color/colorGrey"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textViewUniversity"
         android:visibility="invisible"/>
@@ -60,8 +65,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Stadt"
-        android:textColor="@color/colorBlack"
-        android:textSize="16sp"
+        android:textColor="@color/colorGrey"
+        android:textSize="13sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/spinnerUniversity"
@@ -69,16 +74,62 @@
 
     <Spinner
         android:id="@+id/spinnerCourse"
-        android:layout_width="250dp"
-        android:layout_height="52dp"
+        android:layout_width="290dp"
+        android:layout_height="40dp"
+        android:textColor="@color/colorGrey"
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textViewCourse"/>
+
+    <TextView
+        android:id="@+id/textViewBegin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Studienbeginn"
+        android:textColor="@color/colorGrey"
+        android:textSize="13sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/spinnerCourse"
+        android:visibility="invisible"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerBegin"
+        android:layout_width="290dp"
+        android:layout_height="40dp"
+        android:textColor="@color/colorGrey"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textViewBegin"/>
+
+    <TextView
+        android:id="@+id/textViewStartSemester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Startsemester"
+        android:textColor="@color/colorGrey"
+        android:textSize="13sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/spinnerBegin"
+        android:visibility="invisible"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerStartSemester"
+        android:layout_width="290dp"
+        android:layout_height="40dp"
+        android:visibility="invisible"
+        android:textColor="@color/colorGrey"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textViewStartSemester"/>
 
     <Button
         android:id="@+id/setupButtonForward"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorGrey"
         android:layout_alignParentBottom="true"
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
@@ -86,6 +137,5 @@
         android:padding="10dp"
         android:text="Weiter"
         android:textSize="16sp" />
-
 </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

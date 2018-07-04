@@ -31,6 +31,7 @@ public ActionBarDrawerToggle mToggle;
 
         setContentView(R.layout.activity_home);
 
+        controller = DataController.getInstance(getApplication());
 
         mDrawerLayout = findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);

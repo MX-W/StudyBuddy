@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
+import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
+
 public class Profile extends MenuActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,10 @@ public class Profile extends MenuActivity {
         setContentView(R.layout.activity_profile);
         openMenu();
         setRightData();
+
+
+
+        controller.getUserData();
 
         final Button button = findViewById(R.id.newstudy);
         button.setOnClickListener((new View.OnClickListener() {
