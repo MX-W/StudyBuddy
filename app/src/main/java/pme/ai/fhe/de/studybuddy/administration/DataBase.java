@@ -1,23 +1,20 @@
-package pme.ai.fhe.de.studybuddy.model.Daos;
+package pme.ai.fhe.de.studybuddy.administration;
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
-import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 import pme.ai.fhe.de.studybuddy.model.Category;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
+import pme.ai.fhe.de.studybuddy.administration.daos.CategoryDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.CityDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.CourseOfStudiesDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.LectureDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.ModuleDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.UniversityDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.UserDataDao;
 import pme.ai.fhe.de.studybuddy.model.DependentLecture;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Lecturer;
@@ -32,6 +29,8 @@ public abstract class DataBase extends RoomDatabase{
     public abstract CityDao getCityDao();
     public abstract UniversityDao getUniversityDao();
     public abstract UserDataDao getUserDataDao();
+    public abstract LectureDao getLectureDao();
+    public abstract CategoryDao getCategoryDao();
     public abstract ModuleDao getModuleDao();
 
     private static DataBase INSTANCE;

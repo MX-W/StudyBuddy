@@ -24,10 +24,15 @@ public class UserData {
 
     private int semester;
 
-    public UserData(int cityId, int universityId, int courseId) {
+    @ColumnInfo(name = "starting_semester")
+    private String startingSemester;
+
+    public UserData(int cityId, int universityId, int courseId, int semester, String startingSemester) {
         this.cityId = cityId;
         this.universityId = universityId;
         this.courseId = courseId;
+        this.semester = semester;
+        this.startingSemester = startingSemester;
     }
 
     public int getCityId() {
@@ -68,5 +73,13 @@ public class UserData {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getStartingSemester() {
+        return startingSemester;
+    }
+
+    public void setStartingSemester(String startingSemester) {
+        this.startingSemester = startingSemester;
     }
 }

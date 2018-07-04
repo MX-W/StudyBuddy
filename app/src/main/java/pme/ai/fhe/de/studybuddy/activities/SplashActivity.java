@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy;
+package pme.ai.fhe.de.studybuddy.activities;
 
 
 import android.content.Intent;
@@ -10,9 +10,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
-import pme.ai.fhe.de.studybuddy.model.Daos.DataBase;
-import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
+import pme.ai.fhe.de.studybuddy.R;
+import pme.ai.fhe.de.studybuddy.administration.DataController;
 
 public class SplashActivity extends AppCompatActivity {
 
