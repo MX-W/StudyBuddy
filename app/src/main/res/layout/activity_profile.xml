@@ -89,7 +89,7 @@
         android:layout_below="@id/studystart_answer"
         android:textSize="15dp"
         android:layout_marginTop="10dp"
-        android:text="Semester:" />
+        android:text="Aktuelles Semester:" />
 
     <TextView
         android:id="@+id/semester_answer"
