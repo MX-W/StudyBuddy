@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/faecher"
-        android:title="Meine Fächer" />
+    <item android:id="@+id/uebersicht"
+        android:title="Übersicht"
+        android:icon="@mipmap/baseline_subject_black_24"/>
 
-    <item android:id="@+id/studium"
-        android:title="Mein Studium" />
+    <item android:id="@+id/noten"
+        android:title="Noten"
+        android:icon="@mipmap/baseline_import_contacts_black_24"/>
 
-    <item android:id="@+id/einstellungen"
-        android:title="Einstellungen" />
+    <item android:id="@+id/moduluebersicht"
+        android:title="Modulübersicht"
+        android:icon="@mipmap/baseline_library_books_black_24"/>
+
+    <item android:id="@+id/profil"
+        android:title="Profil"
+        android:icon="@mipmap/baseline_account_box_black_24"/>
 
 </menu>
