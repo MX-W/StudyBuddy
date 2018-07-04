@@ -23,6 +23,7 @@
         <activity android:name=".Overview" />
         <activity android:name=".Modules"/>
         <activity android:name=".SetupActivity"/>
+        <activity android:name=".SetupActivity"/>
     </application>
 
 </manifest>

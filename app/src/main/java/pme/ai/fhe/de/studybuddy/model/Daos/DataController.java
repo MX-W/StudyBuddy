@@ -12,6 +12,7 @@ import java.util.List;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
 import pme.ai.fhe.de.studybuddy.model.University;
+import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.GenericAsyncTask;
 
 public class DataController {
@@ -19,6 +20,7 @@ public class DataController {
     private CourseOfStudiesDao courseOfStudiesDao;
     private CityDao cityDao;
     private UniversityDao universityDao;
+    private UserDataDao userDataDao;
 
     private static DataController INSTANCE;
 
@@ -28,6 +30,7 @@ public class DataController {
         courseOfStudiesDao = db.getCourseOfStudiesDao();
         cityDao = db.getCityDao();
         universityDao = db.getUniversityDao();
+        userDataDao = db.getUserDataDao();
         generateData();
     }
 
@@ -36,6 +39,10 @@ public class DataController {
             INSTANCE = new DataController(application);
         }
         return INSTANCE;
+    }
+
+    public void insertUserData(UserData data) {
+        userDataDao.insert(data);
     }
 
     public List<City> getAllCities() {
@@ -108,9 +115,19 @@ public class DataController {
 
     public int getCityIdByName(String name) { return cityDao.getCityIdByName(name); }
 
-    public List<String> getUniversitiesByCityName(String cityName) {
-        return universityDao.getUniversitiesByCityName(cityDao.getCityIdByName(cityName));
+    public int getUniversityIdByName(String name) {
+        return universityDao.getUniversityIdByName(name);
+    }
+
+    public int getCourseIdByName(String name) {
+        return courseOfStudiesDao.getCourseIdByName(name);
+    }
+
+    public List<String> getUniversitiesByCityId(int cityId) {
+        return universityDao.getUniversitiesByCityId(cityId);
+    }
+
+    public List<String> getCoursesByUniversityId(int universityId) {
+        return courseOfStudiesDao.getCoursesByUniversityId(universityId);
     }
 }
-
-
