@@ -32,6 +32,8 @@ public abstract class DataBase extends RoomDatabase{
     public abstract CityDao getCityDao();
     public abstract UniversityDao getUniversityDao();
     public abstract UserDataDao getUserDataDao();
+    public abstract LectureDao getLectureDao();
+    public abstract CategoryDao getCategoryDao();
 
     private static DataBase INSTANCE;
 
