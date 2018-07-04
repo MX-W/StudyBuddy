@@ -12,6 +12,7 @@ import java.util.List;
 import pme.ai.fhe.de.studybuddy.Modules;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
+import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Module;
 import pme.ai.fhe.de.studybuddy.model.University;
 import pme.ai.fhe.de.studybuddy.model.UserData;
@@ -121,6 +122,17 @@ public class DataController {
         allCourses[4] = course;
 
         return allCourses;
+    }
+
+    private Lecture[] generateLectures() {
+        Lecture[] allLectures = new Lecture[2];
+        Lecture lecture = new Lecture(1, 1, "Mathematik 1", 1, true, 1, "deutsch");
+        allLectures[0] = lecture;
+        lecture = new Lecture(1, 1, "Mathematik 1", 1, true, 1, "deutsch");
+        allLectures[1] = lecture;
+
+
+        return allLectures;
     }
 
     private Module[] generateModules() {

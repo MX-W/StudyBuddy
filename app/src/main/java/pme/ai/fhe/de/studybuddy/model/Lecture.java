@@ -69,6 +69,18 @@ public class Lecture {
     @ColumnInfo(name = "information")
     private String furtherInformation;
 
+    public Lecture(int courseOfStudiesId, int moduleId, String name, int credits, boolean obligation, int categoryId, String language)
+    {
+        this.courseOfStudiesId = courseOfStudiesId;
+        this.moduleId = moduleId;
+        this.name = name;
+        this.credits = credits;
+        this.obligation = obligation;
+        this.categoryId = categoryId;
+        this.language = language;
+
+    }
+
 
 
     public int getLectureId() {
