@@ -21,8 +21,8 @@ public class HomeActivity extends AppCompatActivity {
         Stetho.initializeWithDefaults(this);
         setContentView(R.layout.activity_home);
 
-        DataController controller = DataController.getInstance(getApplication());
+        /*DataController controller = DataController.getInstance(getApplication());
         int id = controller.getCityIdByName("Jena");
-        Log.i("Erfurt", Integer.toString(id));
+        Log.i("Erfurt", Integer.toString(id));*/
     }
 }
