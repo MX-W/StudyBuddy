@@ -39,7 +39,7 @@ public ActionBarDrawerToggle mToggle;
 
 
 
-        controller = DataController.getInstance(getApplication());
+        //controller = DataController.getInstance(getApplication());
 
     }
 
