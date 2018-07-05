@@ -76,6 +76,11 @@
                     <TableRow
                         android:background="@color/colorGrey">
                         <TextView
+                            android:text="0"
+                            android:padding="3dip"
+                            android:visibility="gone"
+                            android:textColor="@color/colorBlack"/>
+                        <TextView
                             android:text="Veranstaltung"
                             android:padding="3dip"
                             android:textColor="@color/colorBlack"/>

@@ -359,4 +359,8 @@ public class DataController {
     public void updateGrade(Lecture updated) {
         lectureDao.update(updated);
     }
+
+    public List<Lecture> getAllLecturesWithGrade(int courseId) {
+        return lectureDao.getAllLecturesWithGrade(courseId);
+    }
 }
