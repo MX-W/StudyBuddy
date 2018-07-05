@@ -5,4 +5,5 @@
     <string name="close">Close</string>
     <string name="button_newStudy">Ja, Neuanfang!</string>
     <string name="nein">Nein, lieber nicht!</string>
+    <string name="test">Test</string>
 </resources>

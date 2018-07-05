@@ -10,7 +10,9 @@ import pme.ai.fhe.de.studybuddy.model.Lecture;
 @Dao
 public abstract class LectureDao implements IGenericDao<Lecture> {
 
+    @Query("SELECT * FROM lecture WHERE course_id = :courseId")
+    public abstract List<Lecture> getLecturesByCourseId(int courseId);
 
-    @Query("SELECT * FROM lecture WHERE course_id = :courseID;")
-    public abstract List<Lecture> getLecturesByCourseId(int courseID);
+    @Query("SELECT * FROM lecture WHERE course_id = :courseId AND grade != 0.0")
+    public abstract List<Lecture> getAllLecturesWithGrade(int courseId);
 }

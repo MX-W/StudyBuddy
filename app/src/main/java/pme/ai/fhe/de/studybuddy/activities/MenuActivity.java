@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.facebook.stetho.Stetho;
+
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 
@@ -23,6 +25,8 @@ public ActionBarDrawerToggle mToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Stetho.initializeWithDefaults(this);
 
         setContentView(R.layout.activity_home);
 
