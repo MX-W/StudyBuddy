@@ -3,6 +3,7 @@ package pme.ai.fhe.de.studybuddy.activities;
 import android.os.Bundle;
 
 import com.facebook.stetho.Stetho;
+import pme.ai.fhe.de.studybuddy.R;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -17,6 +18,7 @@ import pme.ai.fhe.de.studybuddy.model.UserData;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Overview extends MenuActivity {
 

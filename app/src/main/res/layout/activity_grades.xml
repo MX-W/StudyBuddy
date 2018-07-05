@@ -14,32 +14,90 @@
             android:layout_width="match_parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/gradesHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:text="Noteneingabe"
-                android:textSize="40dp" />
+                android:textSize="27dp" />
+
+            <Spinner
+                android:id="@+id/spinnerLecture"
+                android:layout_width="290dp"
+                android:layout_height="45dp"
+                android:layout_below="@id/gradesHeading"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/insertGrade"
                 android:layout_width="106dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/spinnerLecture"
                 android:ems="10"
                 android:hint="x.x"
+                android:textAlignment="center"
                 android:inputType="numberDecimal" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonInsertGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText"
+                android:layout_below="@+id/insertGrade"
                 android:layout_centerHorizontal="true"
                 android:text="Bestätigen" />
+
+            <TextView
+                android:id="@+id/gradesShowHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notenübersicht"
+                android:textSize="27dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/buttonInsertGrade"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/gradesShowHeading"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+
+                <TableLayout
+                    android:id="@+id/gradesTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:stretchColumns="1">
+                    <TableRow
+                        android:background="@color/colorGrey">
+                        <TextView
+                            android:text="0"
+                            android:padding="3dip"
+                            android:visibility="gone"
+                            android:textColor="@color/colorBlack"/>
+                        <TextView
+                            android:text="Veranstaltung"
+                            android:padding="3dip"
+                            android:textColor="@color/colorBlack"/>
+                        <TextView
+                            android:text="Note"
+                            android:gravity="right"
+                            android:padding="3dip"
+                            android:textColor="@color/colorBlack"/>
+                    </TableRow>
+                    <View
+                        android:layout_height="2dip"
+                        android:background="#000" />
+                </TableLayout>
+
+            </ScrollView>
+
+
         </RelativeLayout>
 
     <android.support.design.widget.NavigationView

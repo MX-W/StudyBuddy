@@ -356,6 +356,18 @@ public class DataController {
         return courseOfStudiesDao.getCourseById(courseID);
     }
 
+    public List<Lecture> getLecturesByCourseId(int courseId) {
+        return lectureDao.getLecturesByCourseId(courseId);
+    }
+
+    public void updateGrade(Lecture updated) {
+        lectureDao.update(updated);
+    }
+
+    public List<Lecture> getAllLecturesWithGrade(int courseId) {
+        return lectureDao.getAllLecturesWithGrade(courseId);
+    }
+
     public int getNumberOfCategories()
     {
         return categoryDao.getNumberOfAll();
