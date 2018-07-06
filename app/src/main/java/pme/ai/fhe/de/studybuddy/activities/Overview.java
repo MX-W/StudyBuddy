@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 
 
 import com.facebook.stetho.Stetho;
+import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 import pme.ai.fhe.de.studybuddy.Fragments.BarChartFragment;
 import pme.ai.fhe.de.studybuddy.Fragments.LineChartFragment;
@@ -28,6 +29,10 @@ public class Overview extends MenuActivity {
         vpPager.setAdapter(adapterViewPager);
 
         Stetho.initializeWithDefaults(this);
+
+        InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+        inkPageIndicator.setViewPager(vpPager);
+
         openMenu();
 
     }
