@@ -10,8 +10,11 @@
 
 
         <RelativeLayout
+            android:id="@+id/mainLayout"
             android:layout_height="match_parent"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
 
             <TextView
                 android:id="@+id/gradesHeading"
@@ -41,15 +44,44 @@
                 android:ems="10"
                 android:hint="x.x"
                 android:textAlignment="center"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:focusedByDefault="false"/>
 
-            <Button
-                android:id="@+id/buttonInsertGrade"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/buttonLayout"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/insertGrade"
-                android:layout_centerHorizontal="true"
-                android:text="Bestätigen" />
+                android:layout_below="@id/insertGrade">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" >
+                </Space>
+
+                <Button
+                    android:id="@+id/buttonInsertGrade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eintragen" />
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" >
+                </Space>
+
+                <Button
+                    android:id="@+id/buttonInsertNoGrade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ohne Note Eintragen" />
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" >
+                </Space>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/gradesShowHeading"
@@ -59,43 +91,9 @@
                 android:textSize="27dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/buttonInsertGrade"/>
+                android:layout_below="@id/buttonLayout"/>
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/gradesShowHeading"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp">
-
-                <TableLayout
-                    android:id="@+id/gradesTable"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:stretchColumns="1">
-                    <TableRow
-                        android:background="@color/colorGrey">
-                        <TextView
-                            android:text="0"
-                            android:padding="3dip"
-                            android:visibility="gone"
-                            android:textColor="@color/colorBlack"/>
-                        <TextView
-                            android:text="Veranstaltung"
-                            android:padding="3dip"
-                            android:textColor="@color/colorBlack"/>
-                        <TextView
-                            android:text="Note"
-                            android:gravity="right"
-                            android:padding="3dip"
-                            android:textColor="@color/colorBlack"/>
-                    </TableRow>
-                    <View
-                        android:layout_height="2dip"
-                        android:background="#000" />
-                </TableLayout>
-
-            </ScrollView>
+            <include layout="@layout/table_layout"/>
 
 
         </RelativeLayout>

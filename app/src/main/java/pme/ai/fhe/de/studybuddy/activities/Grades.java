@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -33,7 +34,9 @@ public class Grades extends MenuActivity {
 
         final Spinner lectureSpinner = findViewById(R.id.spinnerLecture);
         Button insertButton = findViewById(R.id.buttonInsertGrade);
+        Button insertNoGradeButton = findViewById(R.id.buttonInsertNoGrade);
         final EditText editTextGrade = findViewById(R.id.insertGrade);
+        findViewById(R.id.mainLayout).requestFocus();
 
         UserData userData = controller.getUserData();
 
@@ -73,6 +76,34 @@ public class Grades extends MenuActivity {
                         selectedLecture.setGrade(Float.parseFloat(grade));
                         controller.updateGrade(selectedLecture);
                         updateGradeTable(String.valueOf(selectedLecture.getGrade()), selectedLecture.getName(), selectedLecture.getId());
+                    } else {
+                        Log.i("Grade insert", "Grade couldn't be inserted");
+                    }
+
+                } else {
+                    Log.i("Grade insert", "Please fill all required panels");
+                }
+            }
+        });
+
+        insertNoGradeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!lectureSpinner.getSelectedItem().toString().equals(lectureNameSpinner.get(0)) || !editTextGrade.getText().toString().equals("")) {
+                    String selectedItem = lectureSpinner.getSelectedItem().toString();
+                    String grade = editTextGrade.getText().toString();
+                    Lecture selectedLecture = null;
+                    for(Lecture lecture : lectureList){
+                        if(lecture.getName().equals(selectedItem)) {
+                            selectedLecture = lecture;
+                            break;
+                        }
+                    }
+
+                    if(selectedLecture != null) {
+                        selectedLecture.setGrade(-1.0f);
+                        controller.updateGrade(selectedLecture);
+                        updateGradeTable("Keine Note", selectedLecture.getName(), selectedLecture.getId());
                     } else {
                         Log.i("Grade insert", "Grade couldn't be inserted");
                     }
