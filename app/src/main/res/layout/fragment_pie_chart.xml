@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PieChartFragment">
+    tools:context=".Fragments.PieChartFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -11,6 +11,9 @@
         android:id="@+id/piechart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
 </FrameLayout>

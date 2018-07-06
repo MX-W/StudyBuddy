@@ -9,8 +9,9 @@ import android.support.v4.view.ViewPager;
 
 import com.facebook.stetho.Stetho;
 
-import pme.ai.fhe.de.studybuddy.BarChartFragment;
-import pme.ai.fhe.de.studybuddy.PieChartFragment;
+import pme.ai.fhe.de.studybuddy.Fragments.BarChartFragment;
+import pme.ai.fhe.de.studybuddy.Fragments.LineChartFragment;
+import pme.ai.fhe.de.studybuddy.Fragments.PieChartFragment;
 import pme.ai.fhe.de.studybuddy.R;
 
 
@@ -35,7 +36,7 @@ public class Overview extends MenuActivity {
 
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
-        private int NUM_ITEMS = 2;
+        private int NUM_ITEMS = 3;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
@@ -53,10 +54,13 @@ public class Overview extends MenuActivity {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return PieChartFragment.newInstance(0, "Page # 1");
-                case 1: // Fragment # 0 - This will show FirstFragment different title
+                case 1: // Fragment # 1 - This will show SecondFragment different title
                     return BarChartFragment.newInstance(1, "Page # 2");
+                case 2: // Fragment # 2 - This will show ThirdFragment different title
+                    return LineChartFragment.newInstance(2, "Page # 3");
                 default:
-                    return null;
+                    return PieChartFragment.newInstance(0, "Page # 1");
+                    //return null;
             }
         }
 

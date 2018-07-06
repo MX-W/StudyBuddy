@@ -1,11 +1,10 @@
-package pme.ai.fhe.de.studybuddy;
+package pme.ai.fhe.de.studybuddy.Fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -18,26 +17,22 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+import pme.ai.fhe.de.studybuddy.R;
+import pme.ai.fhe.de.studybuddy.activities.Overview;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
 public class PieChartFragment extends Fragment {
-    // Store instance variables
-    private String title;
-    private int page;
 
     PieChart pieView;
-
-    public DataController controller;
+    private DataController controller;
 
 
     // newInstance constructor for creating fragment with arguments
     public static PieChartFragment newInstance(int page, String title) {
         PieChartFragment fragmentFirst = new PieChartFragment();
         Bundle args = new Bundle();
-        args.putInt("someInt", page);
-        args.putString("someTitle", title);
         fragmentFirst.setArguments(args);
         return fragmentFirst;
     }
@@ -46,12 +41,9 @@ public class PieChartFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        page = getArguments().getInt("someInt", 0);
-        title = getArguments().getString("someTitle");
 
-        controller = DataController.getInstance(getActivity().getApplication());
-
-
+        Overview oV = (Overview) getActivity();
+        controller = oV.controller;
 
     }
 
@@ -63,8 +55,6 @@ public class PieChartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pie_chart, container, false);
 
         pieView = (PieChart) view.findViewById(R.id.piechart);
-        //TextView tvLabel = (TextView) view.findViewById(R.id.tvLabelPie);
-        //tvLabel.setText(page + " -- " + title);
         loadPieChart();
         return view;
     }
@@ -79,9 +69,6 @@ public class PieChartFragment extends Fragment {
 
         int numberOfCategories = controller.getNumberOfCategories();
         int [] categories = new int[numberOfCategories + 1]; //Array Counts Categories
-
-
-        //Log.i("ID:", Integer.toString(dataset.getCourseId()));
 
         for(Lecture l : pieDataset)
         {
