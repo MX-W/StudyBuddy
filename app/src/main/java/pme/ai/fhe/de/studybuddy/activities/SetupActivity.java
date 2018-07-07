@@ -24,8 +24,7 @@ import pme.ai.fhe.de.studybuddy.model.UserData;
 public class SetupActivity extends AppCompatActivity {
 
     DataController controller;
-    int selectedCityId, selectedUniversityId, selectedCourseId, semesterCountStarting;
-    String startingSemester;
+    int selectedCityId, selectedUniversityId, selectedCourseId, semesterCountStarting, startingSemesterId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class SetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                UserData data = new UserData(selectedCityId, selectedUniversityId, selectedCourseId, semesterCountStarting, startingSemester);
+                UserData data = new UserData(selectedCityId, selectedUniversityId, selectedCourseId, semesterCountStarting, startingSemesterId);
 
                 controller.insertUserData(data);
 
@@ -166,8 +165,9 @@ public class SetupActivity extends AppCompatActivity {
                     selectedCourseId = controller.getCourseIdByName(selectedCourse);
 
                     List<String> semester = new ArrayList<>();
+                    controller.getAllSemester();
                     semester.add("Bitte wähle einen Studienbeginn aus");
-                    semester.addAll(getSemester());
+                    semester.addAll();
 
                     ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(parent.getContext(),
                             R.layout.simple_custom_spinner_item, semester);
@@ -201,7 +201,7 @@ public class SetupActivity extends AppCompatActivity {
                     textViewStart.setVisibility(View.INVISIBLE);
                     findViewById(R.id.setupButtonForward).setVisibility(View.INVISIBLE);
                 } else {
-                    startingSemester = selectedSemester;
+                    startingSemesterId = selectedSemester;
 
                     List<String> semesterCount = new ArrayList<>();
                     semesterCount.add("Wähle dein Startsemester");

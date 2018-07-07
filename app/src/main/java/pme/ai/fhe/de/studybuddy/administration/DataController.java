@@ -8,6 +8,7 @@ import java.util.List;
 import pme.ai.fhe.de.studybuddy.administration.daos.CategoryDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.LectureDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.ModuleDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.SemesterDao;
 import pme.ai.fhe.de.studybuddy.model.Category;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
@@ -17,6 +18,7 @@ import pme.ai.fhe.de.studybuddy.administration.daos.UniversityDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.UserDataDao;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Module;
+import pme.ai.fhe.de.studybuddy.model.Semester;
 import pme.ai.fhe.de.studybuddy.model.University;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.GenericAsyncTask;
@@ -30,6 +32,7 @@ public class DataController {
     private ModuleDao moduleDao;
     private CategoryDao categoryDao;
     private LectureDao lectureDao;
+    private SemesterDao semesterDao;
 
     private static DataController INSTANCE;
 
@@ -43,6 +46,7 @@ public class DataController {
         moduleDao = db.getModuleDao();
         lectureDao = db.getLectureDao();
         categoryDao = db.getCategoryDao();
+        semesterDao = db.getSemesterDao();
         generateData();
     }
 
@@ -356,7 +360,7 @@ public class DataController {
         return courseOfStudiesDao.getCourseById(courseID);
     }
 
-    public void updateGrade(Lecture updated) {
+    public void updateLecture(Lecture updated) {
         lectureDao.update(updated);
     }
 
@@ -372,6 +376,10 @@ public class DataController {
     public String getCategorieNameByID(int categoryId)
     {
         return categoryDao.getNameByID(categoryId);
+    }
+
+    public List<Semester> getAllSemester() {
+        return semesterDao.getAllSemester();
     }
 }
 

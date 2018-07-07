@@ -72,6 +72,8 @@ public ActionBarDrawerToggle mToggle;
             case R.id.profil:
                 startActivity(new Intent(this, Profile.class));
                 return true;
+            case R.id.insertGrade:
+                startActivity(new Intent(this, InsertGrade.class));
             default:
                 return super.onOptionsItemSelected(item);
 
