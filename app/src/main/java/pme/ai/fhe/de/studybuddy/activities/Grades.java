@@ -20,10 +20,17 @@ import pme.ai.fhe.de.studybuddy.model.UserData;
 
 public class Grades extends MenuActivity {
 
+    private TableLayout tableLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades);
+
+        tableLayout = (TableLayout) findViewById(R.id.gradesTable);
+
+        tableLayout.getChildAt(0).setBackgroundColor(getResources().getColor(R.color.colorDarkerGrey));
+        tableLayout.getChildAt(2).setBackgroundColor(getResources().getColor(R.color.colorMiddleGrey));
 
         setTitle("Meine Noten");
 
@@ -34,40 +41,18 @@ public class Grades extends MenuActivity {
 
         UserData userData = controller.getUserData();
 
-        final List<Lecture> lectureList = controller.getLecturesByCourseId(userData.getCourseId());
+        final List<Lecture> lectureList = controller.getAllLecturesWithGradeOrderBySemester(userData.getCourseId());
 
         setAverageGrade(lectureList, allCreditsView, averageGradeView);
 
-    }
+        for (int i = 4; i < tableLayout.getChildCount(); i++) {
+            if(i%2 == 0) {
+                tableLayout.getChildAt(i).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+            } else {
+                tableLayout.getChildAt(i).setBackgroundColor(getResources().getColor(R.color.colorMiddleGrey));
+            }
+        }
 
-    private void updateGradeTable(String gradeText, String lectureName, int credits) {
-
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.gradesTable);
-
-        TableRow newRow = new TableRow(this);
-
-        TextView lectureNameView = new TextView(this);
-        lectureNameView.setText(lectureName);
-        lectureNameView.setPadding(3,3,3,3);
-        lectureNameView.setTextColor(getResources().getColor(R.color.colorBlack));
-
-        TextView lectureCreditsView = new TextView(this);
-        lectureCreditsView.setText(String.valueOf(credits));
-        lectureCreditsView.setPadding(3,3,3,3);
-        lectureCreditsView.setGravity(Gravity.END);
-        lectureCreditsView.setTextColor(getResources().getColor(R.color.colorBlack));
-
-        TextView gradeView = new TextView(this);
-        gradeView.setText(gradeText);
-        gradeView.setPadding(3,3,3,3);
-        gradeView.setGravity(Gravity.END);
-        gradeView.setTextColor(getResources().getColor(R.color.colorBlack));
-
-        newRow.addView(lectureNameView);
-        newRow.addView(lectureCreditsView);
-        newRow.addView(gradeView);
-
-        tableLayout.addView(newRow);
     }
 
     private void setAverageGrade(List<Lecture> lectures, TextView allCreditsView, TextView averageGradeView) {
@@ -91,11 +76,47 @@ public class Grades extends MenuActivity {
                     allCreditsGrade += credits;
                     gradeText = String.valueOf(formatOne.format(grade));
                 }
-                updateGradeTable(gradeText, lecture.getName(), lecture.getCredits());
+                updateGradeTable(gradeText, lecture.getName(), lecture.getCredits(), lecture.getSemesterPassed());
             }
         }
         allCreditsView.setText(String.valueOf(allCredits));
 
         averageGradeView.setText(String.valueOf(formatTwo.format(allGrades/allCreditsGrade)));
+    }
+
+    private void updateGradeTable(String gradeText, String lectureName, int credits, int semesterId) {
+
+        TableRow newRow = new TableRow(this);
+
+        TextView lectureNameView = new TextView(this);
+        lectureNameView.setText(lectureName);
+        lectureNameView.setPadding(3,3,3,3);
+        lectureNameView.setTextColor(getResources().getColor(R.color.colorBlack));
+
+        TextView semesterTextView = new TextView(this);
+        semesterTextView.setText(controller.getSemesterById(semesterId));
+        semesterTextView.setPadding(3,3,3,3);
+        semesterTextView.setGravity(Gravity.END);
+        semesterTextView.setTextColor(getResources().getColor(R.color.colorBlack));
+
+
+        TextView lectureCreditsView = new TextView(this);
+        lectureCreditsView.setText(String.valueOf(credits));
+        lectureCreditsView.setPadding(3,3,3,3);
+        lectureCreditsView.setGravity(Gravity.END);
+        lectureCreditsView.setTextColor(getResources().getColor(R.color.colorBlack));
+
+        TextView gradeView = new TextView(this);
+        gradeView.setText(gradeText);
+        gradeView.setPadding(3,3,3,3);
+        gradeView.setGravity(Gravity.END);
+        gradeView.setTextColor(getResources().getColor(R.color.colorBlack));
+
+        newRow.addView(lectureNameView);
+        newRow.addView(semesterTextView);
+        newRow.addView(lectureCreditsView);
+        newRow.addView(gradeView);
+
+        tableLayout.addView(newRow);
     }
 }

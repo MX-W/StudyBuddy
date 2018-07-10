@@ -18,6 +18,11 @@
                 android:text="Veranstaltung"
                 android:textColor="@color/colorBlack"/>
             <TextView
+                android:padding="3dip"
+                android:text="Semester"
+                android:gravity="end"
+                android:textColor="@color/colorBlack"/>
+            <TextView
                 android:gravity="end"
                 android:text="Credits"
                 android:padding="3dip"
@@ -38,8 +43,13 @@
                 android:text="Gesamt"
                 android:textColor="@color/colorBlack"/>
             <TextView
+                android:padding="3dip"
+                android:text=""
+                android:textColor="@color/colorBlack"/>
+            <TextView
                 android:id="@+id/allCredits"
                 android:gravity="end"
+                android:textStyle="bold"
                 android:text="CP"
                 android:padding="3dip"
                 android:textColor="@color/colorBlack"/>
@@ -47,6 +57,7 @@
                 android:id="@+id/averageGrade"
                 android:gravity="end"
                 android:text="Durchschnitt"
+                android:textStyle="bold"
                 android:padding="3dip"
                 android:textColor="@color/colorBlack"/>
         </TableRow>
