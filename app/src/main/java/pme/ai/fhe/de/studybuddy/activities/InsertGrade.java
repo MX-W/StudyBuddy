@@ -37,6 +37,10 @@ public class InsertGrade extends MenuActivity {
         openMenu();
 
         lectureSpinner = findViewById(R.id.spinnerLecture);
+        setTitle("Noten eintragen");
+
+
+        final Spinner lectureSpinner = findViewById(R.id.spinnerLecture);
         Button insertButton = findViewById(R.id.buttonInsertGrade);
         Button insertNoGradeButton = findViewById(R.id.buttonInsertNoGrade);
         editTextGrade = findViewById(R.id.insertGrade);
