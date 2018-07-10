@@ -2,6 +2,7 @@ package pme.ai.fhe.de.studybuddy.Fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,13 +108,16 @@ public class LineChartFragment extends Fragment {
 
 
 
-        LineDataSet setComp1 = new LineDataSet(userCredits, "Deine erreichten Credit Points");
+        LineDataSet setComp1 = new LineDataSet(userCredits, "Deine CP");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        LineDataSet setComp2 = new LineDataSet(standardCredits, "Ziel der Credits Points");
+        LineDataSet setComp2 = new LineDataSet(standardCredits, "Optimal CP");
         setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-        setComp1.setColors(R.color.colorAccent);
-        setComp2.setColors(R.color.colorRed);
+        int color1 = ContextCompat.getColor(getActivity(), R.color.colorAccent);
+        int color2 = ContextCompat.getColor(getActivity(), R.color.colorPrimary);
+
+        setComp1.setColor(color1);
+        setComp2.setColor(color2);
 
         lineView.setTouchEnabled(false);
 
@@ -145,8 +149,6 @@ public class LineChartFragment extends Fragment {
         yAxisRight.setGranularityEnabled(true);
         yAxisLeft.setGranularity(30);
         yAxisLeft.setGranularityEnabled(true); // Required to enable granularity
-
-
 
 
         LineData data = new LineData(dataSets);
