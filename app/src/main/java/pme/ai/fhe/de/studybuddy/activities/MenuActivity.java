@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.facebook.stetho.Stetho;
 
+import pme.ai.fhe.de.studybuddy.GradeCalculationActivity;
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 
@@ -75,6 +76,10 @@ public ActionBarDrawerToggle mToggle;
                 return true;
             case R.id.insertGrade:
                 startActivity(new Intent(this, InsertGrade.class));
+                return true;
+            case R.id.gradecalculation:
+                startActivity(new Intent(this, GradeCalculationActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 

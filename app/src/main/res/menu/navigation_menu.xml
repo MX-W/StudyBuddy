@@ -9,6 +9,10 @@
         android:title="Note eintragen"
         android:icon="@mipmap/baseline_create_black_24"/>
 
+    <item android:id="@+id/gradecalculation"
+        android:title="Note berechnen"
+        android:icon="@mipmap/baseline_ballot_black_24"/>
+
     <item android:id="@+id/noten"
         android:title="Noten"
         android:icon="@mipmap/baseline_import_contacts_black_24"/>
