@@ -73,7 +73,7 @@
                     android:layout_height="match_parent"
                     android:stretchColumns="1">
                     <TableRow
-                        android:background="@color/colorGrey">
+                        android:background="@color/colorLightGrey">
                         <TextView
                             android:text="0"
                             android:padding="3dip"

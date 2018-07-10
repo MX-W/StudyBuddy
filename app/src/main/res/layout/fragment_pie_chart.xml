@@ -5,15 +5,34 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.PieChartFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/pie_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="Verteilung"
+            android:textColor="@color/colorDarkerGrey"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@id/pie_heading"/>
+
+    </RelativeLayout>
+
+
 
 </FrameLayout>
