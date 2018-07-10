@@ -18,4 +18,7 @@ public abstract class LectureDao implements IGenericDao<Lecture> {
 
     @Query("SELECT * FROM lecture WHERE course_id = :courseId AND grade != 0.0 ORDER BY semester_passed ASC")
     public abstract List<Lecture> getAllLecturesWithGradeOrderBySemester(int courseId);
+
+    @Query("SELECT * FROM lecture WHERE module_id = :moduleId")
+    public abstract List<Lecture> getLectureByModuleId(int moduleId);
 }
