@@ -42,8 +42,7 @@
             android:ems="10"
             android:hint="x.x"
             android:textAlignment="center"
-            android:inputType="numberDecimal"
-            android:focusedByDefault="false"/>
+            android:inputType="numberDecimal|numberSigned" />
 
 
         <RelativeLayout

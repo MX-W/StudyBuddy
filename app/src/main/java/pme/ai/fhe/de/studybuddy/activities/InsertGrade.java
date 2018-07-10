@@ -37,6 +37,10 @@ public class InsertGrade extends MenuActivity {
         openMenu();
 
         lectureSpinner = findViewById(R.id.spinnerLecture);
+        setTitle("Noten eintragen");
+
+
+        final Spinner lectureSpinner = findViewById(R.id.spinnerLecture);
         Button insertButton = findViewById(R.id.buttonInsertGrade);
         Button insertNoGradeButton = findViewById(R.id.buttonInsertNoGrade);
         editTextGrade = findViewById(R.id.insertGrade);
@@ -97,6 +101,11 @@ public class InsertGrade extends MenuActivity {
                         selectedLecture.setGrade(Float.parseFloat(grade));
                         controller.updateLecture(selectedLecture);
 
+                        semesterSpinner.setSelection(0);
+                        semesterSwitch.setChecked(false);
+                        lectureSpinner.setSelection(0);
+                        editTextGrade.setText("");
+
                         Toast.makeText(getApplicationContext(), "Note wurde erfolgreich eingetragen", Toast.LENGTH_LONG).show();
                     }
                 } else {
@@ -136,6 +145,11 @@ public class InsertGrade extends MenuActivity {
                         }
                         selectedLecture.setGrade(-1.0f);
                         controller.updateLecture(selectedLecture);
+
+                        semesterSpinner.setSelection(0);
+                        lectureSpinner.setSelection(0);
+                        semesterSwitch.setChecked(false);
+                        editTextGrade.setText("");
 
                         Toast.makeText(getApplicationContext(), "Note wurde erfolgreich eingetragen", Toast.LENGTH_LONG).show();
                     }
