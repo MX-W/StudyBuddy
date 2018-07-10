@@ -66,7 +66,7 @@ public class PieChartFragment extends Fragment {
 
         UserData dataset = controller.getUserData(); //gets all User Data
 
-        List<Lecture> pieDataset = controller.getLecturesByCourseId(dataset.getCourseId()); //gets List with All Courses from User
+        List<Lecture> pieDataset = controller.getAllLecturesWithGrade(dataset.getCourseId()); //gets List with All Courses from User
 
         int numberOfCategories = controller.getNumberOfCategories();
         int [] categories = new int[numberOfCategories + 1]; //Array Counts Categories
@@ -75,7 +75,7 @@ public class PieChartFragment extends Fragment {
         {
             //todo if abfrage, ob kurs bestanden wurde
             //todo mit credit points multiplizieren
-            categories[l.getCategoryId()]++;
+            categories[l.getCategoryId()]+=l.getCredits();
 
         }
 

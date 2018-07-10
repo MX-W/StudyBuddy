@@ -26,6 +26,7 @@ import pme.ai.fhe.de.studybuddy.activities.Overview;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
+import pme.ai.fhe.de.studybuddy.utilities.XAxisValueFormatterWithStringArray;
 
 public class BarChartFragment extends Fragment {
     // Store instance variables
@@ -126,7 +127,7 @@ public class BarChartFragment extends Fragment {
         XAxis xAxis = barView.getXAxis();
         xAxis.setGranularity(1.0f);
         xAxis.setGranularityEnabled(true);
-        xAxis.setValueFormatter(new XAxisValueFormatter(xAxisValues));
+        xAxis.setValueFormatter(new XAxisValueFormatterWithStringArray(xAxisValues));
 
 
         //set Description
@@ -139,24 +140,14 @@ public class BarChartFragment extends Fragment {
         BarData data = new BarData(set);
         data.setBarWidth(0.9f); // set custom bar width
 
+        //animation
+        barView.animateXY( 500, 500);
+
         barView.setData(data);
         barView.setFitBars(true); // make the x-axis fit exactly all bars
         barView.invalidate(); // refresh
 
     }
 
-    public class XAxisValueFormatter implements IAxisValueFormatter {
 
-        private String[] mValues;
-
-        public XAxisValueFormatter(String[] values) {
-            this.mValues = values;
-        }
-
-        @Override
-        public String getFormattedValue(float value, AxisBase axis) {
-            return mValues[(int) value];
-        }
-
-    }
 }
