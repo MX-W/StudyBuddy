@@ -15,20 +15,22 @@ android:id="@+id/drawerLayout">
             android:id="@+id/indicator"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="20dp"
+            app:ipi_animationDuration="320"
             app:ipi_dotDiameter="15dp"
             app:ipi_dotGap="10dp"
-            app:ipi_animationDuration="320"
-            android:layout_marginTop="10dp"/>
-           <!-- app:ipi_pageIndicatorColor="@android:color/darker_gray"
-            app:ipi_currentPageIndicatorColor="@android:color/black"-->
+           app:ipi_pageIndicatorColor="@color/colorMiddleGrey"
+            app:ipi_currentPageIndicatorColor="@color/colorDarkerGrey" />
 
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vpPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/indicator"
-            android:layout_marginBottom="20dp">
+            android:layout_above="@id/indicator"
+            android:layout_marginBottom="5dp">
 
         </android.support.v4.view.ViewPager>
 
