@@ -6,4 +6,7 @@
     <string name="button_newStudy">Ja, Neuanfang!</string>
     <string name="nein">Nein, lieber nicht!</string>
     <string name="test">Test</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

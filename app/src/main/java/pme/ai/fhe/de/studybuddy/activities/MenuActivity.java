@@ -33,20 +33,22 @@ public ActionBarDrawerToggle mToggle;
         controller = DataController.getInstance(getApplication());
 
         mDrawerLayout = findViewById(R.id.drawerLayout);
+/*
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+*/
 
         openMenu();
 
 
 
-        controller = DataController.getInstance(getApplication());
+        //controller = DataController.getInstance(getApplication());
 
     }
 
 //test 1234
 
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(mToggle.onOptionsItemSelected(item)){
@@ -55,7 +57,7 @@ public ActionBarDrawerToggle mToggle;
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -89,10 +91,9 @@ public ActionBarDrawerToggle mToggle;
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
-        Log.i("Drawer:", mDrawerLayout.toString());
         mToggle.syncState();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 

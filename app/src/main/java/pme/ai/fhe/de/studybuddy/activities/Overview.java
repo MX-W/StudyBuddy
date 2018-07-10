@@ -1,120 +1,89 @@
 package pme.ai.fhe.de.studybuddy.activities;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
+import android.widget.Toolbar;
+
 
 import com.facebook.stetho.Stetho;
-import pme.ai.fhe.de.studybuddy.R;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.pixelcan.inkpageindicator.InkPageIndicator;
 
+import pme.ai.fhe.de.studybuddy.Fragments.BarChartFragment;
+import pme.ai.fhe.de.studybuddy.Fragments.LineChartFragment;
+import pme.ai.fhe.de.studybuddy.Fragments.PieChartFragment;
 import pme.ai.fhe.de.studybuddy.R;
-import pme.ai.fhe.de.studybuddy.model.Lecture;
-import pme.ai.fhe.de.studybuddy.model.UserData;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Overview extends MenuActivity {
+    FragmentPagerAdapter adapterViewPager;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
 
+        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+        vpPager.setAdapter(adapterViewPager);
+
         Stetho.initializeWithDefaults(this);
+
+        InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+        inkPageIndicator.setViewPager(vpPager);
+
         openMenu();
-        loadPieChart();
-
-
-
-
-
 
     }
 
 
-    boolean loadPieChart()
-    {
 
 
-        UserData dataset = controller.getUserData(); //gets all User Data
+    public class MyPagerAdapter extends FragmentPagerAdapter {
+        private int NUM_ITEMS = 3;
 
-        List<Lecture> pieDataset = controller.getLecturesByCourseId(dataset.getCourseId()); //gets List with All Courses from User
-
-        int numberOfCategories = controller.getNumberOfCategories();
-        int [] categories = new int[numberOfCategories + 1]; //Array Counts Categories
-
-
-        //Log.i("ID:", Integer.toString(dataset.getCourseId()));
-
-        for(Lecture l : pieDataset)
-        {
-            //todo if abfrage, ob kurs bestanden wurde
-            //todo mit credit points multiplizieren
-            categories[l.getCategoryId()]++;
-
+        public MyPagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
         }
 
+        // Returns total number of pages
+        @Override
+        public int getCount() {
+            return NUM_ITEMS;
+        }
 
-        List<PieEntry> pieChartEntry = new ArrayList<>(); //list of entrys
-        PieChart pieChart = (PieChart) findViewById(R.id.piechart);
-        pieChart.setEntryLabelColor(R.color.colorGrey);
-        pieChart.setEntryLabelTextSize(10.0f);
-
-        //Add Data
-        for(int i = 1; i<=numberOfCategories; i++)
-        {
-            if(categories[i]>0)
-            {
-                float value = (float) categories[i];
-                pieChartEntry.add(new PieEntry(value, controller.getCategorieNameByID(i)));
+        // Returns the fragment to display for that page
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0: // Fragment # 0 - This will show FirstFragment
+                    return PieChartFragment.newInstance(0, "Page # 1");
+                case 1: // Fragment # 1 - This will show SecondFragment different title
+                    return BarChartFragment.newInstance(1, "Page # 2");
+                case 2: // Fragment # 2 - This will show ThirdFragment different title
+                    return LineChartFragment.newInstance(2, "Page # 3");
+                default:
+                    return PieChartFragment.newInstance(0, "Page # 1");
+                    //return null;
             }
         }
 
-        //((float) categories[i]/ (float) piechartentry.size())*100
+        // Returns the page title for the top indicator
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "Page " + position;
+        }
 
-        /*piechartentry.add(new PieEntry(26.7f, "Medien"));
-        piechartentry.add(new PieEntry(24.0f, "Allgemein"));
-        piechartentry.add(new PieEntry(30.8f, "Sonstiges"));*/
-
-
-        // all the chart settings
-        PieDataSet pieEntrySet = new PieDataSet(pieChartEntry, "Übersicht");
-        PieData data2 = new PieData(pieEntrySet);
-        pieChart.setData(data2);
-
-        pieEntrySet.setColors(ColorTemplate.VORDIPLOM_COLORS); //color of chart
-        pieChart.setUsePercentValues(true);
-
-        Description description = new Description();
-        description.setText("Deine bisherigen Leistungen nach Kategorien");
-        pieChart.setDescription(description);
-        //pieChart.setPadding(0,0,0,0);
-        //pieChart.setCenterText("Dein Studium");
-        //pieChart.setHoleRadius(50.0f);
-        //pieChart.setTransparentCircleRadius(25.0f); //size of transparence inner circle
-        /*pieChart.setHoleColor(R.color.colorTransparentWhite);*/
-        pieChart.setDrawHoleEnabled(false);
-        pieChart.setTransparentCircleAlpha(200); //transparence of inner circle
-        Legend legend = pieChart.getLegend();
-        legend.setFormSize(10f); // set the size of the legend forms/shapes
-        legend.setForm(Legend.LegendForm.SQUARE); // set what type of form/shape should be used
-        legend.setTextSize(14f);
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-        legend.setTextColor(R.color.colorGrey);
-        legend.setWordWrapEnabled(true);
-
-        pieChart.animateXY(500, 500); // animate horizontal and vertical 500 milliseconds
-        pieChart.invalidate(); // refresh
-
-        return true;
     }
 
 
 }
+
+
+
