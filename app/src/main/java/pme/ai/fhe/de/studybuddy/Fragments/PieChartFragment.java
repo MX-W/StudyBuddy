@@ -95,12 +95,6 @@ public class PieChartFragment extends Fragment {
             }
         }
 
-        //((float) categories[i]/ (float) piechartentry.size())*100
-
-        /*piechartentry.add(new PieEntry(26.7f, "Medien"));
-        piechartentry.add(new PieEntry(24.0f, "Allgemein"));
-        piechartentry.add(new PieEntry(30.8f, "Sonstiges"));*/
-
 
         // all the chart settings
         PieDataSet pieEntrySet = new PieDataSet(pieChartEntry, "Übersicht");
