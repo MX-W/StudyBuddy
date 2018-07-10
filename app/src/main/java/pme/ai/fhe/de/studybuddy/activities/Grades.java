@@ -32,7 +32,7 @@ public class Grades extends MenuActivity {
         tableLayout.getChildAt(0).setBackgroundColor(getResources().getColor(R.color.colorDarkerGrey));
         tableLayout.getChildAt(2).setBackgroundColor(getResources().getColor(R.color.colorMiddleGrey));
 
-        setTitle("Meine Noten");
+        setTitle("Notenübersicht");
 
         openMenu();
 

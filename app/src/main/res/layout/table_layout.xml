@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@id/gradesShowHeading"
     android:layout_marginRight="10dp"
     android:layout_marginLeft="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -10,6 +9,7 @@
         android:id="@+id/gradesTable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
         android:stretchColumns="2">
         <TableRow
             android:background="@color/colorLightGrey">
