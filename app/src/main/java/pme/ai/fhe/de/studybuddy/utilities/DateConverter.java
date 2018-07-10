@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateConverter {
-    static DateFormat df = new SimpleDateFormat("d.m.Y");
+    static DateFormat df = new SimpleDateFormat("D.M.Y");
 
     @TypeConverter
     public static Date fromTimestamp(String value) {

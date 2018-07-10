@@ -36,30 +36,20 @@ public class Profile extends MenuActivity {
 
     }
 
-    boolean setRightData()
-    {
+    private void setRightData() {
         UserData dataset = controller.getUserData();
-        controller.getCityById(dataset.getCityId());
 
+        TextView univserity = (TextView) findViewById(R.id.highschool_answer);
+        univserity.setText(controller.getUniversityById(dataset.getUniversityId()));
 
-        TextView highschool = new TextView(this);
-        highschool=(TextView)findViewById(R.id.highschool_answer);
-        highschool.setText(controller.getUniversityById(dataset.getUniversityId()));
+        TextView course = (TextView) findViewById(R.id.study_answer);
+        course.setText(controller.getCourseById(dataset.getCourseId())); //aus DB
 
-        TextView study = new TextView(this);
-        study=(TextView)findViewById(R.id.study_answer);
-        study.setText(controller.getCourseById(dataset.getCourseId())); //aus DB
-
-        TextView semester = new TextView(this);
-        semester=(TextView)findViewById(R.id.semester_answer);
+        TextView semester = (TextView) findViewById(R.id.semester_answer);
         semester.setText(dataset.getSemester() + ". Semester"); //aus DB
 
-        TextView studystart = new TextView(this);
-        studystart=(TextView)findViewById(R.id.studystart_answer);
-        studystart.setText(controller.getSemesterById(dataset.getStartingSemesterId())); //aus DB
-
-
-        return true;
+        TextView studystart = (TextView) findViewById(R.id.studystart_answer);
+        studystart.setText(controller.getSemesterById((dataset.getCurrentSemesterId() - (dataset.getSemester() - 1)))); //aus DB
     }
 
 
