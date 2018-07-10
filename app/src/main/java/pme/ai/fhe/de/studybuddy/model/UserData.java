@@ -75,7 +75,7 @@ public class UserData {
         this.id = id;
     }
 
-    public int startingSemesterId() {
+    public int getStartingSemesterId() {
         return startingSemesterId;
     }
 

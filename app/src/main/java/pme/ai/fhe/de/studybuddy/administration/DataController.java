@@ -3,6 +3,9 @@ package pme.ai.fhe.de.studybuddy.administration;
 import android.app.Application;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import pme.ai.fhe.de.studybuddy.administration.daos.CategoryDao;
@@ -70,7 +73,7 @@ public class DataController {
     }
 
     private void generateData() {
-        GenericAsyncTask asyncHandler = new GenericAsyncTask(cityDao, universityDao, courseOfStudiesDao, moduleDao, categoryDao, lectureDao);
+        GenericAsyncTask asyncHandler = new GenericAsyncTask(cityDao, universityDao, courseOfStudiesDao, moduleDao, categoryDao, lectureDao, semesterDao);
         if(!"Erfurt".equals(cityDao.getCityNameById(1))) {
             asyncHandler.insertCities(generateCities());
             try {
@@ -103,6 +106,12 @@ public class DataController {
                 Log.i("Thread sleep", e.toString());
             }
             asyncHandler.insertLectures(generateLectures());
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                Log.i("Thread sleep", e.toString());
+            }
+            asyncHandler.insertSemester(generateSemester());
         }
 
     }
@@ -322,6 +331,30 @@ public class DataController {
         return allCategories;
     }
 
+    private Semester[] generateSemester() {
+        Semester[] allSemester = new Semester[16];
+        List<Semester> semesterList = new ArrayList<>();
+
+        Calendar now = Calendar.getInstance();
+
+        int year = now.get(Calendar.YEAR);
+        year -= 6;
+
+        for(int i = 0; i <= 7; i++) {
+            String yearString = Integer.toString(year).substring(2,4);
+            String yearStringPlus = Integer.toString(year+1).substring(2,4);
+            semesterList.add( new Semester("WS-" + yearString + "/" + yearStringPlus, new Date(year, 10, 1), new Date(year+1, 3,31)));
+            semesterList.add(new Semester("SS-" + yearString, new Date(year, 4, 1), new Date(year, 9,30)));
+            year++;
+        }
+
+        for(int j = 0; j < semesterList.size(); j++) {
+            allSemester[j] = semesterList.get(j);
+        }
+
+        return allSemester;
+    }
+
     public List<CourseOfStudies> getAllCourses() {
         return courseOfStudiesDao.getAll();
     }
@@ -380,6 +413,14 @@ public class DataController {
 
     public List<Semester> getAllSemester() {
         return semesterDao.getAllSemester();
+    }
+
+    public int getSemesterIdByName(String name) {
+        return semesterDao.getSemesterIdByName(name);
+    }
+
+    public String getSemesterById(int semesterId) {
+        return semesterDao.getSemesterById(semesterId);
     }
 }
 

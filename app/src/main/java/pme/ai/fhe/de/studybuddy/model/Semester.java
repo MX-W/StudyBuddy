@@ -3,8 +3,11 @@ package pme.ai.fhe.de.studybuddy.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 
 import java.util.Date;
+
+import pme.ai.fhe.de.studybuddy.utilities.DateConverter;
 
 @Entity(
         tableName = "semester"
@@ -18,9 +21,11 @@ public class Semester {
     private String name;
 
     @ColumnInfo(name = "start_date")
+    @TypeConverters({DateConverter.class})
     private Date startDate;
 
     @ColumnInfo(name = "end_date")
+    @TypeConverters({DateConverter.class})
     private Date endDate;
 
     public Semester(String name, Date startDate, Date endDate) {

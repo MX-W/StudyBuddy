@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import pme.ai.fhe.de.studybuddy.administration.daos.CategoryDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.LectureDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.ModuleDao;
+import pme.ai.fhe.de.studybuddy.administration.daos.SemesterDao;
 import pme.ai.fhe.de.studybuddy.model.Category;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
@@ -13,6 +14,7 @@ import pme.ai.fhe.de.studybuddy.administration.daos.CourseOfStudiesDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.UniversityDao;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Module;
+import pme.ai.fhe.de.studybuddy.model.Semester;
 import pme.ai.fhe.de.studybuddy.model.University;
 
 public class GenericAsyncTask {
@@ -23,14 +25,16 @@ public class GenericAsyncTask {
     private ModuleDao moduleDao;
     private CategoryDao categoryDao;
     private LectureDao lectureDao;
+    private SemesterDao semesterDao;
 
-    public GenericAsyncTask(CityDao cityDao, UniversityDao universityDao, CourseOfStudiesDao courseOfStudiesDao, ModuleDao moduleDao, CategoryDao categoryDao, LectureDao lectureDao) {
+    public GenericAsyncTask(CityDao cityDao, UniversityDao universityDao, CourseOfStudiesDao courseOfStudiesDao, ModuleDao moduleDao, CategoryDao categoryDao, LectureDao lectureDao, SemesterDao semesterDao) {
         this.cityDao = cityDao;
         this.universityDao = universityDao;
         this.courseOfStudiesDao = courseOfStudiesDao;
         this.moduleDao = moduleDao;
         this.categoryDao = categoryDao;
         this.lectureDao = lectureDao;
+        this.semesterDao = semesterDao;
     }
 
     private static class insertCities extends AsyncTask<City, Void, Void> {
@@ -159,6 +163,27 @@ public class GenericAsyncTask {
 
     public void insertLectures(Lecture[] lectures) {
         new insertLectures(this.lectureDao).execute(lectures);
+    }
+
+    private static class insertSemester extends AsyncTask<Semester, Void, Void> {
+
+        private SemesterDao mAsyncTaskDao;
+
+        insertSemester(SemesterDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Semester[] params) {
+            for(int i = 0; i < params.length; i++) {
+                mAsyncTaskDao.insert(params[i]);
+            }
+            return null;
+        }
+    }
+
+    public void insertSemester(Semester[] semesters) {
+        new insertSemester(this.semesterDao).execute(semesters);
     }
 }
 

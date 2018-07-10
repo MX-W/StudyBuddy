@@ -19,6 +19,7 @@ import java.util.List;
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
+import pme.ai.fhe.de.studybuddy.model.Semester;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
 public class SetupActivity extends AppCompatActivity {
@@ -164,17 +165,21 @@ public class SetupActivity extends AppCompatActivity {
                 } else {
                     selectedCourseId = controller.getCourseIdByName(selectedCourse);
 
-                    List<String> semester = new ArrayList<>();
-                    controller.getAllSemester();
-                    semester.add("Bitte wähle einen Studienbeginn aus");
-                    semester.addAll();
+                    List<String> semesterNameString = new ArrayList<>();
+                    List<Semester> allSemester =  controller.getAllSemester();
+
+                    semesterNameString.add("Bitte wähle einen Studienbeginn aus");
+
+                    for(int i = 0; i < allSemester.size(); i++) {
+                        semesterNameString.add(allSemester.get(i).getName());
+                    }
 
                     ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(parent.getContext(),
-                            R.layout.simple_custom_spinner_item, semester);
+                            R.layout.simple_custom_spinner_item, semesterNameString);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerBegin.setAdapter(dataAdapter);
 
-                    setBeginSpinnerSelectionListener(spinnerBegin, semester);
+                    setBeginSpinnerSelectionListener(spinnerBegin, semesterNameString);
 
                     spinnerBegin.setVisibility(View.VISIBLE);
                     textViewBegin.setVisibility(View.VISIBLE);
@@ -201,7 +206,7 @@ public class SetupActivity extends AppCompatActivity {
                     textViewStart.setVisibility(View.INVISIBLE);
                     findViewById(R.id.setupButtonForward).setVisibility(View.INVISIBLE);
                 } else {
-                    startingSemesterId = selectedSemester;
+                    startingSemesterId = controller.getSemesterIdByName(selectedSemester);
 
                     List<String> semesterCount = new ArrayList<>();
                     semesterCount.add("Wähle dein Startsemester");
@@ -246,25 +251,6 @@ public class SetupActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private List<String> getSemester() {
-        Calendar now = Calendar.getInstance();
-
-        int year = now.get(Calendar.YEAR);
-        List<String> semester = new ArrayList<>();
-        year += 1;
-
-        for(int i = 0; i <= 7; i++) {
-            String yearString = Integer.toString(year).substring(2,4);
-            String yearStringPlus = Integer.toString(year+1).substring(2,4);
-            semester.add("WS-" + yearString + "/" + yearStringPlus);
-            semester.add("SS-" + yearString);
-            year--;
-        }
-
-        return semester;
-
     }
 
     private List<String> getSemesterCount() {
