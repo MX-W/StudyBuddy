@@ -24,6 +24,9 @@ public class InsertGrade extends MenuActivity {
         setContentView(R.layout.activity_insert_grade);
         openMenu();
 
+        setTitle("Noten eintragen");
+
+
         final Spinner lectureSpinner = findViewById(R.id.spinnerLecture);
         Button insertButton = findViewById(R.id.buttonInsertGrade);
         Button insertNoGradeButton = findViewById(R.id.buttonInsertNoGrade);

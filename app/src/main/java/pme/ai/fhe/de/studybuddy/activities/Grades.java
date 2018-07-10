@@ -31,6 +31,9 @@ public class Grades extends MenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades);
+
+        setTitle("Meine Noten");
+
         openMenu();
 
         TextView allCreditsView = findViewById(R.id.allCredits);
