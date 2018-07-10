@@ -3,6 +3,7 @@ package pme.ai.fhe.de.studybuddy.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,16 +17,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.security.auth.callback.Callback;
+
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
+import pme.ai.fhe.de.studybuddy.model.Semester;
 import pme.ai.fhe.de.studybuddy.model.UserData;
+import pme.ai.fhe.de.studybuddy.utilities.AddSpinnerItems;
 
 public class SetupActivity extends AppCompatActivity {
 
-    DataController controller;
-    int selectedCityId, selectedUniversityId, selectedCourseId, semesterCountStarting;
-    String startingSemester;
+    private static String CITY_DEFAULT_SPINNER = "Bitte wähle deine Stadt";
+    private static String UNIVERSITY_DEFAULT_SPINNER = "Bitte wähle deine Universität";
+    private static String COURSE_DEFAULT_SPINNER = "Bitte wähle deinen Studiengang aus";
+    private static String SEMESTER_DEFAULT_SPINNER = "Bitte wähle dein Semester aus";
+
+    private DataController controller;
+    private int selectedCityId, selectedUniversityId, selectedCourseId, semester, currentSemesterId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +47,24 @@ public class SetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                UserData data = new UserData(selectedCityId, selectedUniversityId, selectedCourseId, semesterCountStarting, startingSemester);
+                Calendar now = Calendar.getInstance();
+
+                int year = now.get(Calendar.YEAR);
+                String yearString = Integer.toString(year).substring(2);
+                String yearStringPlusOne = Integer.toString(year+1).substring(2);
+                String semesterString = "";
+                if(now.get(Calendar.MONTH) >= 10 || now.get(Calendar.MONTH) <= 4) {
+                    semesterString = "WS-" + yearString + "/" + yearStringPlusOne;
+                } else {
+                    semesterString = "SS-" + yearString;
+                }
+
+                Log.i("Current Semester String", semesterString);
+
+                currentSemesterId = controller.getSemesterIdByName(semesterString);
+
+
+                UserData data = new UserData(selectedCityId, selectedUniversityId, selectedCourseId, semester, currentSemesterId);
 
                 controller.insertUserData(data);
 
@@ -50,20 +76,18 @@ public class SetupActivity extends AppCompatActivity {
 
         List<City> allCities = controller.getAllCities();
         final List<String> cityNames = new ArrayList<>();
-        cityNames.add("Bitte wähle deine Stadt");
+        cityNames.add(CITY_DEFAULT_SPINNER);
         for(City city : allCities) {
             cityNames.add(city.getName());
         }
         final Spinner spinnerCities = findViewById(R.id.spinnerCity);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                R.layout.simple_custom_spinner_item, cityNames);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCities.setAdapter(dataAdapter);
 
-        setCitySpinnerSelectionListener(spinnerCities, cityNames);
+        spinnerCities.setAdapter(AddSpinnerItems.setArrayAdapter(this, cityNames));
+
+        setCitySpinnerSelectionListener(spinnerCities);
     }
 
-    private void setCitySpinnerSelectionListener(Spinner spinnerCities, final List<String> cityNames) {
+    private void setCitySpinnerSelectionListener(Spinner spinnerCities) {
         spinnerCities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -71,28 +95,23 @@ public class SetupActivity extends AppCompatActivity {
                 Spinner spinnerUniversity = (Spinner) findViewById(R.id.spinnerUniversity);
                 TextView universityTextView = (TextView) findViewById(R.id.textViewUniversity);
 
-                if(cityNames.get(0).equals(selectedCity)) {
+                if(CITY_DEFAULT_SPINNER.equals(selectedCity)) {
                     spinnerUniversity.setVisibility(View.INVISIBLE);
                     universityTextView.setVisibility(View.INVISIBLE);
                     findViewById(R.id.setupButtonForward).setVisibility(View.INVISIBLE);
                     findViewById(R.id.spinnerStartSemester).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.spinnerBegin).setVisibility(View.INVISIBLE);
                     findViewById(R.id.spinnerCourse).setVisibility(View.INVISIBLE);
                     findViewById(R.id.textViewStartSemester).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.textViewBegin).setVisibility(View.INVISIBLE);
                     findViewById(R.id.textViewCourse).setVisibility(View.INVISIBLE);
                 } else {
                     selectedCityId = controller.getCityIdByName(selectedCity);
                     List<String> availableUniversities = new ArrayList<>();
-                    availableUniversities.add("Bitte wähle deine Universität");
+                    availableUniversities.add(UNIVERSITY_DEFAULT_SPINNER);
                     availableUniversities.addAll(controller.getUniversitiesByCityId(selectedCityId));
 
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(parentView.getContext(),
-                            R.layout.simple_custom_spinner_item, availableUniversities);
-                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerUniversity.setAdapter(dataAdapter);
+                    spinnerUniversity.setAdapter(AddSpinnerItems.setArrayAdapter(getApplication(), availableUniversities));
 
-                    setUniversitySpinnerSelectionListener(spinnerUniversity, availableUniversities);
+                    setUniversitySpinnerSelectionListener(spinnerUniversity);
 
                     spinnerUniversity.setVisibility(View.VISIBLE);
                     universityTextView.setVisibility(View.VISIBLE);
@@ -107,7 +126,7 @@ public class SetupActivity extends AppCompatActivity {
         });
     }
 
-    private void setUniversitySpinnerSelectionListener(Spinner spinnerUniversity, final List<String> universityNames) {
+    private void setUniversitySpinnerSelectionListener(Spinner spinnerUniversity) {
         spinnerUniversity.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -115,26 +134,21 @@ public class SetupActivity extends AppCompatActivity {
                 Spinner spinnerCourse = (Spinner) findViewById(R.id.spinnerCourse);
                 TextView textViewCourse = (TextView) findViewById(R.id.textViewCourse);
 
-                if(universityNames.get(0).equals(selectedUniversity)) {
+                if(UNIVERSITY_DEFAULT_SPINNER.equals(selectedUniversity)) {
                     spinnerCourse.setVisibility(View.INVISIBLE);
                     textViewCourse.setVisibility(View.INVISIBLE);
                     findViewById(R.id.setupButtonForward).setVisibility(View.INVISIBLE);
                     findViewById(R.id.spinnerStartSemester).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.spinnerBegin).setVisibility(View.INVISIBLE);
                     findViewById(R.id.textViewStartSemester).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.textViewBegin).setVisibility(View.INVISIBLE);
                 } else {
                     selectedUniversityId = controller.getUniversityIdByName(selectedUniversity);
                     List<String> availableCourses = new ArrayList<>();
-                    availableCourses.add("Bitte wähle deinen Studiengang aus");
+                    availableCourses.add(COURSE_DEFAULT_SPINNER);
                     availableCourses.addAll(controller.getCoursesByUniversityId(selectedUniversityId));
 
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(parent.getContext(),
-                            R.layout.simple_custom_spinner_item, availableCourses);
-                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerCourse.setAdapter(dataAdapter);
+                    spinnerCourse.setAdapter(AddSpinnerItems.setArrayAdapter(getApplication(), availableCourses));
 
-                    setCourseSpinnerSelectionListener(spinnerCourse, availableCourses);
+                    setCourseSpinnerSelectionListener(spinnerCourse);
 
                     spinnerCourse.setVisibility(View.VISIBLE);
                     textViewCourse.setVisibility(View.VISIBLE);
@@ -148,71 +162,32 @@ public class SetupActivity extends AppCompatActivity {
         });
     }
 
-    private void setCourseSpinnerSelectionListener(final Spinner spinnerCourse, final List<String> courseNames) {
+    private void setCourseSpinnerSelectionListener(final Spinner spinnerCourse) {
         spinnerCourse.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedCourse = parent.getItemAtPosition(position).toString();
-                Spinner spinnerBegin = (Spinner) findViewById(R.id.spinnerBegin);
-                TextView textViewBegin = (TextView) findViewById(R.id.textViewBegin);
+                Spinner spinnerStart = (Spinner) findViewById(R.id.spinnerStartSemester);
+                TextView textViewStart = (TextView) findViewById(R.id.textViewStartSemester);
 
-                if(courseNames.get(0).equals(selectedCourse)) {
-                    spinnerBegin.setVisibility(View.INVISIBLE);
-                    textViewBegin.setVisibility(View.INVISIBLE);
+                if(COURSE_DEFAULT_SPINNER.equals(selectedCourse)) {
+                    spinnerStart.setVisibility(View.INVISIBLE);
+                    textViewStart.setVisibility(View.INVISIBLE);
                     findViewById(R.id.setupButtonForward).setVisibility(View.INVISIBLE);
                     findViewById(R.id.spinnerStartSemester).setVisibility(View.INVISIBLE);
                     findViewById(R.id.textViewStartSemester).setVisibility(View.INVISIBLE);
                 } else {
                     selectedCourseId = controller.getCourseIdByName(selectedCourse);
 
-                    List<String> semester = new ArrayList<>();
-                    semester.add("Bitte wähle einen Studienbeginn aus");
-                    semester.addAll(getSemester());
+                    List<String> semesterNameString = new ArrayList<>();
 
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(parent.getContext(),
-                            R.layout.simple_custom_spinner_item, semester);
-                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerBegin.setAdapter(dataAdapter);
+                    semesterNameString.add(SEMESTER_DEFAULT_SPINNER);
 
-                    setBeginSpinnerSelectionListener(spinnerBegin, semester);
+                    semesterNameString.addAll(getSemesterCount());
 
-                    spinnerBegin.setVisibility(View.VISIBLE);
-                    textViewBegin.setVisibility(View.VISIBLE);
-                }
-            }
+                    spinnerStart.setAdapter(AddSpinnerItems.setArrayAdapter(getApplication(), semesterNameString));
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-
-    private void setBeginSpinnerSelectionListener(Spinner spinnerBegin, final List<String> semester) {
-        spinnerBegin.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedSemester = parent.getItemAtPosition(position).toString();
-                Spinner spinnerStart = (Spinner) findViewById(R.id.spinnerStartSemester);
-                TextView textViewStart = (TextView) findViewById(R.id.textViewStartSemester);
-
-                if(semester.get(0).equals(selectedSemester)) {
-                    spinnerStart.setVisibility(View.INVISIBLE);
-                    textViewStart.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.setupButtonForward).setVisibility(View.INVISIBLE);
-                } else {
-                    startingSemester = selectedSemester;
-
-                    List<String> semesterCount = new ArrayList<>();
-                    semesterCount.add("Wähle dein Startsemester");
-                    semesterCount.addAll(getSemesterCount());
-
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(parent.getContext(),
-                            R.layout.simple_custom_spinner_item, semesterCount);
-                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerStart.setAdapter(dataAdapter);
-
-                    setStartSemesterSpinnerSelectionListener(spinnerStart, semesterCount);
+                    setStartSemesterSpinnerSelectionListener(spinnerStart);
 
                     spinnerStart.setVisibility(View.VISIBLE);
                     textViewStart.setVisibility(View.VISIBLE);
@@ -226,17 +201,18 @@ public class SetupActivity extends AppCompatActivity {
         });
     }
 
-    private void setStartSemesterSpinnerSelectionListener(Spinner spinnerStart, final List<String> semesterCount) {
+    private void setStartSemesterSpinnerSelectionListener(Spinner spinnerStart) {
         spinnerStart.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedStartSemester = parent.getItemAtPosition(position).toString();
                 Button button = (Button) findViewById(R.id.setupButtonForward);
 
-                if(semesterCount.get(0).equals(selectedStartSemester)) {
+                if(SEMESTER_DEFAULT_SPINNER.equals(selectedStartSemester)) {
                     button.setVisibility(View.INVISIBLE);
                 } else {
-                    semesterCountStarting = Integer.parseInt(selectedStartSemester);
+                    semester = Integer.parseInt(selectedStartSemester);
+
                     button.setVisibility(View.VISIBLE);
                 }
             }
@@ -246,25 +222,6 @@ public class SetupActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private List<String> getSemester() {
-        Calendar now = Calendar.getInstance();
-
-        int year = now.get(Calendar.YEAR);
-        List<String> semester = new ArrayList<>();
-        year += 1;
-
-        for(int i = 0; i <= 7; i++) {
-            String yearString = Integer.toString(year).substring(2,4);
-            String yearStringPlus = Integer.toString(year+1).substring(2,4);
-            semester.add("WS-" + yearString + "/" + yearStringPlus);
-            semester.add("SS-" + yearString);
-            year--;
-        }
-
-        return semester;
-
     }
 
     private List<String> getSemesterCount() {

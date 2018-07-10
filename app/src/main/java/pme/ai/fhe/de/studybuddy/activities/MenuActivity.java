@@ -33,7 +33,9 @@ public ActionBarDrawerToggle mToggle;
         controller = DataController.getInstance(getApplication());
 
         mDrawerLayout = findViewById(R.id.drawerLayout);
+
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+
 
         openMenu();
 
@@ -43,7 +45,6 @@ public ActionBarDrawerToggle mToggle;
 
     }
 
-//test 1234
 
 
     @Override
@@ -72,6 +73,8 @@ public ActionBarDrawerToggle mToggle;
             case R.id.profil:
                 startActivity(new Intent(this, Profile.class));
                 return true;
+            case R.id.insertGrade:
+                startActivity(new Intent(this, InsertGrade.class));
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -87,7 +90,6 @@ public ActionBarDrawerToggle mToggle;
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
-        Log.i("Drawer:", mDrawerLayout.toString());
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

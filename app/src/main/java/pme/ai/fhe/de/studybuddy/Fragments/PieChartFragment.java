@@ -82,7 +82,7 @@ public class PieChartFragment extends Fragment {
 
         List<PieEntry> pieChartEntry = new ArrayList<>(); //list of entrys
 
-        pieView.setEntryLabelColor(R.color.colorGrey);
+        pieView.setEntryLabelColor(R.color.colorLightGrey);
         pieView.setEntryLabelTextSize(10.0f);
 
         //Add Data
@@ -129,7 +129,7 @@ public class PieChartFragment extends Fragment {
         legend.setForm(Legend.LegendForm.SQUARE); // set what type of form/shape should be used
         legend.setTextSize(14f);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-        legend.setTextColor(R.color.colorGrey);
+        legend.setTextColor(R.color.colorLightGrey);
         legend.setWordWrapEnabled(true);
 
         pieView.setTouchEnabled(false);
