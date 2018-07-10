@@ -59,8 +59,6 @@ public class SetupActivity extends AppCompatActivity {
                     semesterString = "SS-" + yearString;
                 }
 
-                Log.i("Current Semester String", semesterString);
-
                 currentSemesterId = controller.getSemesterIdByName(semesterString);
 
 
