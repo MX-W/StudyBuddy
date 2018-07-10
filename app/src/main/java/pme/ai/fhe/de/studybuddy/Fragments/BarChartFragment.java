@@ -2,6 +2,7 @@ package pme.ai.fhe.de.studybuddy.Fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,11 +80,7 @@ public class BarChartFragment extends Fragment {
 
         for(Lecture l : lecturesWithGrades) //count of each grade and saved in array
         {
-            if(l.getGrade()<0)
-            {
-                //do nothing
-            }
-            else if(l.getGrade() < 1.56)
+            if(l.getGrade() > 0 && l.getGrade() < 1.56)
             {
                 grades[0]++;
             }
@@ -110,8 +107,11 @@ public class BarChartFragment extends Fragment {
         BarDataSet set = new BarDataSet(entries, "Jeweils die Anzahl deiner bisher erreichten Notenstufen");
 
 
+        int color1 = ContextCompat.getColor(getActivity(), R.color.colorAccent);
+        set.setColor(color1);
 
-        set.setColors(R.color.colorBlack);
+
+        //set.setColors(R.color.colorBlack);
 
         barView.setTouchEnabled(false);
 
