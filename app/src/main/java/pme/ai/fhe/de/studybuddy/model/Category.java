@@ -5,17 +5,20 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(
-        tableName = "category",
-        primaryKeys = "category_id"
+        tableName = "category"
 )
 public class Category {
 
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo (name = "category_id")
     private int id;
 
     @ColumnInfo
     private String name;
 
+    public Category(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;

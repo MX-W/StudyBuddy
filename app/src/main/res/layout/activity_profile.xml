@@ -5,8 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@drawable/bluesbg"
-        tools:context=".Profile"
+        tools:context=".activities.Profile"
         android:id="@+id/drawerLayout">
 
 
@@ -21,37 +20,18 @@
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
-    android:text="Noteneingabe"
-    android:textSize="40dp" />
-
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/profile_heading"
-        android:textSize="15dp"
-        android:layout_marginTop="30dp"
-        android:text="Name:" />
-
-    <TextView
-        android:id="@+id/name_answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/name"
-        android:textSize="20dp"
-        android:text="Max Mustermann" />
+    android:layout_marginTop="40dp"
+    android:text="Eckdaten"
+    android:textSize="25dp" />
 
     <TextView
         android:id="@+id/study"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/name_answer"
+        android:layout_below="@id/profile_heading"
         android:textSize="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:text="Studiengang:" />
 
     <TextView
@@ -70,7 +50,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/study_answer"
         android:textSize="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:text="Hochschule:" />
 
     <TextView
@@ -81,6 +61,44 @@
         android:textSize="20dp"
         android:layout_below="@id/highschool"
         android:text="Fachhochschule Erfurt" />
+
+    <TextView
+        android:id="@+id/studystart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/highschool_answer"
+        android:textSize="15dp"
+        android:layout_marginTop="25dp"
+        android:text="Studienbeginn:" />
+
+    <TextView
+        android:id="@+id/studystart_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@id/studystart"
+        android:text="Sommersemester 2015" />
+
+    <TextView
+        android:id="@+id/semester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/studystart_answer"
+        android:textSize="15dp"
+        android:layout_marginTop="25dp"
+        android:text="Aktuelles Semester:" />
+
+    <TextView
+        android:id="@+id/semester_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@id/semester"
+        android:text="4. Semester" />
 
     <Button
         android:id="@+id/newstudy"

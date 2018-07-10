@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy;
+package pme.ai.fhe.de.studybuddy.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -9,51 +9,46 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
-import java.util.List;
+import com.facebook.stetho.Stetho;
 
-import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
-import pme.ai.fhe.de.studybuddy.model.Daos.DataBase;
-import pme.ai.fhe.de.studybuddy.model.Daos.DataController;
+import pme.ai.fhe.de.studybuddy.R;
+import pme.ai.fhe.de.studybuddy.administration.DataController;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
 public DrawerLayout mDrawerLayout;
 public ActionBarDrawerToggle mToggle;
+    public DataController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Stetho.initializeWithDefaults(this);
+
         setContentView(R.layout.activity_home);
 
+        controller = DataController.getInstance(getApplication());
 
         mDrawerLayout = findViewById(R.id.drawerLayout);
+/*
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+*/
 
         openMenu();
 
 
 
-        DataController controller = new DataController(getApplication());
-        DataBase db = DataBase.getDatabase(getApplicationContext());
-        List<CourseOfStudies> list = controller.getAllCourses();
+        //controller = DataController.getInstance(getApplication());
 
-        Log.i("All courses: ", list.toString());
-
-        for(CourseOfStudies cours : list) {
-            String course = Integer.toString(cours.getCourseId());
-            Log.i("CourseOfStudies-Dao: ", course);
-        }
     }
 
+//test 1234
 
 
-
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(mToggle.onOptionsItemSelected(item)){
@@ -62,7 +57,7 @@ public ActionBarDrawerToggle mToggle;
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -79,6 +74,8 @@ public ActionBarDrawerToggle mToggle;
             case R.id.profil:
                 startActivity(new Intent(this, Profile.class));
                 return true;
+            case R.id.insertGrade:
+                startActivity(new Intent(this, InsertGrade.class));
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -94,10 +91,9 @@ public ActionBarDrawerToggle mToggle;
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
-        Log.i("Drawer:", mDrawerLayout.toString());
         mToggle.syncState();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 

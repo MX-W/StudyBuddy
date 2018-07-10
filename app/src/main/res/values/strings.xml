@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">StudyBuddy</string>
+    <string name="setup_text">Bitte wähle deinen Studiengang aus:</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="button_newStudy">Ja, Neuanfang!</string>
     <string name="nein">Nein, lieber nicht!</string>
+    <string name="test">Test</string>
 
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

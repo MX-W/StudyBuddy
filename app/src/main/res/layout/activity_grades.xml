@@ -4,42 +4,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@drawable/bluesbg"
-        tools:context=".Grades"
+        tools:context=".activities.Grades"
         android:id="@+id/drawerLayout">
 
 
         <RelativeLayout
+            android:id="@+id/mainLayout"
             android:layout_height="match_parent"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/gradesShowHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+                android:text="Notenübersicht"
+                android:textSize="27dp"
                 android:layout_centerHorizontal="true"
-                android:text="Noteneingabe"
-                android:textSize="40dp" />
+                android:layout_marginTop="10dp" />
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="106dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="100dp"
-                android:ems="10"
-                android:hint="x.x"
-                android:inputType="numberDecimal" />
+            <include layout="@layout/table_layout"/>
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editText"
-                android:layout_centerHorizontal="true"
-                android:text="Bestätigen" />
+
         </RelativeLayout>
 
     <android.support.design.widget.NavigationView

@@ -6,7 +6,6 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "lecture",
-        primaryKeys = { "lecture_id" },
         foreignKeys = {
             @ForeignKey(entity = CourseOfStudies.class, parentColumns = "course_id", childColumns = "course_id"),
             @ForeignKey(entity = Module.class, parentColumns = "module_id", childColumns = "module_id"),
@@ -15,6 +14,7 @@ import android.arch.persistence.room.PrimaryKey;
         })
 public class Lecture {
 
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "lecture_id")
     private int id;
 
@@ -68,6 +68,18 @@ public class Lecture {
 
     @ColumnInfo(name = "information")
     private String furtherInformation;
+
+    public Lecture(int courseOfStudiesId, int moduleId, String name, int credits, boolean obligation, int categoryId, String language)
+    {
+        this.courseOfStudiesId = courseOfStudiesId;
+        this.moduleId = moduleId;
+        this.name = name;
+        this.credits = credits;
+        this.obligation = obligation;
+        this.categoryId = categoryId;
+        this.language = language;
+
+    }
 
 
 
