@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bluesbg"
     tools:context=".activities.Grades"
     android:id="@+id/drawerLayout">
 
@@ -46,11 +45,41 @@
             android:inputType="numberDecimal"
             android:focusedByDefault="false"/>
 
-        <LinearLayout
-            android:id="@+id/buttonLayout"
+
+        <RelativeLayout
+            android:id="@+id/switchLayout"
+            android:layout_marginTop="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/insertGrade">
+
+        <Switch
+            android:id="@+id/switchOtherSemester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Note in vergangenem Smester eintragen"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <Spinner
+            android:id="@+id/spinnerSemester"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/switchOtherSemester"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/switchLayout">
 
             <Space
                 android:layout_width="0dp"
