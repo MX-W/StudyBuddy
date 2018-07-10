@@ -7,12 +7,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.facebook.stetho.Stetho;
 
-import pme.ai.fhe.de.studybuddy.GradeCalculationActivity;
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 

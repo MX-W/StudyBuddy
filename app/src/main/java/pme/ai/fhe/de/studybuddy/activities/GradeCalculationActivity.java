@@ -1,9 +1,8 @@
-package pme.ai.fhe.de.studybuddy;
+package pme.ai.fhe.de.studybuddy.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +10,7 @@ import android.widget.EditText;
 
 import java.util.List;
 
-import pme.ai.fhe.de.studybuddy.activities.MenuActivity;
-import pme.ai.fhe.de.studybuddy.activities.Profile;
+import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
