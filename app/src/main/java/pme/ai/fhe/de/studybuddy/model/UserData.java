@@ -24,15 +24,15 @@ public class UserData {
 
     private int semester;
 
-    @ColumnInfo(name = "starting_semester_id")
-    private int startingSemesterId;
+    @ColumnInfo(name = "current_semester")
+    private int currentSemesterId;
 
-    public UserData(int cityId, int universityId, int courseId, int semester, int startingSemesterId) {
+    public UserData(int cityId, int universityId, int courseId, int semester, int currentSemesterId) {
         this.cityId = cityId;
         this.universityId = universityId;
         this.courseId = courseId;
         this.semester = semester;
-        this.startingSemesterId = startingSemesterId;
+        this.currentSemesterId = currentSemesterId;
     }
 
     public int getCityId() {
@@ -75,11 +75,11 @@ public class UserData {
         this.id = id;
     }
 
-    public int getStartingSemesterId() {
-        return startingSemesterId;
+    public int getCurrentSemesterId() {
+        return currentSemesterId;
     }
 
-    public void setStartingSemester(int startingSemesterId) {
-        this.startingSemesterId = startingSemesterId;
+    public void setCurrentSemesterId(int currentSemesterId) {
+        this.currentSemesterId = currentSemesterId;
     }
 }

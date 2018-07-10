@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
             @ForeignKey(entity = CourseOfStudies.class, parentColumns = "course_id", childColumns = "course_id"),
             @ForeignKey(entity = Module.class, parentColumns = "module_id", childColumns = "module_id"),
             @ForeignKey(entity = Lecturer.class, parentColumns = "lecturer_id", childColumns = "lecturer_id"),
-            @ForeignKey(entity = Category.class, parentColumns = "category_id", childColumns = "category_id")
+            @ForeignKey(entity = Category.class, parentColumns = "category_id", childColumns = "category_id"),
         })
 public class Lecture {
 
@@ -66,6 +66,9 @@ public class Lecture {
     @ColumnInfo
     private String content;
 
+    @ColumnInfo(name = "semester_passed")
+    private int semesterPassed;
+
     @ColumnInfo(name = "information")
     private String furtherInformation;
 
@@ -78,10 +81,9 @@ public class Lecture {
         this.obligation = obligation;
         this.categoryId = categoryId;
         this.language = language;
+        this.semesterPassed = 0;
 
     }
-
-
 
     public int getLectureId() {
         return id;
@@ -233,5 +235,13 @@ public class Lecture {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getSemesterPassed() {
+        return semesterPassed;
+    }
+
+    public void setSemesterPassed(int semesterPassed) {
+        this.semesterPassed = semesterPassed;
     }
 }

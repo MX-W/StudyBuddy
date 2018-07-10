@@ -1,14 +1,7 @@
 package pme.ai.fhe.de.studybuddy.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -40,35 +33,8 @@ public class Grades extends MenuActivity {
 
         final List<Lecture> lectureList = controller.getLecturesByCourseId(userData.getCourseId());
 
-        List<Lecture> lectureGrade = new ArrayList<>();
+        setAverageGrade(lectureList, allCreditsView, averageGradeView);
 
-        int allCredits = 0;
-        float allCreditsGrade = 0;
-        float allGrades = 0;
-        DecimalFormat formatOne = new DecimalFormat("#.#");
-        DecimalFormat formatTwo = new DecimalFormat("#.##");
-
-        for (Lecture lecture : lectureList) {
-            float grade = 0.0f;
-            grade = lecture.getGrade();
-            if (grade != 0.0) {
-                String gradeText = "";
-                int credits = lecture.getCredits();
-                allCredits += credits;
-                if(grade == -1.0f) {
-                    gradeText = "Bestanden";
-                } else {
-                    allGrades += grade * credits;
-                    allCreditsGrade += credits;
-                    gradeText = String.valueOf(formatOne.format(grade));
-                }
-                updateGradeTable(gradeText, lecture.getName(), lecture.getCredits());
-            }
-        }
-
-        allCreditsView.setText(String.valueOf(allCredits));
-
-        averageGradeView.setText(String.valueOf(formatTwo.format(allGrades/allCreditsGrade)));
     }
 
     private void updateGradeTable(String gradeText, String lectureName, int credits) {
@@ -99,5 +65,34 @@ public class Grades extends MenuActivity {
         newRow.addView(gradeView);
 
         tableLayout.addView(newRow);
+    }
+
+    private void setAverageGrade(List<Lecture> lectures, TextView allCreditsView, TextView averageGradeView) {
+        int allCredits = 0;
+        float allCreditsGrade = 0;
+        float allGrades = 0;
+        DecimalFormat formatOne = new DecimalFormat("#.#");
+        DecimalFormat formatTwo = new DecimalFormat("#.##");
+
+        for (Lecture lecture : lectures) {
+            float grade = 0.0f;
+            grade = lecture.getGrade();
+            if (grade != 0.0) {
+                String gradeText = "";
+                int credits = lecture.getCredits();
+                allCredits += credits;
+                if(grade == -1.0f) {
+                    gradeText = "Bestanden";
+                } else {
+                    allGrades += grade * credits;
+                    allCreditsGrade += credits;
+                    gradeText = String.valueOf(formatOne.format(grade));
+                }
+                updateGradeTable(gradeText, lecture.getName(), lecture.getCredits());
+            }
+        }
+        allCreditsView.setText(String.valueOf(allCredits));
+
+        averageGradeView.setText(String.valueOf(formatTwo.format(allGrades/allCreditsGrade)));
     }
 }
