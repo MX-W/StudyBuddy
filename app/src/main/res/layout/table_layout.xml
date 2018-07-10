@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:stretchColumns="2">
         <TableRow
-            android:background="@color/colorGrey">
+            android:background="@color/colorLightGrey">
             <TextView
                 android:padding="3dip"
                 android:text="Veranstaltung"
