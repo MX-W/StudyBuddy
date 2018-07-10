@@ -97,6 +97,11 @@ public class InsertGrade extends MenuActivity {
                         selectedLecture.setGrade(Float.parseFloat(grade));
                         controller.updateLecture(selectedLecture);
 
+                        semesterSpinner.setSelection(0);
+                        semesterSwitch.setChecked(false);
+                        lectureSpinner.setSelection(0);
+                        editTextGrade.setText("");
+
                         Toast.makeText(getApplicationContext(), "Note wurde erfolgreich eingetragen", Toast.LENGTH_LONG).show();
                     }
                 } else {
@@ -136,6 +141,11 @@ public class InsertGrade extends MenuActivity {
                         }
                         selectedLecture.setGrade(-1.0f);
                         controller.updateLecture(selectedLecture);
+
+                        semesterSpinner.setSelection(0);
+                        lectureSpinner.setSelection(0);
+                        semesterSwitch.setChecked(false);
+                        editTextGrade.setText("");
 
                         Toast.makeText(getApplicationContext(), "Note wurde erfolgreich eingetragen", Toast.LENGTH_LONG).show();
                     }
