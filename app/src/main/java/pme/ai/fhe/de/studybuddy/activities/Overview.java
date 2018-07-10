@@ -1,10 +1,14 @@
 package pme.ai.fhe.de.studybuddy.activities;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
+import android.widget.Toolbar;
 
 
 import com.facebook.stetho.Stetho;
@@ -19,6 +23,7 @@ import pme.ai.fhe.de.studybuddy.R;
 public class Overview extends MenuActivity {
     FragmentPagerAdapter adapterViewPager;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
