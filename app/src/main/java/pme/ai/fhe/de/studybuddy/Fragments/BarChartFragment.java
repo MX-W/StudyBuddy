@@ -79,11 +79,7 @@ public class BarChartFragment extends Fragment {
 
         for(Lecture l : lecturesWithGrades) //count of each grade and saved in array
         {
-            if(l.getGrade()<0)
-            {
-                //do nothing
-            }
-            else if(l.getGrade() < 1.56)
+            if(l.getGrade() > 0 && l.getGrade() < 1.56)
             {
                 grades[0]++;
             }
