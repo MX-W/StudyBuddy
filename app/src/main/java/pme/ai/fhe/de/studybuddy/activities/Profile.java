@@ -56,7 +56,7 @@ public class Profile extends MenuActivity {
 
         TextView studystart = new TextView(this);
         studystart=(TextView)findViewById(R.id.studystart_answer);
-        studystart.setText(dataset.getStartingSemester()); //aus DB
+        studystart.setText(controller.getSemesterById(dataset.getStartingSemesterId())); //aus DB
 
 
         return true;

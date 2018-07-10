@@ -3,7 +3,11 @@
 
     <item android:id="@+id/uebersicht"
         android:title="Übersicht"
-        android:icon="@mipmap/baseline_subject_black_24"/>
+        android:icon="@mipmap/baseline_data_usage_black_24"/>
+
+    <item android:id="@+id/insertGrade"
+        android:title="Note eintragen"
+        android:icon="@mipmap/baseline_create_black_24"/>
 
     <item android:id="@+id/noten"
         android:title="Noten"

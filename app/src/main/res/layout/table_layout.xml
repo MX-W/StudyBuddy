@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/gradesShowHeading"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableLayout
+        android:id="@+id/gradesTable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="2">
+        <TableRow
+            android:background="@color/colorGrey">
+            <TextView
+                android:padding="3dip"
+                android:text="Veranstaltung"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:gravity="end"
+                android:text="Credits"
+                android:padding="3dip"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:gravity="end"
+                android:text="Note"
+                android:padding="3dip"
+                android:textColor="@color/colorBlack"/>
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#000" />
+        <TableRow
+            android:background="@color/colorLightGrey">
+            <TextView
+                android:padding="3dip"
+                android:text="Gesamt"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:id="@+id/allCredits"
+                android:gravity="end"
+                android:text="CP"
+                android:padding="3dip"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:id="@+id/averageGrade"
+                android:gravity="end"
+                android:text="Durchschnitt"
+                android:padding="3dip"
+                android:textColor="@color/colorBlack"/>
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#000" />
+    </TableLayout>
+
+</ScrollView>

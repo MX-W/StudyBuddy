@@ -23,6 +23,7 @@
         <activity android:name=".activities.Overview" />
         <activity android:name=".activities.Modules"/>
         <activity android:name=".activities.SetupActivity"/>
+        <activity android:name=".activities.InsertGrade"/>
     </application>
 
 </manifest>
