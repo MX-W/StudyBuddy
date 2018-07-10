@@ -1,10 +1,12 @@
 package pme.ai.fhe.de.studybuddy.activities;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -36,6 +38,13 @@ public class GradeCalculationActivity extends MenuActivity {
 
     boolean onClick()
     {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
         //Note berechnen
         final EditText calculationGrade = (EditText) findViewById(R.id.calculationGradeInput);
         calculationGrade.getText();
