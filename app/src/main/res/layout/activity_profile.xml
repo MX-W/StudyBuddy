@@ -14,24 +14,14 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <TextView
-    android:id="@+id/profile_heading"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="40dp"
-    android:text="Informationen"
-    android:textSize="25dp" />
 
     <TextView
         android:id="@+id/study"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/profile_heading"
         android:textSize="15dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:text="Studiengang:" />
 
     <TextView
