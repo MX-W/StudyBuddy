@@ -29,6 +29,8 @@ public class Overview extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
 
+        setTitle("Übersicht");
+
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);

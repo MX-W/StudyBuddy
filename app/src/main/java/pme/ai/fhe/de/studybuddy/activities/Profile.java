@@ -20,6 +20,7 @@ public class Profile extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         openMenu();
+        setTitle("Informationen");
         setRightData();
 
 
