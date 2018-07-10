@@ -31,6 +31,12 @@ public class Modules extends MenuActivity {
         List<Module> allModules = controller.getModulesByCourseId(controller.getUserData().getCourseId());
 
         for (Module module : allModules) {
+
+            TextView placeholder = new TextView(this);
+            placeholder.setHeight(8);
+
+            tableLayout.addView(placeholder);
+
             updateTable("", module.getName(), module.getCredits(), getResources().getColor(R.color.colorDarkerGrey), Typeface.BOLD);
             List<Lecture> lecturesForModule = controller.getLectureByModuleId(module.getModuleId());
 
@@ -55,6 +61,7 @@ public class Modules extends MenuActivity {
 
                 updateTable(gradeString, lecture.getName(), lecture.getCredits(), color, Typeface.NORMAL);
             }
+
         }
 
         openMenu();
