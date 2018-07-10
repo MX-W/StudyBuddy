@@ -372,6 +372,14 @@ public class DataController {
         return lectureDao.getLecturesByCourseId(courseId);
     }
 
+    public List<Lecture> getAllLecturesWithGrade(int courseId) {
+        return lectureDao.getAllLecturesWithGrade(courseId);
+    }
+
+    public List<Lecture> getAllLecturesWithGradeOrderBySemester(int courseId) {
+        return lectureDao.getAllLecturesWithGradeOrderBySemester(courseId);
+    }
+
     public List<String> getCoursesByUniversityId(int universityId) {
         return courseOfStudiesDao.getCoursesByUniversityId(universityId);
     }
@@ -390,10 +398,6 @@ public class DataController {
 
     public void updateLecture(Lecture updated) {
         lectureDao.update(updated);
-    }
-
-    public List<Lecture> getAllLecturesWithGrade(int courseId) {
-        return lectureDao.getAllLecturesWithGrade(courseId);
     }
 
     public int getNumberOfCategories()

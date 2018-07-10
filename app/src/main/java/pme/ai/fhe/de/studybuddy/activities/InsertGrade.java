@@ -1,10 +1,11 @@
 package pme.ai.fhe.de.studybuddy.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -101,6 +102,8 @@ public class InsertGrade extends MenuActivity {
                         selectedLecture.setGrade(Float.parseFloat(grade));
                         controller.updateLecture(selectedLecture);
 
+                        resetView();
+
                         Toast.makeText(getApplicationContext(), "Note wurde erfolgreich eingetragen", Toast.LENGTH_LONG).show();
                     }
                 } else {
@@ -140,6 +143,8 @@ public class InsertGrade extends MenuActivity {
                         }
                         selectedLecture.setGrade(-1.0f);
                         controller.updateLecture(selectedLecture);
+
+                        resetView();
 
                         Toast.makeText(getApplicationContext(), "Note wurde erfolgreich eingetragen", Toast.LENGTH_LONG).show();
                     }
@@ -182,5 +187,23 @@ public class InsertGrade extends MenuActivity {
                 }
             }
         });
+    }
+
+    private void resetView() {
+
+        //hide keyboard
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+
+        semesterSpinner.setSelection(0);
+        semesterSwitch.setChecked(false);
+        lectureSpinner.setSelection(0);
+        editTextGrade.setText("");
+        findViewById(R.id.mainLayout).requestFocus();
     }
 }
