@@ -137,6 +137,15 @@ public class LineChartFragment extends Fragment {
         xAxis.setGranularityEnabled(true);
         xAxis.setValueFormatter(new XAxisValueFormatterWithStringArray(xAxisValues));
 
+        YAxis yAxisLeft = lineView.getAxisLeft();
+        YAxis yAxisRight = lineView.getAxisRight();
+
+        //todo
+        yAxisRight.setGranularity(30);
+        yAxisRight.setGranularityEnabled(true);
+        yAxisLeft.setGranularity(30);
+        yAxisLeft.setGranularityEnabled(true); // Required to enable granularity
+
 
 
 
