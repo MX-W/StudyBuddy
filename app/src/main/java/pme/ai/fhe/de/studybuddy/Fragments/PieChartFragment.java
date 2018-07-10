@@ -12,6 +12,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class PieChartFragment extends Fragment {
 
         UserData dataset = controller.getUserData(); //gets all User Data
 
-        List<Lecture> pieDataset = controller.getLecturesByCourseId(dataset.getCourseId()); //gets List with All Courses from User
+        List<Lecture> pieDataset = controller.getAllLecturesWithGrade(dataset.getCourseId()); //gets List with All Courses from User
 
         int numberOfCategories = controller.getNumberOfCategories();
         int [] categories = new int[numberOfCategories + 1]; //Array Counts Categories
@@ -74,13 +75,12 @@ public class PieChartFragment extends Fragment {
         {
             //todo if abfrage, ob kurs bestanden wurde
             //todo mit credit points multiplizieren
-            categories[l.getCategoryId()]++;
+            categories[l.getCategoryId()]+=l.getCredits();
 
         }
 
 
         List<PieEntry> pieChartEntry = new ArrayList<>(); //list of entrys
-        //PieChart pieChart = (PieChart) findViewById(R.id.piechart);
 
         pieView.setEntryLabelColor(R.color.colorGrey);
         pieView.setEntryLabelTextSize(10.0f);
@@ -107,8 +107,12 @@ public class PieChartFragment extends Fragment {
         PieData data2 = new PieData(pieEntrySet);
         pieView.setData(data2);
 
+        pieEntrySet.setValueFormatter(new PercentFormatter());
+
+
         pieEntrySet.setColors(ColorTemplate.VORDIPLOM_COLORS); //color of chart
         pieView.setUsePercentValues(true);
+
 
         Description description = new Description();
         description.setText("Deine bisherigen Leistungen nach Kategorien");
@@ -127,6 +131,8 @@ public class PieChartFragment extends Fragment {
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         legend.setTextColor(R.color.colorGrey);
         legend.setWordWrapEnabled(true);
+
+        pieView.setTouchEnabled(false);
 
         pieView.animateXY(500, 500); // animate horizontal and vertical 500 milliseconds
         pieView.invalidate(); // refresh

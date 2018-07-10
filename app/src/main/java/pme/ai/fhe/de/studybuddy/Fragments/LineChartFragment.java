@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -22,6 +23,7 @@ import java.util.List;
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.activities.Overview;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
+import pme.ai.fhe.de.studybuddy.utilities.XAxisValueFormatterWithStringArray;
 
 
 public class LineChartFragment extends Fragment {
@@ -63,47 +65,89 @@ public class LineChartFragment extends Fragment {
     void loadLineChart()
     {
 
-        List<Entry> valsComp1 = new ArrayList<Entry>();
-        List<Entry> valsComp2 = new ArrayList<Entry>();
+        List<Entry> userCredits = new ArrayList<Entry>();
+        List<Entry> standardCredits = new ArrayList<Entry>();
 
 
-        Entry c1e1 = new Entry(0f, 100000f); // 0 == quarter 1
-        valsComp1.add(c1e1);
-        Entry c1e2 = new Entry(1f, 140000f); // 1 == quarter 2 ...
-        valsComp1.add(c1e2);
-        // and so on ...
+        Entry semester0 = new Entry(0f, 0);
+        userCredits.add(semester0);
+        Entry semester1 = new Entry(1f, 23);
+        userCredits.add(semester1);
+        Entry semester2 = new Entry(2f, 54);
+        userCredits.add(semester2);
+        Entry semester3 = new Entry(3f, 89);
+        userCredits.add(semester3);
+        Entry semester4 = new Entry(4f, 122);
+        userCredits.add(semester4);
+        Entry semester5 = new Entry(5f, 145);
+        userCredits.add(semester5);
+        Entry semester6 = new Entry(6f, 170);
+        userCredits.add(semester6);
 
-        Entry c2e1 = new Entry(0f, 130000f); // 0 == quarter 1
-        valsComp2.add(c2e1);
-        Entry c2e2 = new Entry(1f, 115000f); // 1 == quarter 2 ...
-        valsComp2.add(c2e2);
-        //...
 
-        LineDataSet setComp1 = new LineDataSet(valsComp1, "Company 1");
+
+
+        Entry normalCreditsSem0 = new Entry(0f, 0);
+        standardCredits.add(normalCreditsSem0);
+
+        Entry normalCreditsSem1 = new Entry(1f, 30);
+        standardCredits.add(normalCreditsSem1);
+
+        Entry normalCreditsSem2 = new Entry(2f, 60);
+        standardCredits.add(normalCreditsSem2);
+
+        Entry normalCreditsSem3 = new Entry(3f, 90);
+        standardCredits.add(normalCreditsSem3);
+
+        Entry normalCreditsSem4 = new Entry(4f, 120);
+        standardCredits.add(normalCreditsSem4);
+
+        Entry normalCreditsSem5 = new Entry(5f, 150);
+        standardCredits.add(normalCreditsSem5);
+
+        Entry normalCreditsSem6 = new Entry(6f, 180);
+        standardCredits.add(normalCreditsSem6);
+
+
+
+        LineDataSet setComp1 = new LineDataSet(userCredits, "Deine erreichten Credit Points");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        LineDataSet setComp2 = new LineDataSet(valsComp2, "Company 2");
+        LineDataSet setComp2 = new LineDataSet(standardCredits, "Ziel der Credits Points");
         setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
+
+        setComp1.setColors(R.color.colorAccent);
+        setComp2.setColors(R.color.colorRed);
 
         // use the interface ILineDataSet
         List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(setComp1);
         dataSets.add(setComp2);
 
-        // the labels that should be drawn on the XAxis
-        final String[] quarters = new String[] { "Q1", "Q2", "Q3", "Q4" };
+        //Set description
+        Description description = new Description();
+        description.setText(" ");
+        lineView.setDescription(description);
 
-        IAxisValueFormatter formatter = new IAxisValueFormatter() {
 
-            @Override
-            public String getFormattedValue(float value, AxisBase axis) {
-                return quarters[(int) value];
-            }
-
-        };
+        //Format the Axis
+        String[] xAxisValues = new String[] {"", "Sem. 1", "Sem. 2", "Sem. 3", "Sem. 4", "Sem. 5", "Sem. 6"};
 
         XAxis xAxis = lineView.getXAxis();
-        xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
-        xAxis.setValueFormatter(formatter);
+        xAxis.setGranularity(1.0f);
+        xAxis.setGranularityEnabled(true);
+        xAxis.setValueFormatter(new XAxisValueFormatterWithStringArray(xAxisValues));
+
+        YAxis yAxisLeft = lineView.getAxisLeft();
+        YAxis yAxisRight = lineView.getAxisRight();
+
+        //todo
+        yAxisRight.setGranularity(30);
+        yAxisRight.setGranularityEnabled(true);
+        yAxisLeft.setGranularity(30);
+        yAxisLeft.setGranularityEnabled(true); // Required to enable granularity
+
+
+
 
         LineData data = new LineData(dataSets);
         lineView.setData(data);
