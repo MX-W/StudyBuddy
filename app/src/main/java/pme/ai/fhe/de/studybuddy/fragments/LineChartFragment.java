@@ -118,6 +118,8 @@ public class LineChartFragment extends Fragment {
         setComp2.setColor(color2);
 
         lineView.setTouchEnabled(false);
+        lineView.setNoDataText("Noch keine bestandene Prüfung");
+
 
 
         // use the interface ILineDataSet
@@ -150,7 +152,12 @@ public class LineChartFragment extends Fragment {
 
 
         LineData data = new LineData(dataSets);
-        lineView.setData(data);
+
+        if(allCredits > 0)
+        {
+            lineView.setData(data);
+
+        }
         lineView.invalidate(); // refresh
     }
 }

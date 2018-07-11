@@ -139,6 +139,8 @@ public class BarChartFragment extends Fragment {
         Description description = new Description();
         description.setText(" ");
         barView.setDescription(description);
+        barView.setNoDataText("Noch keine bestandene Prüfung");
+
 
 
         //Set the chart
@@ -148,7 +150,16 @@ public class BarChartFragment extends Fragment {
         //animation
         barView.animateXY( 500, 500);
 
-        barView.setData(data);
+        int count = 0;
+        for(int i = 0; i<4;i++)
+        {
+            count += grades[i];
+        }
+        if(count>0)
+        {
+            barView.setData(data);
+        }
+
         barView.setFitBars(true); // make the x-axis fit exactly all bars
         barView.invalidate(); // refresh
 
