@@ -1,23 +1,24 @@
-package pme.ai.fhe.de.studybuddy.Fragments;
+package pme.ai.fhe.de.studybuddy.fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,11 +80,7 @@ public class BarChartFragment extends Fragment {
 
         for(Lecture l : lecturesWithGrades) //count of each grade and saved in array
         {
-            if(l.getGrade()<0)
-            {
-                //do nothing
-            }
-            else if(l.getGrade() < 1.56)
+            if(l.getGrade() > 0 && l.getGrade() < 1.56)
             {
                 grades[0]++;
             }
@@ -110,11 +107,15 @@ public class BarChartFragment extends Fragment {
         BarDataSet set = new BarDataSet(entries, "Jeweils die Anzahl deiner bisher erreichten Notenstufen");
 
 
+        int color1 = ContextCompat.getColor(getActivity(), R.color.colorAccent);
+        set.setColor(color1);
 
-        set.setColors(R.color.colorBlack);
+
+        //set.setColors(R.color.colorBlack);
 
         barView.setTouchEnabled(false);
 
+        set.setValueFormatter(new MyValueFormatter());
 
 
         //Set the right Values for both Axes
@@ -153,5 +154,20 @@ public class BarChartFragment extends Fragment {
 
     }
 
+
+    public class MyValueFormatter implements IValueFormatter {
+
+        private DecimalFormat mFormat;
+
+        public MyValueFormatter() {
+            mFormat = new DecimalFormat("###,###,##0"); // use one decimal
+        }
+
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            // write your logic here
+            return mFormat.format(value) + "x";
+        }
+    }
 
 }

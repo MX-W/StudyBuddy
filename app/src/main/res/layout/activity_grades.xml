@@ -15,15 +15,6 @@
             android:descendantFocusability="beforeDescendants"
             android:focusableInTouchMode="true">
 
-            <TextView
-                android:id="@+id/gradesShowHeading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Notenübersicht"
-                android:textSize="27dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp" />
-
             <include layout="@layout/table_layout"/>
 
 
@@ -34,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"
-        android:layout_gravity="start"
+        android:layout_gravity="left"
         app:headerLayout="@layout/navigation_header">
 
     </android.support.design.widget.NavigationView>

@@ -7,7 +7,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.facebook.stetho.Stetho;
@@ -75,6 +74,10 @@ public ActionBarDrawerToggle mToggle;
                 return true;
             case R.id.insertGrade:
                 startActivity(new Intent(this, InsertGrade.class));
+                return true;
+            case R.id.gradecalculation:
+                startActivity(new Intent(this, GradeCalculationActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 

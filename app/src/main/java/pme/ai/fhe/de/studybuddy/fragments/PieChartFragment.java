@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy.Fragments;
+package pme.ai.fhe.de.studybuddy.fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -94,12 +94,6 @@ public class PieChartFragment extends Fragment {
                 pieChartEntry.add(new PieEntry(value, controller.getCategorieNameByID(i)));
             }
         }
-
-        //((float) categories[i]/ (float) piechartentry.size())*100
-
-        /*piechartentry.add(new PieEntry(26.7f, "Medien"));
-        piechartentry.add(new PieEntry(24.0f, "Allgemein"));
-        piechartentry.add(new PieEntry(30.8f, "Sonstiges"));*/
 
 
         // all the chart settings

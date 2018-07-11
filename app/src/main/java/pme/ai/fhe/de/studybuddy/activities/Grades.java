@@ -1,23 +1,13 @@
 package pme.ai.fhe.de.studybuddy.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import pme.ai.fhe.de.studybuddy.R;
@@ -27,12 +17,19 @@ import pme.ai.fhe.de.studybuddy.model.UserData;
 
 public class Grades extends MenuActivity {
 
+    private TableLayout tableLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades);
 
-        setTitle("Meine Noten");
+        tableLayout = (TableLayout) findViewById(R.id.tableElement);
+
+        tableLayout.getChildAt(0).setBackgroundColor(getResources().getColor(R.color.colorDarkerGrey));
+        tableLayout.getChildAt(2).setBackgroundColor(getResources().getColor(R.color.colorMiddleGrey));
+
+        setTitle("Notenübersicht");
 
         openMenu();
 
@@ -41,17 +38,28 @@ public class Grades extends MenuActivity {
 
         UserData userData = controller.getUserData();
 
-        final List<Lecture> lectureList = controller.getLecturesByCourseId(userData.getCourseId());
+        final List<Lecture> lectureList = controller.getAllLecturesWithGradeOrderBySemester(userData.getCourseId());
 
-        List<Lecture> lectureGrade = new ArrayList<>();
+        setAverageGrade(lectureList, allCreditsView, averageGradeView);
 
+        for (int i = 4; i < tableLayout.getChildCount(); i++) {
+            if(i%2 == 0) {
+                tableLayout.getChildAt(i).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+            } else {
+                tableLayout.getChildAt(i).setBackgroundColor(getResources().getColor(R.color.colorMiddleGrey));
+            }
+        }
+
+    }
+
+    private void setAverageGrade(List<Lecture> lectures, TextView allCreditsView, TextView averageGradeView) {
         int allCredits = 0;
         float allCreditsGrade = 0;
         float allGrades = 0;
         DecimalFormat formatOne = new DecimalFormat("#.#");
         DecimalFormat formatTwo = new DecimalFormat("#.##");
 
-        for (Lecture lecture : lectureList) {
+        for (Lecture lecture : lectures) {
             float grade = 0.0f;
             grade = lecture.getGrade();
             if (grade != 0.0) {
@@ -65,18 +73,15 @@ public class Grades extends MenuActivity {
                     allCreditsGrade += credits;
                     gradeText = String.valueOf(formatOne.format(grade));
                 }
-                updateGradeTable(gradeText, lecture.getName(), lecture.getCredits());
+                updateGradeTable(gradeText, lecture.getName(), lecture.getCredits(), lecture.getSemesterPassed());
             }
         }
-
         allCreditsView.setText(String.valueOf(allCredits));
 
         averageGradeView.setText(String.valueOf(formatTwo.format(allGrades/allCreditsGrade)));
     }
 
-    private void updateGradeTable(String gradeText, String lectureName, int credits) {
-
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.gradesTable);
+    private void updateGradeTable(String gradeText, String lectureName, int credits, int semesterId) {
 
         TableRow newRow = new TableRow(this);
 
@@ -84,6 +89,13 @@ public class Grades extends MenuActivity {
         lectureNameView.setText(lectureName);
         lectureNameView.setPadding(3,3,3,3);
         lectureNameView.setTextColor(getResources().getColor(R.color.colorBlack));
+
+        TextView semesterTextView = new TextView(this);
+        semesterTextView.setText(controller.getSemesterById(semesterId));
+        semesterTextView.setPadding(3,3,3,3);
+        semesterTextView.setGravity(Gravity.END);
+        semesterTextView.setTextColor(getResources().getColor(R.color.colorBlack));
+
 
         TextView lectureCreditsView = new TextView(this);
         lectureCreditsView.setText(String.valueOf(credits));
@@ -98,6 +110,7 @@ public class Grades extends MenuActivity {
         gradeView.setTextColor(getResources().getColor(R.color.colorBlack));
 
         newRow.addView(lectureNameView);
+        newRow.addView(semesterTextView);
         newRow.addView(lectureCreditsView);
         newRow.addView(gradeView);
 

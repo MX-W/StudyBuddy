@@ -1,6 +1,7 @@
 package pme.ai.fhe.de.studybuddy.utilities;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import pme.ai.fhe.de.studybuddy.administration.daos.CategoryDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.LectureDao;

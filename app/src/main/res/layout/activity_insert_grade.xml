@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bluesbg"
     tools:context=".activities.Grades"
     android:id="@+id/drawerLayout">
 
@@ -15,20 +14,11 @@
         android:layout_width="match_parent"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true">
-        <TextView
-            android:id="@+id/gradesHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="Noteneingabe"
-            android:textSize="27dp" />
 
         <Spinner
             android:id="@+id/spinnerLecture"
             android:layout_width="290dp"
             android:layout_height="45dp"
-            android:layout_below="@id/gradesHeading"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             />
@@ -43,14 +33,45 @@
             android:ems="10"
             android:hint="x.x"
             android:textAlignment="center"
-            android:inputType="numberDecimal"
-            android:focusedByDefault="false"/>
+            android:inputType="numberDecimal|numberSigned" />
 
-        <LinearLayout
-            android:id="@+id/buttonLayout"
+
+        <RelativeLayout
+            android:id="@+id/switchLayout"
+            android:layout_marginTop="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/insertGrade">
+
+        <Switch
+            android:id="@+id/switchOtherSemester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Note aus vergangenen Semestern eintragen"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <Spinner
+            android:id="@+id/spinnerSemester"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/switchOtherSemester"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/switchLayout">
 
             <Space
                 android:layout_width="0dp"
@@ -81,6 +102,24 @@
             </Space>
 
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/insertGradeExplanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="20dp"
+            android:text="Wähle zuerst das Fach und gebe anschließend deine Note ein. Falls man dieses Fach nur bestehen musste, dann klicke den Button 'Ohne Note eintragen'. Du kannst auch Noten auus vergangenen Semestern nachtragen."
+            android:textSize="13dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorDarkerGrey"/>
+
+
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
