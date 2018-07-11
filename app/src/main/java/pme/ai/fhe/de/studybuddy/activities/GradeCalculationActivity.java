@@ -56,7 +56,7 @@ public class GradeCalculationActivity extends MenuActivity {
             if(Float.valueOf(calculationGrade.getText().toString())>=1 && Float.valueOf(calculationGrade.getText().toString())<=4)
             {
                     //Note berechnen
-                
+
                     int actualCredits = 0;
                     int actualCreditsWithGrade = 0;
                     float averageGrade = 0;
@@ -111,7 +111,7 @@ public class GradeCalculationActivity extends MenuActivity {
             }
             else
             {
-                Toast.makeText(getApplicationContext(), "Gebe eine sinnvolle Note ein", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Gib eine sinnvolle Note ein", Toast.LENGTH_LONG).show();
 
             }
         }
