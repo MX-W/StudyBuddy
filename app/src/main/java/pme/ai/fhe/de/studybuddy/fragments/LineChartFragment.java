@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy.Fragments;
+package pme.ai.fhe.de.studybuddy.fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -8,21 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pme.ai.fhe.de.studybuddy.R;
-import pme.ai.fhe.de.studybuddy.activities.Overview;
+import pme.ai.fhe.de.studybuddy.activities.OverviewActivity;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
@@ -48,7 +46,7 @@ public class LineChartFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Overview oV = (Overview) getActivity();
+        OverviewActivity oV = (OverviewActivity) getActivity();
         controller = oV.controller;
 
     }
@@ -110,7 +108,7 @@ public class LineChartFragment extends Fragment {
 
         LineDataSet setComp1 = new LineDataSet(userCredits, "Deine CP");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        LineDataSet setComp2 = new LineDataSet(standardCredits, "Optimal CP");
+        LineDataSet setComp2 = new LineDataSet(standardCredits, "Reguläre CP");
         setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         int color1 = ContextCompat.getColor(getActivity(), R.color.colorAccent);

@@ -1,4 +1,4 @@
-package pme.ai.fhe.de.studybuddy.Fragments;
+package pme.ai.fhe.de.studybuddy.fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -6,11 +6,8 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -18,7 +15,6 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
@@ -27,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pme.ai.fhe.de.studybuddy.R;
-import pme.ai.fhe.de.studybuddy.activities.Overview;
+import pme.ai.fhe.de.studybuddy.activities.OverviewActivity;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
@@ -55,7 +51,7 @@ public class BarChartFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        Overview oV = (Overview) getActivity();
+        OverviewActivity oV = (OverviewActivity) getActivity();
         controller = oV.controller;
 
     }

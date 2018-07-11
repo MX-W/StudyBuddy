@@ -8,8 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:textColor">@color/colorDarkerGrey</item>
+        <item name="buttonStyle">@style/ButtonColor</item>
+    </style>
 
-
+    <style name="ButtonColor" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/colorLightGrey</item>
+        <item name="colorButtonNormal">@color/colorBlack</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
 
 </resources>

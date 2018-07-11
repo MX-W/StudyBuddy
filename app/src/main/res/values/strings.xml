@@ -5,7 +5,45 @@
     <string name="close">Close</string>
     <string name="button_newStudy">Ja, Neuanfang!</string>
     <string name="nein">Nein, lieber nicht!</string>
-    <string name="test">Test</string>
+    <string name="calculation_explanation">Trage die die Note ein, welche du am Ende des Studiums erreichen möchtest. Du bekommst dann den Durchschnitt ausgegeben, den du in deinen restlichen Prüfungen erreichen musst, damit du deine Wunschnote schaffst.</string>
+    <string name="button_calculation">Berechnen</string>
+    <string name="insert_switchsemester">Note aus vergangenen Semestern eintragen</string>
+    <string name="button_insert_with">Eintragen</string>
+    <string name="button_insert_without">Ohne Note Eintragen</string>
+    <string name="insert_explanation">Wähle zuerst das Fach und gebe anschließend deine Note ein. Falls man dieses Fach nur bestehen musste, dann klicke den Button "Ohne Note eintragen". Du kannst auch Noten auus vergangenen Semestern nachtragen.</string>
+    <string name="button_newstudy">Starten</string>
+    <string name="button_profile">Neues Studium</string>
+    <string name="profile_study">Studiengang:</string>
+    <string name="profile_highschool">Hochschule:</string>
+    <string name="profile_studystart">Studienbeginn:</string>
+    <string name="profile_semester">Aktuelles Semester:</string>
+    <string name="setup_city">Stadt</string>
+    <string name="setup_university">Universität</string>
+    <string name="setup_actualsemester">Aktuelles Semester</string>
+    <string name="button_setup">Weiter</string>
+    <string name="barchart_explanation">Hier siehst du wie oft du jede Notenstufe erreicht hast</string>
+    <string name="piechart_explanation">Hier siehst du die Anteile deiner bisher erreichten Noten eingeteilt in Kategorien im Vergleich zum Gesamtstudium</string>
+    <string name="linechart_explanation">Hier siehst du deine Credit Points pro Semester aufgerechnet und mit den Credit Points Verglichen, die normal erreicht werden sollten</string>
+    <string name="table_lecture">Veranstaltung</string>
+    <string name="table_semester">Semester</string>
+    <string name="table_credits">Credits</string>
+    <string name="table_grade">Note</string>
+    <string name="table_addition">Gesamt</string>
+    <string name="table_allcredits">CP</string>
+    <string name="table_average">Durchschnitt</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

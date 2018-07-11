@@ -7,7 +7,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.facebook.stetho.Stetho;
@@ -62,19 +61,23 @@ public ActionBarDrawerToggle mToggle;
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.uebersicht:
-                startActivity(new Intent(this, Overview.class));
+                startActivity(new Intent(this, OverviewActivity.class));
                 return true;
             case R.id.noten:
-                startActivity(new Intent(this, Grades.class));
+                startActivity(new Intent(this, GradesActivity.class));
                 return true;
             case R.id.moduluebersicht:
-                startActivity(new Intent(this, Modules.class));
+                startActivity(new Intent(this, ModulesActivity.class));
                 return true;
             case R.id.profil:
-                startActivity(new Intent(this, Profile.class));
+                startActivity(new Intent(this, ProfileActivity.class));
                 return true;
             case R.id.insertGrade:
-                startActivity(new Intent(this, InsertGrade.class));
+                startActivity(new Intent(this, InsertGradeActivity.class));
+                return true;
+            case R.id.gradecalculation:
+                startActivity(new Intent(this, GradeCalculationActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 

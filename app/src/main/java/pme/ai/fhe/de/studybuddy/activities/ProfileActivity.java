@@ -12,7 +12,7 @@ import android.widget.TextView;
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
-public class Profile extends MenuActivity {
+public class ProfileActivity extends MenuActivity {
 
 
     @Override
@@ -31,7 +31,7 @@ public class Profile extends MenuActivity {
         button.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Profile.this.onClick();
+            ProfileActivity.this.onClick();
             }
         }));
 
@@ -58,9 +58,9 @@ public class Profile extends MenuActivity {
     {
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(Profile.this, android.R.style.Theme_Material_Dialog_Alert);
+            builder = new AlertDialog.Builder(ProfileActivity.this, android.R.style.Theme_Material_Dialog_Alert);
         } else {
-            builder = new AlertDialog.Builder(Profile.this);
+            builder = new AlertDialog.Builder(ProfileActivity.this);
         }
         builder.setTitle("Neues Studium")
                 .setMessage("Bist du dir sicher, dass du dein aktuellen Studium löschen und ein Neues starten willst?")
