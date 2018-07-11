@@ -47,7 +47,7 @@
             android:id="@+id/switchOtherSemester"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Note in vergangenem Smester eintragen"
+            android:text="Note aus vergangenen Semestern eintragen"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
             />
@@ -102,6 +102,24 @@
             </Space>
 
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/insertGradeExplanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="20dp"
+            android:text="Wähle zuerst das Fach und gebe anschließend deine Note ein. Falls man dieses Fach nur bestehen musste, dann klicke den Button 'Ohne Note eintragen'. Du kannst auch Noten auus vergangenen Semestern nachtragen."
+            android:textSize="13dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorDarkerGrey"/>
+
+
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView

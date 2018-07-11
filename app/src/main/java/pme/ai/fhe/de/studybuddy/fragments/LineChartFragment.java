@@ -108,7 +108,7 @@ public class LineChartFragment extends Fragment {
 
         LineDataSet setComp1 = new LineDataSet(userCredits, "Deine CP");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        LineDataSet setComp2 = new LineDataSet(standardCredits, "Optimal CP");
+        LineDataSet setComp2 = new LineDataSet(standardCredits, "Reguläre CP");
         setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         int color1 = ContextCompat.getColor(getActivity(), R.color.colorAccent);

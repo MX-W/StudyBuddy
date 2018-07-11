@@ -6,15 +6,15 @@
         android:icon="@mipmap/baseline_data_usage_black_24"/>
 
     <item android:id="@+id/insertGrade"
-        android:title="Note eintragen"
+        android:title="Noteneingabe"
         android:icon="@mipmap/baseline_create_black_24"/>
 
     <item android:id="@+id/gradecalculation"
-        android:title="Note berechnen"
+        android:title="Wunschnote"
         android:icon="@mipmap/baseline_ballot_black_24"/>
 
     <item android:id="@+id/noten"
-        android:title="Noten"
+        android:title="Notenübersicht"
         android:icon="@mipmap/baseline_import_contacts_black_24"/>
 
     <item android:id="@+id/moduluebersicht"
