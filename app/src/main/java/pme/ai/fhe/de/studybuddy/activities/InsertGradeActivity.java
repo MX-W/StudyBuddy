@@ -22,7 +22,7 @@ import pme.ai.fhe.de.studybuddy.model.Semester;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.AddSpinnerItems;
 
-public class InsertGrade extends MenuActivity {
+public class InsertGradeActivity extends MenuActivity {
 
     private static String LECTURE_SPINNER_DEFAULT = "Vorlesungsfach wählen";
     private static String SEMESTER_SPINNER_DEFAULT = "Semester wählen";

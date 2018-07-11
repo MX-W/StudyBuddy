@@ -14,7 +14,7 @@ import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Module;
 
-public class Modules extends MenuActivity {
+public class ModulesActivity extends MenuActivity {
 
     private TableLayout tableLayout;
 

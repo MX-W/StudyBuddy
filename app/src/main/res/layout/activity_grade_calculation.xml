@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/calculationGradeInput"
-            android:text="Berechnen" />
+            android:text="@string/button_calculation" />
 
     <TextView
         android:id="@+id/calculationGradeExplanation"
@@ -42,7 +42,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="20dp"
-        android:text="Trage die die Note ein, welche du am Ende des Studiums erreichen möchtest. Du bekommst dann den Durchschnitt ausgegeben, den du in deinen restlichen Prüfungen erreichen musst, damit du deine Wunschnote schaffst."
+        android:text="@string/calculation_explanation"
         android:textSize="13dp"
         android:textAlignment="center"
         android:textColor="@color/colorDarkerGrey"/>

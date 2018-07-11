@@ -15,24 +15,24 @@
             <TextView
                 android:id="@+id/tableLecture"
                 android:padding="3dip"
-                android:text="Veranstaltung"
+                android:text="@string/table_lecture"
                 android:textColor="@color/colorBlack"/>
             <TextView
                 android:id="@+id/tableSemester"
                 android:padding="3dip"
-                android:text="Semester"
+                android:text="@string/table_semester"
                 android:gravity="end"
                 android:textColor="@color/colorBlack"/>
             <TextView
                 android:id="@+id/tableCredits"
                 android:gravity="end"
-                android:text="Credits"
+                android:text="@string/table_credits"
                 android:padding="3dip"
                 android:textColor="@color/colorBlack"/>
             <TextView
                 android:id="@+id/tableGrade"
                 android:gravity="end"
-                android:text="Note"
+                android:text="@string/table_grade"
                 android:padding="3dip"
                 android:textColor="@color/colorBlack"/>
         </TableRow>
@@ -45,7 +45,7 @@
             <TextView
                 android:id="@+id/tableAddition"
                 android:padding="3dip"
-                android:text="Gesamt"
+                android:text="@string/table_addition"
                 android:textColor="@color/colorBlack"/>
             <TextView
                 android:id="@+id/tableNone"
@@ -56,13 +56,13 @@
                 android:id="@+id/allCredits"
                 android:gravity="end"
                 android:textStyle="bold"
-                android:text="CP"
+                android:text="@string/table_allcredits"
                 android:padding="3dip"
                 android:textColor="@color/colorBlack"/>
             <TextView
                 android:id="@+id/averageGrade"
                 android:gravity="end"
-                android:text="Durchschnitt"
+                android:text="@string/table_average"
                 android:textStyle="bold"
                 android:padding="3dip"
                 android:textColor="@color/colorBlack"/>

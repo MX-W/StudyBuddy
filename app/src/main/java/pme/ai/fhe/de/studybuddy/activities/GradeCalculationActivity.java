@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -45,64 +46,80 @@ public class GradeCalculationActivity extends MenuActivity {
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-        //Note berechnen
+
         final EditText calculationGrade = (EditText) findViewById(R.id.calculationGradeInput);
-        calculationGrade.getText();
 
-        int actualCredits = 0;
-        int actualCreditsWithGrade = 0;
-        float averageGrade = 0;
-        UserData dataset = controller.getUserData(); //gets all User Data
-        List<Lecture> allLecturesWithGrade = controller.getAllLecturesWithGrade(dataset.getCourseId()); //gets List with All Courses from User
-
-        for(Lecture l : allLecturesWithGrade)
+        if(!calculationGrade.getText().toString().isEmpty())
         {
-            actualCredits+=l.getCredits();
 
-            if(l.getGrade()>0)
+
+            if(Float.valueOf(calculationGrade.getText().toString())>=1 && Float.valueOf(calculationGrade.getText().toString())<=4)
             {
-                averageGrade += l.getGrade()*l.getCredits();
-                actualCreditsWithGrade += l.getCredits();
+                    //Note berechnen
+
+                    int actualCredits = 0;
+                    int actualCreditsWithGrade = 0;
+                    float averageGrade = 0;
+                    UserData dataset = controller.getUserData(); //gets all User Data
+                    List<Lecture> allLecturesWithGrade = controller.getAllLecturesWithGrade(dataset.getCourseId()); //gets List with All Courses from User
+
+                    for(Lecture l : allLecturesWithGrade)
+                    {
+                        actualCredits+=l.getCredits();
+
+                        if(l.getGrade()>0)
+                        {
+                            averageGrade += l.getGrade()*l.getCredits();
+                            actualCreditsWithGrade += l.getCredits();
+                        }
+
+                    }
+
+                    averageGrade = averageGrade/actualCreditsWithGrade;
+
+                    float neededGrade = (Float.valueOf(calculationGrade.getText().toString()) * 180 - averageGrade*actualCredits)/(180-actualCredits);
+
+                    String message;
+
+                    if (neededGrade >= 1.0 && neededGrade <= 4.0)
+                        message = "Du brauchst einen Durschnitt von " + Math.round(neededGrade * 100) / 100.0+ " um eine Endnote von " + calculationGrade.getText() + " zu erreichen." ;
+                    else if(neededGrade > 4.0)
+                    {
+                        message = "Du musst die restlichen Prüfungen nur bestehen!";
+
+                    }
+                    else
+                        message = "Der Zug ist abgefahren...";
+
+
+
+                    AlertDialog.Builder builder;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        builder = new AlertDialog.Builder(GradeCalculationActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                    } else {
+                        builder = new AlertDialog.Builder(GradeCalculationActivity.this);
+                    }
+                    builder.setTitle("Wunschnote")
+                            .setMessage(message)
+                            .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                }
+                            })
+
+                            .show();
             }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "Gib eine sinnvolle Note ein", Toast.LENGTH_LONG).show();
 
-        }
-
-        averageGrade = averageGrade/actualCreditsWithGrade;
-
-
-
-        float neededGrade = (Float.valueOf(calculationGrade.getText().toString()) * 180 - averageGrade*actualCredits)/(180-actualCredits);
-
-        String message;
-
-        if (neededGrade >= 1.0 && neededGrade <= 4.0)
-            message = "Du brauchst einen Durschnitt von " + Math.round(neededGrade * 100) / 100.0+ " um eine Endnote von " + calculationGrade.getText() + " zu erreichen." ;
-        else if(neededGrade > 4.0)
-        {
-            message = "Du musst die restlichen Prüfungen nur bestehen!";
-
+            }
         }
         else
-            message = "Der Zug ist abgefahren...";
+        {
+            Toast.makeText(getApplicationContext(), "Du musst schon was eingeben!", Toast.LENGTH_LONG).show();
 
-
-
-        AlertDialog.Builder builder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(GradeCalculationActivity.this, android.R.style.Theme_Material_Dialog_Alert);
-        } else {
-            builder = new AlertDialog.Builder(GradeCalculationActivity.this);
         }
-        builder.setTitle("Wunschnote")
-                .setMessage(message)
-                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // continue with delete
-                    }
-                })
-
-                .show();
-
         return true;
     }
 }

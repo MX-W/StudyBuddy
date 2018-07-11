@@ -29,7 +29,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:text="Hier siehst du deine Credit Points pro Semester aufgerechnet und mit den Credit Points Verglichen, die normal erreicht werden sollten"
+            android:text="@string/linechart_explanation"
             android:textSize="13dp"
             android:textAlignment="center"
             android:textColor="@color/colorDarkerGrey"/>
