@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pme.ai.fhe.de.studybuddy.R;
-import pme.ai.fhe.de.studybuddy.activities.Overview;
+import pme.ai.fhe.de.studybuddy.activities.OverviewActivity;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
@@ -46,7 +46,7 @@ public class LineChartFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Overview oV = (Overview) getActivity();
+        OverviewActivity oV = (OverviewActivity) getActivity();
         controller = oV.controller;
 
     }

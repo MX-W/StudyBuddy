@@ -15,7 +15,7 @@ import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
 
-public class Grades extends MenuActivity {
+public class GradesActivity extends MenuActivity {
 
     private TableLayout tableLayout;
 

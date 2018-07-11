@@ -3,10 +3,8 @@ package pme.ai.fhe.de.studybuddy.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,12 +15,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.security.auth.callback.Callback;
-
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
-import pme.ai.fhe.de.studybuddy.model.Semester;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.AddSpinnerItems;
 
@@ -67,7 +62,7 @@ public class SetupActivity extends AppCompatActivity {
                 controller.insertUserData(data);
 
 
-                Intent homeIntent = new Intent (SetupActivity.this, Overview.class);
+                Intent homeIntent = new Intent (SetupActivity.this, OverviewActivity.class);
                 startActivity(homeIntent);
             }
         });

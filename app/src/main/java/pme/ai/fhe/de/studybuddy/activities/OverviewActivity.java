@@ -18,7 +18,7 @@ import pme.ai.fhe.de.studybuddy.fragments.PieChartFragment;
 import pme.ai.fhe.de.studybuddy.R;
 
 
-public class Overview extends MenuActivity {
+public class OverviewActivity extends MenuActivity {
     FragmentPagerAdapter adapterViewPager;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
