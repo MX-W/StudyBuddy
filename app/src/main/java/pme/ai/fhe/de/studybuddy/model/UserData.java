@@ -3,8 +3,13 @@ package pme.ai.fhe.de.studybuddy.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
+
+import java.util.GregorianCalendar;
 
 import io.reactivex.annotations.NonNull;
+import pme.ai.fhe.de.studybuddy.utilities.DateConverter;
 
 @Entity( tableName = "user_data")
 public class UserData {
@@ -27,12 +32,17 @@ public class UserData {
     @ColumnInfo(name = "current_semester")
     private int currentSemesterId;
 
-    public UserData(int cityId, int universityId, int courseId, int semester, int currentSemesterId) {
+    @ColumnInfo(name = "last_login")
+    @TypeConverters({DateConverter.class})
+    private GregorianCalendar lastLogin;
+
+    public UserData(int cityId, int universityId, int courseId, int semester, int currentSemesterId, GregorianCalendar lastLogin) {
         this.cityId = cityId;
         this.universityId = universityId;
         this.courseId = courseId;
         this.semester = semester;
         this.currentSemesterId = currentSemesterId;
+        this.lastLogin = lastLogin;
     }
 
     public int getCityId() {
@@ -81,5 +91,13 @@ public class UserData {
 
     public void setCurrentSemesterId(int currentSemesterId) {
         this.currentSemesterId = currentSemesterId;
+    }
+
+    public GregorianCalendar getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(GregorianCalendar lastLogin) {
+        this.lastLogin = lastLogin;
     }
 }

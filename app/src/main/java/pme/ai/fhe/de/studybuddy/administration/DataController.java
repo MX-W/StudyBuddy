@@ -64,14 +64,6 @@ public class DataController {
         userDataDao.insert(data);
     }
 
-    public UserData getUserData() {
-        return userDataDao.getUserData();
-    }
-
-    public List<City> getAllCities() {
-        return cityDao.getAll();
-    }
-
     private void generateData() {
         GenericAsyncTask asyncHandler = new GenericAsyncTask(cityDao, universityDao, courseOfStudiesDao, moduleDao, categoryDao, lectureDao, semesterDao);
         if(!"Erfurt".equals(cityDao.getCityNameById(1))) {
@@ -348,6 +340,18 @@ public class DataController {
         }
 
         return allSemester;
+    }
+
+    public UserData getUserData() {
+        return userDataDao.getUserData();
+    }
+
+    public void updateUserData(UserData userData) {
+        userDataDao.update(userData);
+    }
+
+    public List<City> getAllCities() {
+        return cityDao.getAll();
     }
 
     public List<CourseOfStudies> getAllCourses() {

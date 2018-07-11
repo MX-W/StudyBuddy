@@ -15,6 +15,7 @@ import com.facebook.stetho.Stetho;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.security.auth.callback.Callback;
@@ -47,7 +48,7 @@ public class SetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar now = Calendar.getInstance();
+                GregorianCalendar now = new GregorianCalendar();
 
                 int year = now.get(Calendar.YEAR);
                 String yearString = Integer.toString(year).substring(2);
@@ -61,8 +62,7 @@ public class SetupActivity extends AppCompatActivity {
 
                 currentSemesterId = controller.getSemesterIdByName(semesterString);
 
-
-                UserData data = new UserData(selectedCityId, selectedUniversityId, selectedCourseId, semester, currentSemesterId);
+                UserData data = new UserData(selectedCityId, selectedUniversityId, selectedCourseId, semester, currentSemesterId, now);
 
                 controller.insertUserData(data);
 
