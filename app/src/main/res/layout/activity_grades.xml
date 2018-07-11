@@ -15,7 +15,13 @@
             android:descendantFocusability="beforeDescendants"
             android:focusableInTouchMode="true">
 
-            <include layout="@layout/table_layout"/>
+            <include layout="@layout/table_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
 
 
         </RelativeLayout>
