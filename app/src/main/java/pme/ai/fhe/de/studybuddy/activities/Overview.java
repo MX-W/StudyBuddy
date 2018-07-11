@@ -7,16 +7,14 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.MenuItem;
-import android.widget.Toolbar;
 
 
 import com.facebook.stetho.Stetho;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
-import pme.ai.fhe.de.studybuddy.Fragments.BarChartFragment;
-import pme.ai.fhe.de.studybuddy.Fragments.LineChartFragment;
-import pme.ai.fhe.de.studybuddy.Fragments.PieChartFragment;
+import pme.ai.fhe.de.studybuddy.fragments.BarChartFragment;
+import pme.ai.fhe.de.studybuddy.fragments.LineChartFragment;
+import pme.ai.fhe.de.studybuddy.fragments.PieChartFragment;
 import pme.ai.fhe.de.studybuddy.R;
 
 
