@@ -7,10 +7,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import pme.ai.fhe.de.studybuddy.R;
@@ -27,12 +24,12 @@ public class Grades extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades);
 
-        tableLayout = (TableLayout) findViewById(R.id.gradesTable);
+        tableLayout = (TableLayout) findViewById(R.id.tableElement);
 
         tableLayout.getChildAt(0).setBackgroundColor(getResources().getColor(R.color.colorDarkerGrey));
         tableLayout.getChildAt(2).setBackgroundColor(getResources().getColor(R.color.colorMiddleGrey));
 
-        setTitle("Meine Noten");
+        setTitle("Notenübersicht");
 
         openMenu();
 

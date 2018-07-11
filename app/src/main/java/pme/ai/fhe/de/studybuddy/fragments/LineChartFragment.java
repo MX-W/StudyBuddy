@@ -1,20 +1,19 @@
-package pme.ai.fhe.de.studybuddy.Fragments;
+package pme.ai.fhe.de.studybuddy.fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
@@ -23,6 +22,8 @@ import java.util.List;
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.activities.Overview;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
+import pme.ai.fhe.de.studybuddy.model.Lecture;
+import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.XAxisValueFormatterWithStringArray;
 
 
@@ -68,55 +69,56 @@ public class LineChartFragment extends Fragment {
         List<Entry> userCredits = new ArrayList<Entry>();
         List<Entry> standardCredits = new ArrayList<Entry>();
 
-
-        Entry semester0 = new Entry(0f, 0);
-        userCredits.add(semester0);
-        Entry semester1 = new Entry(1f, 23);
-        userCredits.add(semester1);
-        Entry semester2 = new Entry(2f, 54);
-        userCredits.add(semester2);
-        Entry semester3 = new Entry(3f, 89);
-        userCredits.add(semester3);
-        Entry semester4 = new Entry(4f, 122);
-        userCredits.add(semester4);
-        Entry semester5 = new Entry(5f, 145);
-        userCredits.add(semester5);
-        Entry semester6 = new Entry(6f, 170);
-        userCredits.add(semester6);
+        UserData dataset = controller.getUserData(); //gets all User Data
 
 
+        Entry semester = new Entry(0f, 0);
+        userCredits.add(semester);
+        Entry normalCredits = new Entry(0f, 0);
+        standardCredits.add(normalCredits);
+
+        int normalCreditsPerSemester = 0;
+        int allCredits = 0;
+
+        List<Lecture> pieDataset = controller.getAllLecturesWithGrade(dataset.getCourseId()); //gets List with All Courses from User
 
 
-        Entry normalCreditsSem0 = new Entry(0f, 0);
-        standardCredits.add(normalCreditsSem0);
+        for(int i = 0; i < dataset.getSemester(); i++)
+        {
 
-        Entry normalCreditsSem1 = new Entry(1f, 30);
-        standardCredits.add(normalCreditsSem1);
 
-        Entry normalCreditsSem2 = new Entry(2f, 60);
-        standardCredits.add(normalCreditsSem2);
+            for(Lecture l : pieDataset)
+            {
+                if(l.getSemesterPassed() == dataset.getCurrentSemesterId()-dataset.getSemester()+i+1)
+                {
+                    allCredits += l.getCredits();
+                }
 
-        Entry normalCreditsSem3 = new Entry(3f, 90);
-        standardCredits.add(normalCreditsSem3);
+            }
 
-        Entry normalCreditsSem4 = new Entry(4f, 120);
-        standardCredits.add(normalCreditsSem4);
+            semester = new Entry(i+1, allCredits);
+            userCredits.add(semester);
 
-        Entry normalCreditsSem5 = new Entry(5f, 150);
-        standardCredits.add(normalCreditsSem5);
-
-        Entry normalCreditsSem6 = new Entry(6f, 180);
-        standardCredits.add(normalCreditsSem6);
+            normalCreditsPerSemester += 30;
+            normalCredits = new Entry(i+1,normalCreditsPerSemester);
+            standardCredits.add(normalCredits);
+        }
 
 
 
-        LineDataSet setComp1 = new LineDataSet(userCredits, "Deine erreichten Credit Points");
+        LineDataSet setComp1 = new LineDataSet(userCredits, "Deine CP");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        LineDataSet setComp2 = new LineDataSet(standardCredits, "Ziel der Credits Points");
+        LineDataSet setComp2 = new LineDataSet(standardCredits, "Reguläre CP");
         setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-        setComp1.setColors(R.color.colorAccent);
-        setComp2.setColors(R.color.colorRed);
+        int color1 = ContextCompat.getColor(getActivity(), R.color.colorAccent);
+        int color2 = ContextCompat.getColor(getActivity(), R.color.colorPrimary);
+
+        setComp1.setColor(color1);
+        setComp2.setColor(color2);
+
+        lineView.setTouchEnabled(false);
+
 
         // use the interface ILineDataSet
         List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
@@ -145,8 +147,6 @@ public class LineChartFragment extends Fragment {
         yAxisRight.setGranularityEnabled(true);
         yAxisLeft.setGranularity(30);
         yAxisLeft.setGranularityEnabled(true); // Required to enable granularity
-
-
 
 
         LineData data = new LineData(dataSets);

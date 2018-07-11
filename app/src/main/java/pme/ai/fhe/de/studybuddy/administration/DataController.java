@@ -421,5 +421,13 @@ public class DataController {
     public String getSemesterById(int semesterId) {
         return semesterDao.getSemesterById(semesterId);
     }
+
+    public List<Lecture> getLectureByModuleId(int moduleId) {
+        return lectureDao.getLectureByModuleId(moduleId);
+    }
+
+    public List<Module> getModulesByCourseId(int courseId) {
+        return moduleDao.getModulesByCourseId(courseId);
+    }
 }
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.LineChartFragment">
+    tools:context=".fragments.LineChartFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,19 +16,33 @@
             android:textSize="25dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:text="Credits"
+            android:layout_marginTop="25dp"
+            android:text="Credit Points "
+            android:textColor="@color/colorDarkerGrey"/>
+
+        <TextView
+            android:id="@+id/line_explanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line_heading"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:text="Hier siehst du deine Credit Points pro Semester aufgerechnet und mit den Credit Points Verglichen, die normal erreicht werden sollten"
+            android:textSize="13dp"
+            android:textAlignment="center"
             android:textColor="@color/colorDarkerGrey"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/linechart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="40dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_below="@id/line_heading"/>
+            android:layout_below="@id/line_explanation"/>
 
     </RelativeLayout>
 

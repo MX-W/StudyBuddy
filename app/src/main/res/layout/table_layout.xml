@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@id/gradesShowHeading"
     android:layout_marginRight="10dp"
     android:layout_marginLeft="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TableLayout
-        android:id="@+id/gradesTable"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/tableElement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:stretchColumns="2">
         <TableRow
             android:background="@color/colorLightGrey">
             <TextView
+                android:id="@+id/tableLecture"
                 android:padding="3dip"
                 android:text="Veranstaltung"
                 android:textColor="@color/colorBlack"/>
             <TextView
+                android:id="@+id/tableSemester"
                 android:padding="3dip"
                 android:text="Semester"
                 android:gravity="end"
                 android:textColor="@color/colorBlack"/>
             <TextView
+                android:id="@+id/tableCredits"
                 android:gravity="end"
                 android:text="Credits"
                 android:padding="3dip"
                 android:textColor="@color/colorBlack"/>
             <TextView
+                android:id="@+id/tableGrade"
                 android:gravity="end"
                 android:text="Note"
                 android:padding="3dip"
@@ -37,12 +40,15 @@
             android:layout_height="2dip"
             android:background="#000" />
         <TableRow
+            android:id="@+id/tableSum"
             android:background="@color/colorLightGrey">
             <TextView
+                android:id="@+id/tableAddition"
                 android:padding="3dip"
                 android:text="Gesamt"
                 android:textColor="@color/colorBlack"/>
             <TextView
+                android:id="@+id/tableNone"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/colorBlack"/>
@@ -62,6 +68,7 @@
                 android:textColor="@color/colorBlack"/>
         </TableRow>
         <View
+            android:id="@+id/tableSecondHorizontalLine"
             android:layout_height="2dip"
             android:background="#000" />
     </TableLayout>
