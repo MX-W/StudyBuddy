@@ -76,7 +76,7 @@ public class InsertGrade extends MenuActivity {
             public void onClick(View v) {
                 if(!lectureSpinner.getSelectedItem().toString().equals(LECTURE_SPINNER_DEFAULT) || !editTextGrade.getText().toString().equals("")) {
                     String selectedLectureString = lectureSpinner.getSelectedItem().toString();
-                    String grade = editTextGrade.getText().toString();
+                    float grade = Float.parseFloat(editTextGrade.getText().toString());
                     Lecture selectedLecture = null;
                     for(Lecture lecture : lectureList){
                         if(lecture.getName().equals(selectedLectureString)) {
@@ -92,19 +92,22 @@ public class InsertGrade extends MenuActivity {
                                 int semesterId = controller.getSemesterIdByName(selectedSemester);
                                 selectedLecture.setSemesterPassed(semesterId);
                             } else {
-                                Toast.makeText(getApplicationContext(), "Bitte Semester wählen", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Bitte ein Semester wählen", Toast.LENGTH_LONG).show();
                                 return;
                             }
                         } else {
                             selectedLecture.setSemesterPassed(controller.getUserData().getCurrentSemesterId());
                         }
+                        if(grade >= 1.0 && grade <= 5.0) {
+                            selectedLecture.setGrade(grade);
+                            controller.updateLecture(selectedLecture);
 
-                        selectedLecture.setGrade(Float.parseFloat(grade));
-                        controller.updateLecture(selectedLecture);
+                            resetView();
 
-                        resetView();
-
-                        Toast.makeText(getApplicationContext(), "Note wurde erfolgreich eingetragen", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Note wurde erfolgreich eingetragen", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Bitte gib eine sinnvolle Note ein!", Toast.LENGTH_LONG).show();
+                        }
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Bitte eine Vorlesung wählen", Toast.LENGTH_LONG).show();

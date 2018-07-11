@@ -15,17 +15,19 @@ import pme.ai.fhe.de.studybuddy.model.UserData;
 public class Profile extends MenuActivity {
 
 
+    UserData userData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         openMenu();
         setTitle("Informationen");
+
+        userData = controller.getUserData();
+
         setRightData();
 
-
-
-        controller.getUserData();
 
         final Button button = findViewById(R.id.newstudy);
         button.setOnClickListener((new View.OnClickListener() {
@@ -38,19 +40,18 @@ public class Profile extends MenuActivity {
     }
 
     private void setRightData() {
-        UserData dataset = controller.getUserData();
 
         TextView univserity = (TextView) findViewById(R.id.highschool_answer);
-        univserity.setText(controller.getUniversityById(dataset.getUniversityId()));
+        univserity.setText(controller.getUniversityById(userData.getUniversityId()));
 
         TextView course = (TextView) findViewById(R.id.study_answer);
-        course.setText(controller.getCourseById(dataset.getCourseId())); //aus DB
+        course.setText(controller.getCourseById(userData.getCourseId())); //aus DB
 
         TextView semester = (TextView) findViewById(R.id.semester_answer);
-        semester.setText(dataset.getSemester() + ". Semester"); //aus DB
+        semester.setText(userData.getSemester() + ". Semester"); //aus DB
 
         TextView studystart = (TextView) findViewById(R.id.studystart_answer);
-        studystart.setText(controller.getSemesterById((dataset.getCurrentSemesterId() - (dataset.getSemester() - 1)))); //aus DB
+        studystart.setText(controller.getSemesterById((userData.getCurrentSemesterId() - (userData.getSemester() - 1)))); //aus DB
     }
 
 
@@ -67,6 +68,8 @@ public class Profile extends MenuActivity {
                 .setPositiveButton("Ja, Neuanfang!", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // continue with delete
+                        controller.resetAllGrades();
+                        controller.deleteUserData(userData.getId());
                         startNewStudyActivity();
                     }
                 })

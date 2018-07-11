@@ -429,5 +429,13 @@ public class DataController {
     public List<Module> getModulesByCourseId(int courseId) {
         return moduleDao.getModulesByCourseId(courseId);
     }
+
+    public void resetAllGrades() {
+        lectureDao.resetAllGrades();
+    }
+
+    public void deleteUserData(int userId) {
+        userDataDao.deleteUserData(userId);
+    }
 }
 

@@ -62,7 +62,7 @@ public class Grades extends MenuActivity {
         for (Lecture lecture : lectures) {
             float grade = 0.0f;
             grade = lecture.getGrade();
-            if (grade != 0.0) {
+            if (grade != 0.0 && grade < 4.0) {
                 String gradeText = "";
                 int credits = lecture.getCredits();
                 allCredits += credits;
