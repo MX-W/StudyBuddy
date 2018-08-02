@@ -10,6 +10,8 @@ import java.util.GregorianCalendar;
  * So it was decided to store DateTime as milliseconds. This methods provide a chance to convert
  * between milliseconds and Date.
  * It is implemented in the models, where needed, through the @TypeConverter annotation.
+ *
+ * @see pme.ai.fhe.de.studybuddy.model.UserData#lastLogin
  */
 public class DateConverter {
 

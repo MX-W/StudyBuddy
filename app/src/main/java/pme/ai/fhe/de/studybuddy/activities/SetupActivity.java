@@ -22,8 +22,14 @@ import pme.ai.fhe.de.studybuddy.administration.DataController;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.AddSpinnerItems;
 
+/**
+ * This is the activity that gets invoked when the app starts the first time.
+ */
 public class SetupActivity extends AppCompatActivity {
 
+    /**
+     * Constants for checking selected values in the spinner
+     */
     private static String CITY_DEFAULT_SPINNER = "Bitte wähle deine Stadt";
     private static String UNIVERSITY_DEFAULT_SPINNER = "Bitte wähle deine Universität";
     private static String COURSE_DEFAULT_SPINNER = "Bitte wähle deinen Studiengang aus";
@@ -32,6 +38,11 @@ public class SetupActivity extends AppCompatActivity {
     private DataController controller;
     private int selectedCityId, selectedUniversityId, selectedCourseId, semester, currentSemesterId;
 
+    /**
+     * Creates all the spinners inside the setup activity and stores the values the user selected
+     * into the database by adding a click listener to the setupForward button.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +50,7 @@ public class SetupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setup);
         controller = DataController.getInstance(getApplication());
 
+        //Click listener for the setup completed Button
         findViewById(R.id.setupButtonForward).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +92,12 @@ public class SetupActivity extends AppCompatActivity {
         setCitySpinnerSelectionListener(spinnerCities);
     }
 
+    /**
+     * This method gets called from the onCreate method. It sets an ItemSelectedListener to the
+     * spinner for the city selection. It sets the university spinner to visible if there has been an item
+     * selected an calls the next spinner method
+     * @param spinnerCities spinner for the city items
+     */
     private void setCitySpinnerSelectionListener(Spinner spinnerCities) {
         spinnerCities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -119,8 +137,14 @@ public class SetupActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This is the method for setting an ItemSelectedListener to the spinner for the universities.
+     * It sets the course spinner to visible if there has been an item selected an calls the next
+     * spinner method.
+     * @param spinnerUniversity spinner for the university items
+     */
     private void setUniversitySpinnerSelectionListener(Spinner spinnerUniversity) {
-        spinnerUniversity.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
+        spinnerUniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedUniversity = parent.getItemAtPosition(position).toString();
@@ -155,6 +179,12 @@ public class SetupActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This is the method for setting an ItemSelectedListener to the spinner for the courses.
+     * It sets the start semester spinner to visible if there has been an item selected an calls the next
+     * spinner method.
+     * @param spinnerCourse spinner for the course items
+     */
     private void setCourseSpinnerSelectionListener(final Spinner spinnerCourse) {
         spinnerCourse.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
             @Override
@@ -194,6 +224,11 @@ public class SetupActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This is the method for setting an ItemSelectedListener to the spinner for the starting semester.
+     * It sets the forward button to visible if there has been an item selected.
+     * @param spinnerStart spinner for the starting semester items
+     */
     private void setStartSemesterSpinnerSelectionListener(Spinner spinnerStart) {
         spinnerStart.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
             @Override
@@ -217,6 +252,10 @@ public class SetupActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Returns an ArrayList with String items for 10 semester
+     * @return ArrayList of strings
+     */
     private List<String> getSemesterCount() {
         List<String> semesterCount = new ArrayList<>();
         for( int i = 1; i<= 10; i++) {

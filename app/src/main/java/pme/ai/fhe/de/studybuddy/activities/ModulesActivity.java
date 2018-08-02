@@ -38,7 +38,7 @@ public class ModulesActivity extends MenuActivity {
             tableLayout.addView(placeholder);
 
             updateTable("", module.getName(), module.getCredits(), getResources().getColor(R.color.colorDarkerGrey), Typeface.BOLD);
-            List<Lecture> lecturesForModule = controller.getLectureByModuleId(module.getModuleId());
+            List<Lecture> lecturesForModule = controller.getLectureByModuleId(module.getId());
 
             for( int i = 0; i < lecturesForModule.size(); i++) {
                 int color = 0;

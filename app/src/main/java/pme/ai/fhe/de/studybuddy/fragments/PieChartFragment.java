@@ -91,7 +91,7 @@ public class PieChartFragment extends Fragment {
             if(categories[i]>0)
             {
                 float value = (float) categories[i];
-                pieChartEntry.add(new PieEntry(value, controller.getCategorieNameByID(i)));
+                pieChartEntry.add(new PieEntry(value, controller.getCategoryNameById(i)));
             }
         }
 

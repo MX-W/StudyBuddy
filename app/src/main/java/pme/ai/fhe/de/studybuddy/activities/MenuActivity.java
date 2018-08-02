@@ -44,8 +44,6 @@ public ActionBarDrawerToggle mToggle;
 
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

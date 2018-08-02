@@ -10,7 +10,7 @@ import pme.ai.fhe.de.studybuddy.R;
 
 /**
  * The class AddSpinnerItems is a utility-class. It adds a List of items to an ArrayAdapter with
- * a specific layout so that the ArrayAdapter can be assinged to a view item spinner. This class
+ * a specific layout so that the ArrayAdapter can be assigned to a view item spinner. This class
  * exists for code-reuse purposes.
  */
 public class AddSpinnerItems {

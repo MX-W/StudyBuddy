@@ -9,6 +9,9 @@ import java.util.Date;
 
 import pme.ai.fhe.de.studybuddy.utilities.DateConverter;
 
+/**
+ * This class represents the semester entity.
+ */
 @Entity(
         tableName = "semester"
 )
@@ -20,22 +23,42 @@ public class Semester {
 
     private String name;
 
+    /**
+     * Create a new semester
+     * @param name semester name
+     */
     public Semester(String name) {
         this.name = name;
     }
 
+    /**
+     * Getter for the semester id
+     * @return the semester id
+     */
     public int getSemesterId() {
         return semesterId;
     }
 
+    /**
+     * Setter for the semester id
+     * @param semesterId the new semester id
+     */
     public void setSemesterId(int semesterId) {
         this.semesterId = semesterId;
     }
 
+    /**
+     * Getter for the semester name
+     * @return the semester name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Setter for the semester name
+     * @param name the new semester name
+     */
     public void setName(String name) {
         this.name = name;
     }
