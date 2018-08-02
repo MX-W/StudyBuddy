@@ -22,6 +22,10 @@ import pme.ai.fhe.de.studybuddy.model.Semester;
 import pme.ai.fhe.de.studybuddy.model.University;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
+/**
+ * The DataBase class represents the room database of the project. It gets a list with all
+ * entities and creates a database out of them. It also generates all the necessary daos.
+ */
 @Database(entities = {Category.class, City.class, CourseOfStudies.class, Lecture.class,
         Module.class, University.class, UserData.class, Semester.class}, version = 11)
 public abstract class DataBase extends RoomDatabase{
@@ -37,7 +41,13 @@ public abstract class DataBase extends RoomDatabase{
 
     private static DataBase INSTANCE;
 
-
+    /**
+     * This method creates the database by the means of the singleton principle. It creates an
+     * instance of the DataBase if there is none existent right now. Otherwise returns
+     * the instance of the databse.
+     * @param context the context the database should be created in
+     * @return the room database object
+     */
     public static DataBase getDatabase(final Context context) {
         if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
