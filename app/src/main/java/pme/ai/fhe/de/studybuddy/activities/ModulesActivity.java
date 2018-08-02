@@ -14,10 +14,18 @@ import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Module;
 
+/**
+ * This Activity shows all modules whith their courses in a table
+ */
 public class ModulesActivity extends MenuActivity {
 
     private TableLayout tableLayout;
 
+    /**
+     * connects the layout with the xml files and opens the menu
+     * also the table is updated and makes the colordesign of the table
+     * @param savedInstanceState reference to a Bundle object that is passed
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +76,9 @@ public class ModulesActivity extends MenuActivity {
     }
 
 
+    /**
+     * layouts the table with the used configurations
+     */
     private void setupTableLayout() {
         findViewById(R.id.tableSemester).setVisibility(View.GONE);
         findViewById(R.id.tableSum).setVisibility(View.GONE);
@@ -85,6 +96,14 @@ public class ModulesActivity extends MenuActivity {
         headingRight.setTypeface(null, Typeface.BOLD);
     }
 
+    /**
+     *
+     * @param gradeText grade in textform
+     * @param lectureName name of the actual lecture
+     * @param credits credits which you get after passing
+     * @param background background color of the row
+     * @param fontStyle style of the font of the row
+     */
     private void updateTable(String gradeText, String lectureName, int credits, int background, int fontStyle) {
 
         TableRow newRow = new TableRow(this);

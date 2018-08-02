@@ -14,11 +14,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IValueFormatter;
-import com.github.mikephil.charting.utils.ViewPortHandler;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +23,24 @@ import pme.ai.fhe.de.studybuddy.activities.OverviewActivity;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
+import pme.ai.fhe.de.studybuddy.utilities.ChartValueFormatter;
 import pme.ai.fhe.de.studybuddy.utilities.XAxisValueFormatterWithStringArray;
 
+/**
+ * The class handles a fragment, which creates a barchart with userspecific data out of the database.
+ * It describes the quantity of each kind of grades, that the user passed
+ */
 public class BarChartFragment extends Fragment {
-    // Store instance variables
 
+    // Store instance variables
     BarChart barView;
     private DataController controller;
 
-    // newInstance constructor for creating fragment with arguments
+    /**
+     * @param page page of the fragment
+     * @param title title of the fragment
+     * @return returns the fragment
+     */
     public static BarChartFragment newInstance(int page, String title) {
         BarChartFragment fragmentFirst = new BarChartFragment();
         Bundle args = new Bundle();
@@ -45,7 +50,11 @@ public class BarChartFragment extends Fragment {
         return fragmentFirst;
     }
 
-    // Store instance variables based on arguments passed
+
+    /**
+     * Store instance variables based on arguments passed
+     * @param savedInstanceState the actual state of the instances
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +65,13 @@ public class BarChartFragment extends Fragment {
 
     }
 
+    /**
+     *
+     * @param inflater the inflater used in the context
+     * @param container the conteiner used in the context
+     * @param savedInstanceState the actual state of the instances
+     * @return returns the view that the function has created
+     */
     // Inflate the view for the fragment based on layout XML
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +85,11 @@ public class BarChartFragment extends Fragment {
         return view;
     }
 
+
+    /**
+     * The function loadBarChart is called when the view of the fragment is created. It loads the data out of the database
+     * and sets all configurations for the chart.
+     */
     private void loadBarChart()
     {
 
@@ -76,7 +97,7 @@ public class BarChartFragment extends Fragment {
         //get all the data for the chart
         UserData dataset = controller.getUserData(); //gets all User Data
         List<Lecture> lecturesWithGrades = controller.getAllLecturesWithGrade(dataset.getCourseId()); //gets List with All graded Courses from User
-        int [] grades = new int[4]; //Array Counts numbers of each grade
+        int [] grades = new int[5]; //Array Counts numbers of each grade
 
         for(Lecture l : lecturesWithGrades) //count of each grade and saved in array
         {
@@ -92,9 +113,13 @@ public class BarChartFragment extends Fragment {
             {
                 grades[2]++;
             }
-            else if(l.getGrade() <= 4.0)
+            else if(l.getGrade() < 4.01)
             {
                 grades[3]++;
+            }
+            else if (l.getGrade() > 4.0)
+            {
+                grades[4]++;
             }
         }
 
@@ -103,6 +128,8 @@ public class BarChartFragment extends Fragment {
         entries.add(new BarEntry(1f, grades[1]));
         entries.add(new BarEntry(2f, grades[2]));
         entries.add(new BarEntry(3f, grades[3]));
+        entries.add(new BarEntry(4f, grades[4]));
+
 
         BarDataSet set = new BarDataSet(entries, "Jeweils die Anzahl deiner bisher erreichten Notenstufen");
 
@@ -111,11 +138,9 @@ public class BarChartFragment extends Fragment {
         set.setColor(color1);
 
 
-        //set.setColors(R.color.colorBlack);
-
         barView.setTouchEnabled(false);
 
-        set.setValueFormatter(new MyValueFormatter());
+        set.setValueFormatter(new ChartValueFormatter());
 
 
         //Set the right Values for both Axes
@@ -127,7 +152,7 @@ public class BarChartFragment extends Fragment {
         yAxisLeft.setGranularity(1.0f);
         yAxisLeft.setGranularityEnabled(true); // Required to enable granularity
 
-        String[] xAxisValues = new String[] {"Note 1", "Note 2", "Note 3", "Note 4"};
+        String[] xAxisValues = new String[] {"Note 1", "Note 2", "Note 3", "Note 4", "Note 5"};
 
         XAxis xAxis = barView.getXAxis();
         xAxis.setGranularity(1.0f);
@@ -166,19 +191,6 @@ public class BarChartFragment extends Fragment {
     }
 
 
-    public class MyValueFormatter implements IValueFormatter {
 
-        private DecimalFormat mFormat;
-
-        public MyValueFormatter() {
-            mFormat = new DecimalFormat("###,###,##0"); // use one decimal
-        }
-
-        @Override
-        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-            // write your logic here
-            return mFormat.format(value) + "x";
-        }
-    }
 
 }

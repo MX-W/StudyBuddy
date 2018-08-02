@@ -27,13 +27,21 @@ import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.XAxisValueFormatterWithStringArray;
 
 
+/**
+ * The class handles a fragment, which creates a line with userspecific data out of the database.
+ * It shows the credit points the user reached every semester compared with the count of credits he should have
+ */
 public class LineChartFragment extends Fragment {
 
     LineChart lineView;
     private DataController controller;
 
 
-    // newInstance constructor for creating fragment with arguments
+    /**
+     * @param page page of the fragment
+     * @param title title of the fragment
+     * @return returns the fragment
+     */
     public static LineChartFragment newInstance(int page, String title) {
         LineChartFragment fragmentFirst = new LineChartFragment();
         Bundle args = new Bundle();
@@ -42,6 +50,11 @@ public class LineChartFragment extends Fragment {
     }
 
     // Store instance variables based on arguments passed
+
+    /**
+     * Store instance variables based on arguments passed
+     * @param savedInstanceState the actual state of the instances
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +64,13 @@ public class LineChartFragment extends Fragment {
 
     }
 
-    // Inflate the view for the fragment based on layout XML
+    /**
+     * Inflate the view for the fragment based on layout XML
+     * @param inflater the inflater used in the context
+     * @param container the conteiner used in the context
+     * @param savedInstanceState the actual state of the instances
+     * @return returns the view that the function has created
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,6 +82,11 @@ public class LineChartFragment extends Fragment {
         return view;
     }
 
+
+    /**
+     * The function loadLineChart is called when the view of the fragment is created. It loads the data out of the database
+     * and sets all configurations for the chart.
+     */
     private void loadLineChart()
     {
 
@@ -146,7 +170,6 @@ public class LineChartFragment extends Fragment {
         YAxis yAxisLeft = lineView.getAxisLeft();
         YAxis yAxisRight = lineView.getAxisRight();
 
-        //todo
         yAxisRight.setGranularity(30);
         yAxisRight.setGranularityEnabled(true);
         yAxisLeft.setGranularity(30);
