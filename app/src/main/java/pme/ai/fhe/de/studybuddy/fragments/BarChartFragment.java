@@ -97,7 +97,7 @@ public class BarChartFragment extends Fragment {
         //get all the data for the chart
         UserData dataset = controller.getUserData(); //gets all User Data
         List<Lecture> lecturesWithGrades = controller.getAllLecturesWithGrade(dataset.getCourseId()); //gets List with All graded Courses from User
-        int [] grades = new int[4]; //Array Counts numbers of each grade
+        int [] grades = new int[5]; //Array Counts numbers of each grade
 
         for(Lecture l : lecturesWithGrades) //count of each grade and saved in array
         {
@@ -113,9 +113,13 @@ public class BarChartFragment extends Fragment {
             {
                 grades[2]++;
             }
-            else if(l.getGrade() <= 4.0)
+            else if(l.getGrade() < 4.01)
             {
                 grades[3]++;
+            }
+            else if (l.getGrade() > 4.0)
+            {
+                grades[4]++;
             }
         }
 
@@ -124,6 +128,8 @@ public class BarChartFragment extends Fragment {
         entries.add(new BarEntry(1f, grades[1]));
         entries.add(new BarEntry(2f, grades[2]));
         entries.add(new BarEntry(3f, grades[3]));
+        entries.add(new BarEntry(4f, grades[4]));
+
 
         BarDataSet set = new BarDataSet(entries, "Jeweils die Anzahl deiner bisher erreichten Notenstufen");
 
@@ -146,7 +152,7 @@ public class BarChartFragment extends Fragment {
         yAxisLeft.setGranularity(1.0f);
         yAxisLeft.setGranularityEnabled(true); // Required to enable granularity
 
-        String[] xAxisValues = new String[] {"Note 1", "Note 2", "Note 3", "Note 4"};
+        String[] xAxisValues = new String[] {"Note 1", "Note 2", "Note 3", "Note 4", "Note 5"};
 
         XAxis xAxis = barView.getXAxis();
         xAxis.setGranularity(1.0f);

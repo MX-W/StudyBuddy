@@ -48,6 +48,22 @@ public ActionBarDrawerToggle mToggle;
     }
 
     /**
+     * you can open the menu with the button
+     * @param item menu item button
+     * @return returns if it went well
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
      * checks which item is selected and opens the right activity therefore
      * @param item the item, that the user has selected
      * @return returns if everything went well
