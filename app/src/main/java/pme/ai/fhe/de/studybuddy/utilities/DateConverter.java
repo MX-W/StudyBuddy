@@ -1,36 +1,41 @@
 package pme.ai.fhe.de.studybuddy.utilities;
 
 import android.arch.persistence.room.TypeConverter;
-import android.nfc.FormatException;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
+
+/**
+ * This class exists because there is no possibility to store a Date-type in a Room Database.
+ * So it was decided to store DateTime as milliseconds. This methods provide a chance to convert
+ * between milliseconds and Date.
+ * It is implemented in the models, where needed, through the @TypeConverter annotation.
+ */
 public class DateConverter {
-    static DateFormat df = new SimpleDateFormat("D.M.Y");
 
+    /**
+     * Method for converting a long into a the date type GregorianCalendar.
+     * @param value Time in milliseconds (usually from database)
+     * @return GregorianCalendar which represents the milliseconds as a date
+     */
     @TypeConverter
-    public static Date fromTimestamp(String value) {
-        if (value != null) {
-            try {
-                return df.parse(value);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return null;
-        } else {
-            return null;
+    public static GregorianCalendar fromTimestamp(Long value) {
+        if (value == null)
+            return new GregorianCalendar();
+        else {
+            GregorianCalendar calendar = new GregorianCalendar();
+            calendar.setTimeInMillis(value);
+            return calendar;
         }
     }
 
+    /**
+     * Method for converting the date type GregorianCalendar into long.
+     * @param calendar GregorianCalendar which represents a specific date
+     * @return The value of the transferred date in milliseconds
+     */
     @TypeConverter
-    public static String fromDate(Date date) {
-        if(date != null) {
-            return df.format(date);
-        } else {
-            return null;
-        }
+    public static Long millisToTimestamp(GregorianCalendar calendar) {
+        return calendar == null ? null : calendar.getTimeInMillis();
     }
 }

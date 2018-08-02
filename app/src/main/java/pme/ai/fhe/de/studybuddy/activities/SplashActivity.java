@@ -10,8 +10,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
+import pme.ai.fhe.de.studybuddy.model.UserData;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -27,12 +31,40 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getSupportActionBar().hide();
 
+        controller = DataController.getInstance(getApplication());
+
+        UserData userData = controller.getUserData();
+
+        if(userData != null) {
+            int currentSemester = userData.getSemester();
+            GregorianCalendar now = new GregorianCalendar();
+            GregorianCalendar database = userData.getLastLogin();
+
+            if(database.get(Calendar.YEAR) < now.get(Calendar.YEAR)) {
+                if(now.get(Calendar.MONTH) >= 4) {
+                    currentSemester += 2;
+                } else {
+                    currentSemester++;
+                }
+            } else if(now.get(Calendar.MONTH) >= 4 && now.get(Calendar.MONTH) <= 9) {
+                currentSemester++;
+            } else if (now.get(Calendar.MONTH) >= 10) {
+                currentSemester += 2;
+            }
+
+            userData.setSemester(currentSemester);
+            userData.setLastLogin(now);
+
+            controller.updateUserData(userData);
+
+        }
+
         setContentView(R.layout.activity_main);
         iv = (ImageView) findViewById(R.id.iv);
         Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);
         iv.startAnimation(myanim);
 
-        controller = DataController.getInstance(getApplication());
+
 
        /* CourseOfStudies computerScience = new CourseOfStudies("Angewandte Informatik", 7, 210, "GET", 1, 1);
         CourseOfStudies computerScience2 = new CourseOfStudies("Medieninformatik", 7, 210, "GET", 5, 2);

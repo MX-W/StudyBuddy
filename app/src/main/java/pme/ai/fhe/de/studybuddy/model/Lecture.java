@@ -5,11 +5,13 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
+/**
+ * This class represents the model of the lecture entity.
+ */
 @Entity(tableName = "lecture",
         foreignKeys = {
             @ForeignKey(entity = CourseOfStudies.class, parentColumns = "course_id", childColumns = "course_id"),
             @ForeignKey(entity = Module.class, parentColumns = "module_id", childColumns = "module_id"),
-            @ForeignKey(entity = Lecturer.class, parentColumns = "lecturer_id", childColumns = "lecturer_id"),
             @ForeignKey(entity = Category.class, parentColumns = "category_id", childColumns = "category_id"),
         })
 public class Lecture {
@@ -35,9 +37,6 @@ public class Lecture {
 
     @ColumnInfo
     private boolean obligation;
-
-    @ColumnInfo(name = "lecturer_id")
-    private String lecturerId;
 
     @ColumnInfo
     private float grade;
@@ -139,14 +138,6 @@ public class Lecture {
 
     public void setObligation(boolean obligation) {
         this.obligation = obligation;
-    }
-
-    public String getLecturerId() {
-        return lecturerId;
-    }
-
-    public void setLecturerId(String lecturerId) {
-        this.lecturerId = lecturerId;
     }
 
     public float getGrade() {

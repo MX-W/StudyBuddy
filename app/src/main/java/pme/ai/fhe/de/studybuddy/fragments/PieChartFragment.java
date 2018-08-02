@@ -60,7 +60,7 @@ public class PieChartFragment extends Fragment {
         return view;
     }
 
-    boolean loadPieChart()
+    private void loadPieChart()
     {
 
 
@@ -73,17 +73,17 @@ public class PieChartFragment extends Fragment {
 
         for(Lecture l : pieDataset)
         {
-            //todo if abfrage, ob kurs bestanden wurde
-            //todo mit credit points multiplizieren
-            categories[l.getCategoryId()]+=l.getCredits();
-
+            if(l.getGrade() <= 4.0) {
+                categories[l.getCategoryId()]+=l.getCredits();
+            }
         }
 
 
         List<PieEntry> pieChartEntry = new ArrayList<>(); //list of entrys
 
         pieView.setEntryLabelColor(R.color.colorLightGrey);
-        pieView.setEntryLabelTextSize(10.0f);
+        pieView.setEntryLabelTextSize(11.0f);
+        pieView.setNoDataText("Noch keine bestandene Prüfung");
 
         //Add Data
         for(int i = 1; i<=numberOfCategories; i++)
@@ -99,7 +99,16 @@ public class PieChartFragment extends Fragment {
         // all the chart settings
         PieDataSet pieEntrySet = new PieDataSet(pieChartEntry, "Übersicht");
         PieData data2 = new PieData(pieEntrySet);
-        pieView.setData(data2);
+
+        int count = 0;
+        for(int i = 0; i<numberOfCategories;i++)
+        {
+            count += categories[i];
+        }
+        if(count>0)
+        {
+            pieView.setData(data2);
+        }
 
         pieEntrySet.setValueFormatter(new PercentFormatter());
 
@@ -111,11 +120,6 @@ public class PieChartFragment extends Fragment {
         Description description = new Description();
         description.setText("Deine bisherigen Leistungen nach Kategorien");
         pieView.setDescription(description);
-        //pieChart.setPadding(0,0,0,0);
-        //pieChart.setCenterText("Dein Studium");
-        //pieChart.setHoleRadius(50.0f);
-        //pieChart.setTransparentCircleRadius(25.0f); //size of transparence inner circle
-        /*pieChart.setHoleColor(R.color.colorTransparentWhite);*/
         pieView.setDrawHoleEnabled(false);
         pieView.setTransparentCircleAlpha(200); //transparence of inner circle
         Legend legend = pieView.getLegend();
@@ -131,6 +135,5 @@ public class PieChartFragment extends Fragment {
         pieView.animateXY(500, 500); // animate horizontal and vertical 500 milliseconds
         pieView.invalidate(); // refresh
 
-        return true;
     }
 }

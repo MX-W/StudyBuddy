@@ -21,4 +21,7 @@ public abstract class LectureDao implements IGenericDao<Lecture> {
 
     @Query("SELECT * FROM lecture WHERE module_id = :moduleId")
     public abstract List<Lecture> getLectureByModuleId(int moduleId);
+
+    @Query("UPDATE lecture SET grade = 0.0 WHERE grade != 0.0")
+    public abstract void resetAllGrades();
 }

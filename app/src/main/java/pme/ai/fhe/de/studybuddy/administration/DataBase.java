@@ -16,16 +16,14 @@ import pme.ai.fhe.de.studybuddy.administration.daos.LectureDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.ModuleDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.UniversityDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.UserDataDao;
-import pme.ai.fhe.de.studybuddy.model.DependentLecture;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
-import pme.ai.fhe.de.studybuddy.model.Lecturer;
 import pme.ai.fhe.de.studybuddy.model.Module;
 import pme.ai.fhe.de.studybuddy.model.Semester;
 import pme.ai.fhe.de.studybuddy.model.University;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
-@Database(entities = {Category.class, City.class, CourseOfStudies.class, DependentLecture.class, Lecture.class, Lecturer.class,
-        Module.class, University.class, UserData.class, Semester.class}, version = 9)
+@Database(entities = {Category.class, City.class, CourseOfStudies.class, Lecture.class,
+        Module.class, University.class, UserData.class, Semester.class}, version = 11)
 public abstract class DataBase extends RoomDatabase{
 
     public abstract CourseOfStudiesDao getCourseOfStudiesDao();
