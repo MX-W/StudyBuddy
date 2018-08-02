@@ -3,11 +3,6 @@ package pme.ai.fhe.de.studybuddy.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverters;
-
-import java.util.Date;
-
-import pme.ai.fhe.de.studybuddy.utilities.DateConverter;
 
 /**
  * This class represents the semester entity.

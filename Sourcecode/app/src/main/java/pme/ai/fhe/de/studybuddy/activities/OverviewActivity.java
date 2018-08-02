@@ -2,20 +2,14 @@ package pme.ai.fhe.de.studybuddy.activities;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
 
 import com.facebook.stetho.Stetho;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
-import pme.ai.fhe.de.studybuddy.fragments.BarChartFragment;
-import pme.ai.fhe.de.studybuddy.fragments.LineChartFragment;
-import pme.ai.fhe.de.studybuddy.fragments.PieChartFragment;
 import pme.ai.fhe.de.studybuddy.R;
 
 /**

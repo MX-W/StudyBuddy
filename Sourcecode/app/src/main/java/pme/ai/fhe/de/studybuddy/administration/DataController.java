@@ -3,16 +3,12 @@ package pme.ai.fhe.de.studybuddy.administration;
 import android.app.Application;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import pme.ai.fhe.de.studybuddy.administration.daos.CategoryDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.LectureDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.ModuleDao;
 import pme.ai.fhe.de.studybuddy.administration.daos.SemesterDao;
-import pme.ai.fhe.de.studybuddy.model.Category;
 import pme.ai.fhe.de.studybuddy.model.City;
 import pme.ai.fhe.de.studybuddy.model.CourseOfStudies;
 import pme.ai.fhe.de.studybuddy.administration.daos.CityDao;
@@ -22,7 +18,6 @@ import pme.ai.fhe.de.studybuddy.administration.daos.UserDataDao;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.Module;
 import pme.ai.fhe.de.studybuddy.model.Semester;
-import pme.ai.fhe.de.studybuddy.model.University;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.DataProvider;
 import pme.ai.fhe.de.studybuddy.utilities.GenericAsyncTask;
