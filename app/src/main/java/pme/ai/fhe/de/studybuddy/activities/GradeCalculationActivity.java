@@ -17,8 +17,16 @@ import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
+/**
+ * In this Activity is it possible to calculate which average is needed in the rest of the exams, to reach
+ * the grade you want in the end
+ */
 public class GradeCalculationActivity extends MenuActivity {
 
+    /**
+     * sets title and opens the menu
+     * @param savedInstanceState reference to a Bundle object that is passed
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +45,12 @@ public class GradeCalculationActivity extends MenuActivity {
         }));
     }
 
+
+    /**
+     * Is called when the button of the activity is pushed. It loads the data and calculates what grade is needed.
+     * In the end it opens a dialog with the user to communicate him the answer
+     * @return returns if the method works correctly
+     */
     boolean onClick()
     {
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);

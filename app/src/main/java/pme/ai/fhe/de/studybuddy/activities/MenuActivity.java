@@ -14,6 +14,9 @@ import com.facebook.stetho.Stetho;
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 
+/**
+ * The Activity is called in every other activity. Is opens the menu, so you can swipe it and call it
+ */
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
@@ -21,6 +24,10 @@ public DrawerLayout mDrawerLayout;
 public ActionBarDrawerToggle mToggle;
     public DataController controller;
 
+    /**
+     * connects the layout with the xml files and opens the menu
+     * @param savedInstanceState reference to a Bundle object that is passed
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,25 +45,13 @@ public ActionBarDrawerToggle mToggle;
 
         openMenu();
 
-
-
-        //controller = DataController.getInstance(getApplication());
-
     }
 
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(mToggle.onOptionsItemSelected(item)){
-
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
+    /**
+     * checks which item is selected and opens the right activity therefore
+     * @param item the item, that the user has selected
+     * @return returns if everything went well
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -84,9 +79,12 @@ public ActionBarDrawerToggle mToggle;
         }
 
 
-        //return false;
     }
 
+    /**
+     * inflates the menu
+     * @return return if everything went well
+     */
     public boolean openMenu()
     {
         mDrawerLayout = findViewById(R.id.drawerLayout);
