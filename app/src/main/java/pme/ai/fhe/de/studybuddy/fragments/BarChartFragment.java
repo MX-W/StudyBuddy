@@ -69,7 +69,7 @@ public class BarChartFragment extends Fragment {
         return view;
     }
 
-    void loadBarChart()
+    private void loadBarChart()
     {
 
 

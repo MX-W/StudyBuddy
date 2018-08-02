@@ -60,7 +60,7 @@ public class PieChartFragment extends Fragment {
         return view;
     }
 
-    boolean loadPieChart()
+    private void loadPieChart()
     {
 
 
@@ -73,10 +73,9 @@ public class PieChartFragment extends Fragment {
 
         for(Lecture l : pieDataset)
         {
-            //todo if abfrage, ob kurs bestanden wurde
-            //todo mit credit points multiplizieren
-            categories[l.getCategoryId()]+=l.getCredits();
-
+            if(l.getGrade() <= 4.0) {
+                categories[l.getCategoryId()]+=l.getCredits();
+            }
         }
 
 
@@ -136,6 +135,5 @@ public class PieChartFragment extends Fragment {
         pieView.animateXY(500, 500); // animate horizontal and vertical 500 milliseconds
         pieView.invalidate(); // refresh
 
-        return true;
     }
 }

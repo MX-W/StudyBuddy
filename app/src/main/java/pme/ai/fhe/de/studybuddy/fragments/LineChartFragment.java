@@ -63,7 +63,7 @@ public class LineChartFragment extends Fragment {
         return view;
     }
 
-    void loadLineChart()
+    private void loadLineChart()
     {
 
         List<Entry> userCredits = new ArrayList<Entry>();
@@ -91,7 +91,9 @@ public class LineChartFragment extends Fragment {
             {
                 if(l.getSemesterPassed() == dataset.getCurrentSemesterId()-dataset.getSemester()+i+1)
                 {
-                    allCredits += l.getCredits();
+                    if(l.getGrade() <= 4.0) {
+                        allCredits += l.getCredits();
+                    }
                 }
 
             }
