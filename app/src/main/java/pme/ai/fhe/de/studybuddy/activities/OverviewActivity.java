@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
 
@@ -17,10 +18,18 @@ import pme.ai.fhe.de.studybuddy.fragments.LineChartFragment;
 import pme.ai.fhe.de.studybuddy.fragments.PieChartFragment;
 import pme.ai.fhe.de.studybuddy.R;
 
-
+/**
+ * This activity shows the charts packed in fragments. it handles the change between this fragments
+ */
 public class OverviewActivity extends MenuActivity {
     FragmentPagerAdapter adapterViewPager;
 
+
+    /**
+     * connects the layout with the xml files and opens the menu
+     * sets the page indicator
+     * @param savedInstanceState reference to a Bundle object that is passed
+     */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +39,7 @@ public class OverviewActivity extends MenuActivity {
         setTitle("Übersicht");
 
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+        adapterViewPager = new pme.ai.fhe.de.studybuddy.utilities.PagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
 
         Stetho.initializeWithDefaults(this);
@@ -45,42 +54,6 @@ public class OverviewActivity extends MenuActivity {
 
 
 
-    public class MyPagerAdapter extends FragmentPagerAdapter {
-        private int NUM_ITEMS = 3;
-
-        public MyPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        // Returns total number of pages
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
-        }
-
-        // Returns the fragment to display for that page
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
-                    return PieChartFragment.newInstance(0, "Page # 1");
-                case 1: // Fragment # 1 - This will show SecondFragment different title
-                    return BarChartFragment.newInstance(1, "Page # 2");
-                case 2: // Fragment # 2 - This will show ThirdFragment different title
-                    return LineChartFragment.newInstance(2, "Page # 3");
-                default:
-                    return PieChartFragment.newInstance(0, "Page # 1");
-                    //return null;
-            }
-        }
-
-        // Returns the page title for the top indicator
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return "Page " + position;
-        }
-
-    }
 
 
 }

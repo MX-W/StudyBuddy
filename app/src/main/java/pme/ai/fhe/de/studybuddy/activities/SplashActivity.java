@@ -17,6 +17,10 @@ import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.administration.DataController;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
+
+/**
+ * in the splash screen the logo of the application is shown
+ */
 public class SplashActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 4000; //Time of the Splash Screen
@@ -24,6 +28,11 @@ public class SplashActivity extends AppCompatActivity {
     private ImageView iv;
     private DataController controller;
 
+    /**
+     * connects the layout with the xml files and opens the menu
+     * loads the user data and checks if a new semester has started
+     * @param savedInstanceState reference to a Bundle object that is passed
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,16 +73,9 @@ public class SplashActivity extends AppCompatActivity {
         Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);
         iv.startAnimation(myanim);
 
-
-
-       /* CourseOfStudies computerScience = new CourseOfStudies("Angewandte Informatik", 7, 210, "GET", 1, 1);
-        CourseOfStudies computerScience2 = new CourseOfStudies("Medieninformatik", 7, 210, "GET", 5, 2);
-        DataController controller = new DataController(getApplication());
-        controller.insertCourse(computerScience);
-        controller.insertCourse(computerScience2);*/
-
-
-        //handler brings splash screen to the next activity
+        /**
+         * handler brings splash screen to the right next activity after the set time
+         */
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){

@@ -22,6 +22,10 @@ import pme.ai.fhe.de.studybuddy.model.Semester;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 import pme.ai.fhe.de.studybuddy.utilities.AddSpinnerItems;
 
+/**
+ * In this activity is it possible to insert lectures you passed. On the one hand you can insert grades or only that you passed
+ * and on the other hand you can insert older grades, of the last semesters
+ */
 public class InsertGradeActivity extends MenuActivity {
 
     private static String LECTURE_SPINNER_DEFAULT = "Vorlesungsfach wählen";
@@ -31,6 +35,11 @@ public class InsertGradeActivity extends MenuActivity {
     private EditText editTextGrade;
     private Switch semesterSwitch;
 
+
+    /**
+     * connects the layout with the xml files and opens the menu
+     * @param savedInstanceState reference to a Bundle object that is passed
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +79,12 @@ public class InsertGradeActivity extends MenuActivity {
     }
 
 
+    /**
+     * listens to the button to insert the lecture with a grade. Proves if everything is inserted right and
+     * saves the grade in the database afterwards
+     * @param insertButton the clicked button
+     * @param lectureList list of all lectures
+     */
     private void setupInsertGradeButton(Button insertButton, final List<Lecture> lectureList) {
         insertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +131,13 @@ public class InsertGradeActivity extends MenuActivity {
         });
     }
 
+
+    /**
+     * listens to the button to insert the lecture without a grade. Proves if everything is inserted right and
+     * saves the grade in the database afterwards
+     * @param insertNoGradeButton the clicked button
+     * @param lectureList list of all lectures
+     */
     private void setupInsertNoGradeButton(Button insertNoGradeButton, final List<Lecture> lectureList) {
         insertNoGradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +180,10 @@ public class InsertGradeActivity extends MenuActivity {
         });
     }
 
+    /**
+     * if the switch is checked you can choose an older semester fpr inserting the grade
+     * @param context the context in which this function is called
+     */
     private void setupSemesterSwitchListener(final Context context) {
         semesterSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -192,6 +218,9 @@ public class InsertGradeActivity extends MenuActivity {
         });
     }
 
+    /**
+     * resets the view after a grade was inserted, so you can choose another grade
+     */
     private void resetView() {
 
         //hide keyboard

@@ -24,13 +24,23 @@ import pme.ai.fhe.de.studybuddy.administration.DataController;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
+/**
+* The class handles a fragment, which creates a line with userspecific data out of the database.
+* It compares the ratio between the categories. It shows how many credit points the user reached in every category
+*/
 public class PieChartFragment extends Fragment {
 
     PieChart pieView;
     private DataController controller;
 
 
-    // newInstance constructor for creating fragment with arguments
+
+    /**
+     * newInstance constructor for creating fragment with arguments
+     * @param page page of the fragment
+     * @param title title of the fragment
+     * @return returns the fragment
+     */
     public static PieChartFragment newInstance(int page, String title) {
         PieChartFragment fragmentFirst = new PieChartFragment();
         Bundle args = new Bundle();
@@ -38,8 +48,10 @@ public class PieChartFragment extends Fragment {
         return fragmentFirst;
     }
 
-    // Store instance variables based on arguments passed
-    @Override
+    /**
+     * Store instance variables based on arguments passed
+     * @param savedInstanceState the actual state of the instances
+     */    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -48,8 +60,13 @@ public class PieChartFragment extends Fragment {
 
     }
 
-    // Inflate the view for the fragment based on layout XML
-    @Override
+    /**
+     * Inflate the view for the fragment based on layout XML
+     * @param inflater the inflater used in the context
+     * @param container the conteiner used in the context
+     * @param savedInstanceState the actual state of the instances
+     * @return returns the view that the function has created
+     */    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -60,6 +77,11 @@ public class PieChartFragment extends Fragment {
         return view;
     }
 
+
+    /**
+     * The function loadPieChart is called when the view of the fragment is created. It loads the data out of the database
+     * and sets all configurations for the chart.
+     */
     private void loadPieChart()
     {
 

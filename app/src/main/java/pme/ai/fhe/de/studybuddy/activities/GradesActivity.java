@@ -14,11 +14,18 @@ import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.Lecture;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
-
+/**
+ * This activity shows all reached grades, including the average grade and reached credit points
+ */
 public class GradesActivity extends MenuActivity {
 
     private TableLayout tableLayout;
 
+
+    /**
+     * connects the layout with the xml files and opens the menu
+     * @param savedInstanceState reference to a Bundle object that is passed
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +59,12 @@ public class GradesActivity extends MenuActivity {
 
     }
 
+    /**
+     *
+     * @param lectures list of all lectues that the user visited
+     * @param allCreditsView the view where all reahed credits are showen
+     * @param averageGradeView the view, where the average grade is showen
+     */
     private void setAverageGrade(List<Lecture> lectures, TextView allCreditsView, TextView averageGradeView) {
         int allCredits = 0;
         float allCreditsGrade = 0;
@@ -81,6 +94,14 @@ public class GradesActivity extends MenuActivity {
         averageGradeView.setText(String.valueOf(formatTwo.format(allGrades/allCreditsGrade)));
     }
 
+
+    /**
+     *
+     * @param gradeText the grade in textform
+     * @param lectureName the name of the actual lecture
+     * @param credits The credits that the actual course has
+     * @param semesterId The ID of the actual semester
+     */
     private void updateGradeTable(String gradeText, String lectureName, int credits, int semesterId) {
 
         TableRow newRow = new TableRow(this);

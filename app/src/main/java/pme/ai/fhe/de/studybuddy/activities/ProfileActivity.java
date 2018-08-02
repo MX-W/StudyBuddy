@@ -12,11 +12,19 @@ import android.widget.TextView;
 import pme.ai.fhe.de.studybuddy.R;
 import pme.ai.fhe.de.studybuddy.model.UserData;
 
+
+/**
+ * In this activity the chosed data can be watched and a new study started
+ */
 public class ProfileActivity extends MenuActivity {
 
 
     UserData userData;
 
+    /**
+     * connects the layout with the xml files and opens the menu
+     * @param savedInstanceState reference to a Bundle object that is passed
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +47,9 @@ public class ProfileActivity extends MenuActivity {
 
     }
 
+    /**
+     * connects to database and get the userchosen data
+     */
     private void setRightData() {
 
         TextView univserity = (TextView) findViewById(R.id.highschool_answer);
@@ -55,6 +66,10 @@ public class ProfileActivity extends MenuActivity {
     }
 
 
+    /**
+     * function listens to the button and if he´s clicked it starts a dialog if he really want to stop is actual study
+     * @return returns if it worked
+     */
     boolean onClick()
     {
         AlertDialog.Builder builder;
@@ -83,6 +98,11 @@ public class ProfileActivity extends MenuActivity {
         return true;
     }
 
+
+    /**
+     * calls the setup activity
+     * @return returns if it worked
+     */
     boolean startNewStudyActivity()
     {
         startActivity(new Intent(this, SetupActivity.class));
